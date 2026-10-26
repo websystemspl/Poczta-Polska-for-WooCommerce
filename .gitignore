@@ -1,0 +1,31 @@
+# Internal project notes (never part of the repository handed over to the client)
+PROJEKT.md
+_internal/
+
+# Dependencies and build output
+/vendor/
+/node_modules/
+/build/
+/dist/
+*.zip
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+auth.json
+
+# Tooling
+.phpunit.result.cache
+.phpcs-cache
+/coverage/
+/test-results/
+/playwright-report/
+.wp-env.override.json
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
