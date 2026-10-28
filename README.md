@@ -1,78 +1,101 @@
 # Poczta Polska for WooCommerce
 
-WooCommerce integration with Poczta Polska Elektroniczny Nadawca (EN): Pocztex shipping methods with the pickup point map and cash on delivery, shipment buffers, labels, dispatch and courier pickup.
+Wtyczka łączy sklep WooCommerce z systemem **Elektroniczny Nadawca (EN)** Poczty Polskiej. Klient sklepu wybiera dostawę Pocztą Polską przy zamówieniu, a sprzedawca nadaje paczki prosto z panelu WordPressa, bez przepisywania danych do EN.
 
-Status: in development.
+Status: w trakcie tworzenia.
 
-## What the plugin does
+## Co robi wtyczka
 
-Customers choose Poczta Polska delivery at checkout. Merchants create and send shipments straight from the WordPress admin, without retyping order data into EN. The shop talks to EN directly over WebAPI (SOAP). There is no intermediate server, licence key or telemetry.
+Sklep łączy się z EN bezpośrednio, przez WebAPI. Po drodze nie ma żadnego serwera pośredniego, klucza licencyjnego ani wysyłania danych do kogoś trzeciego.
 
-### Checkout
+### Dla klienta sklepu (zamówienie)
 
-- Shipping methods configured in standard WooCommerce shipping zones:
-  - **Pocztex Kurier**: door-to-door courier delivery.
-  - **Pocztex PUNKT**: pickup at a post office or a partner point (Żabka, Lewiatan, ABC and others).
-  - **Pocztex AUTOMAT**: pickup from a parcel locker.
-  - **eCommerce shipment**: registered business letter (symbol 845), up to 2000 g.
-- Each method has its own price. The merchant can add any number of methods.
-- Each method can have a weight limit and allowed destination countries. A domestic service is never offered for a foreign address.
-- Pickup points are chosen on the official Poczta Polska map widget. The widget lists only points that match the method (PUNKT or AUTOMAT), and an order cannot be placed without a selected point.
-- The map works in both the classic checkout and the Cart/Checkout Blocks.
-- The selected point is stored in the order and shown in the admin, in emails and in My Account.
-- Cash on delivery:
-  - Pocztex methods only, never eCommerce.
-  - Only at points that accept it (`maksymalnaKwotaPobrania` > 0), with the map limited to those points and the order value capped at the point's limit.
-  - The checks also run on the server.
-- The pickup point list is refreshed daily (around 05:00). It is used for server-side COD checks and as a fallback when the map is unavailable.
+- Metody dostawy do wyboru:
+  - **Pocztex Kurier**: kurier przywozi paczkę pod drzwi.
+  - **Pocztex PUNKT**: odbiór w placówce Poczty albo u partnera (Żabka, Lewiatan, ABC i inne).
+  - **Pocztex AUTOMAT**: odbiór z automatu paczkowego.
+  - **Przesyłka eCommerce**: list polecony firmowy, do 2 kg.
+- Każda metoda ma swoją cenę. Sprzedawca może dodać ich dowolnie dużo, w zwykłych strefach wysyłki WooCommerce.
+- Każdej metodzie można ustawić limit wagi i kraje, do których działa. Usługa krajowa nie pokaże się przy adresie zagranicznym.
+- Punkt odbioru klient wybiera na oficjalnej mapie Poczty Polskiej:
+  - mapa pokazuje tylko punkty pasujące do metody, czyli placówki albo automaty,
+  - bez wybranego punktu nie da się złożyć zamówienia,
+  - mapa działa w klasycznym koszyku i w nowym koszyku na blokach.
+- Wybrany punkt zapisuje się w zamówieniu. Widać go w panelu, w mailach i na koncie klienta.
+- **Płatność przy odbiorze (pobranie):**
+  - jest dostępna tylko przy Pocztexie, nie przy przesyłce eCommerce,
+  - przy odbiorze w punkcie działa tylko w punktach, które obsługują pobranie, i tylko do ich limitu kwoty,
+  - wtyczka sprawdza to także na serwerze, nie tylko w przeglądarce.
+- Lista punktów odświeża się sama raz na dobę.
 
-### Admin settings
+### Dla sprzedawcy (ustawienia)
 
-- EN credentials for production and the test environment (INT), with an environment switch. The settings include a connection test, a warning before the EN password expires and clear login error messages.
-- Contract cards from EN. The merchant picks a default card and can assign a different card per shipping method.
-- Default parcel parameters per method:
-  - Pocztex: size S to 2XL, weight, fragile, contents, insurance and description.
-  - eCommerce: size A or B.
-- How Pocztex parcels are posted: collected by courier, dropped off at a post office, or dropped off at a parcel locker. The post office and the locker are chosen on the map.
-- The posting office list from EN, with a default office.
-- Sender details taken from the store settings, with an override.
+- **Logowanie do EN:** osobne dane dla wersji produkcyjnej i testowej, z przełącznikiem między nimi. Wtyczka pozwala sprawdzić połączenie, ostrzega przed wygaśnięciem hasła i pokazuje zrozumiały komunikat przy błędnym loginie.
+- **Umowy z Pocztą (karty):** wtyczka pobiera je z EN. Sprzedawca wybiera domyślną umowę i może przypisać inną do każdej metody dostawy.
+- **Domyślne ustawienia paczek:**
+  - Pocztex: rozmiar (od S do 2XL), waga, „ostrożnie”, zawartość, ubezpieczenie, opis,
+  - eCommerce: gabaryt A albo B.
+- **Sposób nadania** Pocztexu:
+  - kurier odbiera paczki od sprzedawcy,
+  - sprzedawca zanosi je do placówki,
+  - sprzedawca nadaje je w automacie.
 
-### Shipments and buffers
+  Placówkę i automat wybiera się na mapie.
+- **Urząd nadania** z listy w EN i dane nadawcy pobrane z ustawień sklepu, które można zmienić.
 
-- Create shipments from orders. Recipient and sender data are filled in from the order and validated before they are sent to EN.
-- Edit a shipment until its label is printed: phone, pickup point and shipment type.
-- Move shipments between buffers, and delete them (in EN as well).
-- Print labels. After the first label is printed, the shipment is locked and can only be deleted.
-- Send the buffer to EN and order a courier pickup.
-- Multi-parcel Pocztex shipments.
-- Bulk actions for many orders at once: create shipments, print labels as one PDF, send, delete and move.
-- A buffer from a previous day is moved to today before sending, because EN only accepts the current date.
-- No duplicate shipments after a timeout. With partial failures, the error is shown for each shipment.
-- EN errors are shown as readable messages.
+### Dla sprzedawcy (nadawanie paczek)
 
-### Logging
+Paczki z jednego dnia trafiają w EN do „bufora”, czyli koszyka przesyłek do nadania. Wtyczka obsługuje go tak:
 
-- EN requests and responses are written to the WooCommerce log. Passwords, bank account numbers and personal data are masked.
-- Admin operations (settings changes, deleting a shipment or a buffer) are recorded together with the WordPress user who performed them.
+1. Tworzy przesyłkę z zamówienia. Dane adresata i nadawcy wpisują się same, a wtyczka sprawdza je przed wysłaniem do EN.
+2. Pozwala poprawić przesyłkę, dopóki nie wydrukowano etykiety: telefon, punkt odbioru, rodzaj przesyłki.
+3. Przenosi przesyłki między buforami i usuwa je, także w EN.
+4. Drukuje etykiety. Po wydruku przesyłki nie da się już zmienić, można ją tylko usunąć.
+5. Wysyła bufor do EN, czyli przekazuje Poczcie dane do nadania.
+6. Zamawia kuriera po paczki.
 
-## Technical notes
+Ponadto:
+- Jedna przesyłka Pocztex może mieć kilka kartonów.
+- Wiele zamówień można obsłużyć naraz: utworzyć przesyłki, wydrukować etykiety (jeden PDF), wysłać, usunąć albo przenieść.
+- Bufor z poprzedniego dnia wtyczka sama przestawia na dzisiejszą datę.
+- Gdy połączenie zerwie się w trakcie, nie powstanie podwójna przesyłka.
+- Gdy część paczek przejdzie, a część nie, błąd pokazuje się przy konkretnej przesyłce.
+- Błędy z EN wyświetlają się jako zrozumiałe komunikaty po polsku.
 
-- Full support for HPOS (custom order tables) and Cart/Checkout Blocks. WordPress and WooCommerce core files are not modified.
-- EN passwords are stored encrypted in the database and are never echoed back to the form. The code contains no secrets.
-- TLS 1.2 or newer, with certificate verification.
-- Personal data stays in the store and in EN. WordPress privacy tools (export and erase) are supported.
-- Source strings are in English. A complete Polish (pl_PL) translation is included.
+### Dziennik zdarzeń
 
-## Out of scope for the first release
+- Wymiana danych z EN zapisuje się w logu WooCommerce. Hasła, numery kont i dane osobowe są w nim zamaskowane.
+- Ważne operacje zapisują się razem z nazwą użytkownika, który je wykonał: zmiana ustawień, usunięcie przesyłki albo bufora.
 
-Pallet shipments, international services and customs declarations, tracking and customer notifications, automatic order status updates, posting registers, return addresses and return labels, OPNA (pickup from sender addresses) and complaints. The architecture leaves room to add these later.
+## Jak jest zbudowana
 
-## Requirements
+- Działa z nowym sposobem przechowywania zamówień w WooCommerce (HPOS) i z koszykiem na blokach.
+- Nie zmienia plików WordPressa ani WooCommerce.
+- Hasło do EN jest w bazie zaszyfrowane i nie wraca do formularza.
+- W kodzie nie ma żadnych haseł ani kluczy.
+- Połączenie z EN jest szyfrowane.
+- Dane osobowe zostają w sklepie i w EN. Działają narzędzia prywatności WordPressa (eksport i usuwanie danych).
+- Interfejs jest po polsku.
 
-- WordPress and WooCommerce versions currently supported by their vendors
-- PHP 8.2 or newer, patched for CVE-2026-109618 and CVE-2026-109619 (8.2.35, 8.3.36, 8.4.27, 8.5.12 or later)
-- PHP `soap` extension
+## Czego nie ma w pierwszej wersji
 
-## License
+Wtyczka jest zbudowana tak, żeby te funkcje dało się dodać później:
+
+- przesyłki paletowe,
+- usługi zagraniczne i deklaracje celne,
+- śledzenie przesyłek i powiadomienia dla klienta,
+- automatyczna zmiana statusu zamówienia,
+- książka nadawcza,
+- zwroty,
+- odbiór paczek spod adresu nadawcy (OPNA),
+- reklamacje.
+
+## Wymagania
+
+- WordPress i WooCommerce w wersjach, które ich twórcy nadal wspierają,
+- PHP 8.2 lub nowszy, z poprawkami bezpieczeństwa z 21.10.2026 (CVE-2026-109618 i CVE-2026-109619), czyli 8.2.35, 8.3.36, 8.4.27, 8.5.12 albo nowszy,
+- rozszerzenie PHP `soap`.
+
+## Licencja
 
 GPL-2.0-or-later
