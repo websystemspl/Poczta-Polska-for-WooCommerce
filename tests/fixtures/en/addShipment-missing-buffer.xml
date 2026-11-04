@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://e-nadawca.poczta-polska.pl"><SOAP-ENV:Body><ns1:addShipmentResponse><retval><error errorNumber="20603" errorDesc="Podany identyfikator zbioru nie istnieje."/></retval></ns1:addShipmentResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>

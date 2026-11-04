@@ -1,0 +1,98 @@
+/**
+ * Poczta Polska settings screen: environment cards on the "Connection" tab.
+ */
+
+.ppwc-environments {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: 16px;
+	max-width: 960px;
+	margin: 16px 0 8px;
+}
+
+.ppwc-environment {
+	display: flex;
+	flex-direction: column;
+	padding: 16px;
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+}
+
+.ppwc-environment:has(input[type="radio"]:checked),
+.ppwc-environment.is-active:not(:has(input[type="radio"])) {
+	border-color: #2271b1;
+	box-shadow: 0 0 0 1px #2271b1;
+}
+
+.ppwc-environment__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+}
+
+.ppwc-environment__switch {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	cursor: pointer;
+}
+
+.ppwc-environment__switch input[type="radio"] {
+	margin: 0;
+}
+
+.ppwc-environment__title {
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.ppwc-environment__badge {
+	display: none;
+	padding: 2px 8px;
+	color: #fff;
+	font-size: 12px;
+	background: #2271b1;
+	border-radius: 10px;
+}
+
+.ppwc-environment:has(input[type="radio"]:checked) .ppwc-environment__badge {
+	display: inline-block;
+}
+
+.ppwc-environment > .description {
+	margin: 8px 0 4px;
+}
+
+.ppwc-environment__field {
+	margin: 12px 0 0;
+}
+
+.ppwc-environment__field > label {
+	display: block;
+	margin-bottom: 4px;
+	font-weight: 600;
+}
+
+.ppwc-environment__field input.regular-text {
+	width: 100%;
+	max-width: none;
+}
+
+.ppwc-environment__field .description {
+	margin: 4px 0;
+}
+
+.ppwc-environment__test {
+	margin: auto 0 0;
+	padding-top: 16px;
+}
+
+.ppwc-environment .ppwc-test-connection-result .notice {
+	margin: 0;
+}
+
+.ppwc-environment .ppwc-test-connection-result.notice {
+	margin: 12px 0 0;
+}

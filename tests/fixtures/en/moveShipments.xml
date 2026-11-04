@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://e-nadawca.poczta-polska.pl"><SOAP-ENV:Body><ns1:moveShipmentsResponse><notMovedGuid>Array</notMovedGuid><error errorNumber="56203" errorDesc="Przesyłka nie istnieje (guid:00000000000000000000000000000000)"/></ns1:moveShipmentsResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>

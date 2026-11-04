@@ -1,0 +1,1667 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Poczta Polska for WooCommerce 0.1.0\n"
+"Report-Msgid-Bugs-To: https://web-systems.pl\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-30T10:54:23+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Language: pl_PL\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: poczta-polska-for-woocommerce\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+
+#. Plugin Name of the plugin
+#: poczta-polska-for-woocommerce.php
+#: src/Privacy.php:43
+msgid "Poczta Polska for WooCommerce"
+msgstr "Poczta Polska for WooCommerce"
+
+#. Description of the plugin
+#: poczta-polska-for-woocommerce.php
+msgid "Pocztex and eCommerce shipping methods with the Poczta Polska pickup point map, cash on delivery and shipment handling in Elektroniczny Nadawca (EN)."
+msgstr "Metody dostawy Pocztex i eCommerce z mapą punktów odbioru Poczty Polskiej, płatnością przy odbiorze i obsługą przesyłek w Elektronicznym Nadawcy (EN)."
+
+#. Author of the plugin
+#: poczta-polska-for-woocommerce.php
+msgid "Web Systems"
+msgstr "Web Systems"
+
+#. Author URI of the plugin
+#: poczta-polska-for-woocommerce.php
+msgid "https://web-systems.pl"
+msgstr "https://web-systems.pl"
+
+#. translators: 1: required PHP version, 2: current PHP version.
+#: poczta-polska-for-woocommerce.php:55
+#, php-format
+msgid "Poczta Polska for WooCommerce requires PHP %1$s or newer. This server runs PHP %2$s, so the plugin is inactive."
+msgstr "Poczta Polska for WooCommerce wymaga PHP %1$s lub nowszego. Ten serwer ma PHP %2$s, więc wtyczka nie działa."
+
+#: src/Admin/ConnectionTest.php:53
+msgid "Connecting to Elektroniczny Nadawca…"
+msgstr "Łączenie z Elektronicznym Nadawcą…"
+
+#: src/Admin/ConnectionTest.php:54
+msgid "The test failed. Try again or check the WooCommerce logs (source: poczta-polska)."
+msgstr "Test się nie udał. Spróbuj ponownie albo sprawdź logi WooCommerce (źródło: poczta-polska)."
+
+#: src/Admin/SettingsPage.php:447
+msgid "Test the test connection"
+msgstr "Testuj połączenie testowe"
+
+#: src/Admin/SettingsPage.php:448
+msgid "Test the production connection"
+msgstr "Testuj połączenie produkcyjne"
+
+#: src/Admin/BuffersPage.php:194
+#: src/Admin/ConnectionTest.php:69
+#: src/Admin/OrderShipmentsBox.php:166
+#: src/Admin/OrderShipmentsBox.php:304
+#: src/Admin/SettingsPage.php:199
+#: src/Admin/SettingsPage.php:247
+#: src/Points/OrderPointDisplay.php:207
+msgid "You are not allowed to do this."
+msgstr "Nie masz uprawnień do tej operacji."
+
+#: src/Admin/ConnectionTest.php:75
+msgid "Unknown environment."
+msgstr "Nieznane środowisko."
+
+#: src/Admin/ConnectionTest.php:78
+msgid "production"
+msgstr "produkcja"
+
+#: src/Admin/ConnectionTest.php:78
+msgid "test"
+msgstr "test"
+
+#. translators: 1: environment name, 2: error message.
+#: src/Admin/ConnectionTest.php:89
+#, php-format
+msgid "Connection to Elektroniczny Nadawca (%1$s) failed: %2$s"
+msgstr "Połączenie z Elektronicznym Nadawcą (%1$s) nie powiodło się: %2$s"
+
+#. translators: 1: environment name, 2: password expiry date, 3: number of days.
+#: src/Admin/ConnectionTest.php:104
+#, php-format
+msgid "Connected to Elektroniczny Nadawca (%1$s). The password is valid until %2$s (%3$d day left)."
+msgid_plural "Connected to Elektroniczny Nadawca (%1$s). The password is valid until %2$s (%3$d days left)."
+msgstr[0] "Połączono z Elektronicznym Nadawcą (%1$s). Hasło jest ważne do %2$s (został %3$d dzień)."
+msgstr[1] "Połączono z Elektronicznym Nadawcą (%1$s). Hasło jest ważne do %2$s (zostały %3$d dni)."
+msgstr[2] "Połączono z Elektronicznym Nadawcą (%1$s). Hasło jest ważne do %2$s (zostało %3$d dni)."
+
+#. translators: %d: number of products.
+#: src/Admin/MissingWeightNotice.php:119
+#, php-format
+msgid "%d product has no weight. The eCommerce parcel is not offered for carts with this product, and Pocztex uses the default weight from the Poczta Polska settings."
+msgid_plural "%d products have no weight. The eCommerce parcel is not offered for carts with these products, and Pocztex uses the default weight from the Poczta Polska settings."
+msgstr[0] "%d produkt nie ma wagi. Przesyłka eCommerce nie jest proponowana dla koszyków z tym produktem, a Pocztex używa domyślnej wagi z ustawień Poczty Polskiej."
+msgstr[1] "%d produkty nie mają wagi. Przesyłka eCommerce nie jest proponowana dla koszyków z tymi produktami, a Pocztex używa domyślnej wagi z ustawień Poczty Polskiej."
+msgstr[2] "%d produktów nie ma wagi. Przesyłka eCommerce nie jest proponowana dla koszyków z tymi produktami, a Pocztex używa domyślnej wagi z ustawień Poczty Polskiej."
+
+#: src/Admin/PasswordExpiry.php:135
+msgid "The Elektroniczny Nadawca password has expired. Shipments cannot be created until you change it in Elektroniczny Nadawca and enter it in the plugin settings."
+msgstr "Hasło do Elektronicznego Nadawcy wygasło. Przesyłek nie da się tworzyć, dopóki nie zmienisz go w Elektronicznym Nadawcy i nie wpiszesz w ustawieniach wtyczki."
+
+#. translators: %d: number of days.
+#: src/Admin/PasswordExpiry.php:138
+#, php-format
+msgid "The Elektroniczny Nadawca password expires in %d day. Change it in Elektroniczny Nadawca and enter it in the plugin settings."
+msgid_plural "The Elektroniczny Nadawca password expires in %d days. Change it in Elektroniczny Nadawca and enter it in the plugin settings."
+msgstr[0] "Hasło do Elektronicznego Nadawcy wygaśnie za %d dzień. Zmień je w Elektronicznym Nadawcy i wpisz w ustawieniach wtyczki."
+msgstr[1] "Hasło do Elektronicznego Nadawcy wygaśnie za %d dni. Zmień je w Elektronicznym Nadawcy i wpisz w ustawieniach wtyczki."
+msgstr[2] "Hasło do Elektronicznego Nadawcy wygaśnie za %d dni. Zmień je w Elektronicznym Nadawcy i wpisz w ustawieniach wtyczki."
+
+#: src/Admin/PasswordExpiry.php:155
+#: src/Admin/SettingsPage.php:78
+msgid "Poczta Polska settings"
+msgstr "Ustawienia Poczty Polskiej"
+
+#: src/Admin/RequirementsNotice.php:48
+msgid "Poczta Polska for WooCommerce needs the PHP SOAP extension to connect to Elektroniczny Nadawca. Ask your hosting provider to enable it."
+msgstr "Poczta Polska for WooCommerce potrzebuje rozszerzenia PHP SOAP do połączenia z Elektronicznym Nadawcą. Poproś dostawcę hostingu o jego włączenie."
+
+#. translators: %s: current PHP version.
+#: src/Admin/RequirementsNotice.php:60
+#, php-format
+msgid "Poczta Polska for WooCommerce: PHP %s does not receive security fixes anymore. Update PHP to a supported, patched version."
+msgstr "Poczta Polska for WooCommerce: PHP %s nie dostaje już poprawek bezpieczeństwa. Zaktualizuj PHP do wspieranej wersji z poprawkami."
+
+#. translators: 1: current PHP version, 2: first patched PHP version.
+#: src/Admin/RequirementsNotice.php:65
+#, php-format
+msgid "Poczta Polska for WooCommerce: PHP %1$s may be missing critical security fixes (CVE-2026-109618, CVE-2026-109619). Update PHP to %2$s or newer, or confirm with your hosting provider that the fixes are backported."
+msgstr "Poczta Polska for WooCommerce: w PHP %1$s może brakować krytycznych poprawek bezpieczeństwa (CVE-2026-109618, CVE-2026-109619). Zaktualizuj PHP do %2$s lub nowszego albo potwierdź u dostawcy hostingu, że poprawki zostały wprowadzone."
+
+#: src/Admin/OrderTrackingColumn.php:99
+#: src/Admin/OrderTrackingColumn.php:104
+#: src/Admin/SettingsPage.php:66
+#: src/Admin/SettingsPage.php:67
+msgid "Poczta Polska"
+msgstr "Poczta Polska"
+
+#: src/Admin/SettingsPage.php:79
+#: src/Admin/SettingsPage.php:103
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: src/Admin/SettingsPage.php:158
+msgid "Elektroniczny Nadawca connection"
+msgstr "Połączenie z Elektronicznym Nadawcą"
+
+#: views/admin/connection-section.php:30
+msgid "Environment"
+msgstr "Środowisko"
+
+#: views/admin/settings-page.php:15
+msgid "Settings sections"
+msgstr "Sekcje ustawień"
+
+#: views/admin/logs-tab.php:12
+msgid "Pickup points copy"
+msgstr "Kopia punktów odbioru"
+
+#: views/admin/logs-tab.php:14
+msgid "The refresh was queued. It runs in the background within a few minutes."
+msgstr "Odświeżanie dodano do kolejki. Wykona się w tle w ciągu kilku minut."
+
+#. translators: 1: number of points, 2: date of the oldest refresh.
+#: src/Admin/SettingsPage.php:300
+#, php-format
+msgid "Points in the copy: %1$s. Oldest refreshed voivodeship: %2$s. The copy refreshes daily at about 5:00."
+msgstr "Punktów w kopii: %1$s. Najdawniej odświeżone województwo: %2$s. Kopia odświeża się codziennie ok. 5:00."
+
+#: src/Admin/SettingsPage.php:302
+msgid "never"
+msgstr "nigdy"
+
+#. translators: %s: error message.
+#: src/Admin/SettingsPage.php:306
+#, php-format
+msgid "One voivodeship failed to refresh: %s"
+msgid_plural "Some voivodeships failed to refresh, e.g.: %s"
+msgstr[0] "Nie udało się odświeżyć jednego województwa: %s"
+msgstr[1] "Nie udało się odświeżyć niektórych województw, np.: %s"
+msgstr[2] "Nie udało się odświeżyć niektórych województw, np.: %s"
+
+#: views/admin/logs-tab.php:20
+msgid "Refresh now"
+msgstr "Odśwież teraz"
+
+#: src/Admin/SettingsPage.php:274
+msgid "Settings changed"
+msgstr "Zmiana ustawień"
+
+#: src/Admin/SettingsPage.php:275
+msgid "Pickup point changed"
+msgstr "Zmiana punktu odbioru"
+
+#: src/Admin/SettingsPage.php:276
+msgid "Pickup points refresh started"
+msgstr "Ręczne odświeżenie punktów odbioru"
+
+#: views/admin/logs-tab.php:22
+msgid "Elektroniczny Nadawca log"
+msgstr "Log Elektronicznego Nadawcy"
+
+#: views/admin/logs-tab.php:24
+msgid "Calls to Elektroniczny Nadawca and errors are saved in the WooCommerce log. Passwords, bank account numbers and personal data are masked."
+msgstr "Wywołania Elektronicznego Nadawcy i błędy zapisują się w logu WooCommerce. Hasła, numery kont i dane osobowe są maskowane."
+
+#: views/admin/logs-tab.php:25
+msgid "Open the log"
+msgstr "Otwórz log"
+
+#: views/admin/logs-tab.php:28
+msgid "Audit log"
+msgstr "Rejestr operacji"
+
+#: views/admin/logs-tab.php:29
+msgid "The latest 50 administrative operations."
+msgstr "50 ostatnich operacji administracyjnych."
+
+#: views/admin/buffers-page.php:248
+#: views/admin/logs-tab.php:33
+msgid "Date"
+msgstr "Data"
+
+#: views/admin/logs-tab.php:34
+msgid "User"
+msgstr "Użytkownik"
+
+#: views/admin/logs-tab.php:35
+msgid "Operation"
+msgstr "Operacja"
+
+#: views/admin/logs-tab.php:36
+msgid "Details"
+msgstr "Szczegóły"
+
+#: views/admin/logs-tab.php:41
+msgid "No operations yet."
+msgstr "Brak operacji."
+
+#: src/Admin/SettingsPage.php:287
+msgid "System"
+msgstr "System"
+
+#: src/Settings.php:78
+msgid "Test (INT)"
+msgstr "Testowe (INT)"
+
+#: src/Settings.php:79
+msgid "Production"
+msgstr "Produkcyjne"
+
+#. translators: %s: environment name.
+#: src/Admin/SettingsPage.php:332
+#, php-format
+msgid "Cards and offices come from Elektroniczny Nadawca and are saved separately for each environment. Active environment: %s."
+msgstr "Karty i urzędy pochodzą z Elektronicznego Nadawcy i zapisują się osobno dla każdego środowiska. Aktywne środowisko: %s."
+
+#: src/Admin/SettingsPage.php:336
+msgid "Refresh the lists"
+msgstr "Odśwież listy"
+
+#: views/admin/field.php:43
+#: views/admin/order-shipments.php:165
+msgid "Choose on the map"
+msgstr "Wybierz na mapie"
+
+#: src/Admin/SettingsPage.php:406
+msgid "— Select —"
+msgstr "— Wybierz —"
+
+#. translators: 1: card number, 2: card description.
+#: src/Admin/SettingsPage.php:411
+#: src/Shipping/Methods/AbstractMethod.php:160
+#, php-format
+msgid "%1$d — %2$s"
+msgstr "%1$d — %2$s"
+
+#. translators: 1: office name printed on labels, 2: office ID.
+#: src/Admin/SettingsPage.php:423
+#, php-format
+msgid "%1$s (%2$d)"
+msgstr "%1$s (%2$d)"
+
+#. translators: %s: saved ID that Elektroniczny Nadawca no longer returns.
+#: src/Admin/SettingsPage.php:432
+#, php-format
+msgid "%s (not available in Elektroniczny Nadawca)"
+msgstr "%s (niedostępne w Elektronicznym Nadawcy)"
+
+#: views/admin/connection-section.php:27
+msgid "Enter the WebAPI login and password for Elektroniczny Nadawca. The test environment (INT) lets you check the plugin without sending real shipments."
+msgstr "Podaj login i hasło do WebAPI Elektronicznego Nadawcy. Środowisko testowe (INT) pozwala sprawdzić wtyczkę bez nadawania prawdziwych przesyłek."
+
+#: views/admin/credential-field.php:13
+msgid "Password saved"
+msgstr "Hasło zapisane"
+
+#: views/admin/credential-field.php:15
+msgid "Leave empty to keep the saved password."
+msgstr "Zostaw puste, aby zachować zapisane hasło."
+
+#: views/admin/credential-field.php:18
+msgid "Remove the saved password"
+msgstr "Usuń zapisane hasło"
+
+#: src/Checkout/Assets.php:118
+msgid "Find a pickup point"
+msgstr "Znajdź punkt odbioru"
+
+#: src/Checkout/Assets.php:119
+msgid "The Poczta Polska map is not available. Search for a point by postcode, city or street."
+msgstr "Mapa Poczty Polskiej jest niedostępna. Wyszukaj punkt po kodzie pocztowym, miejscowości albo ulicy."
+
+#: src/Checkout/Assets.php:120
+msgid "Postcode, city or street"
+msgstr "Kod pocztowy, miejscowość albo ulica"
+
+#: src/Checkout/Assets.php:121
+msgid "Search"
+msgstr "Szukaj"
+
+#: src/Checkout/Assets.php:122
+msgid "Searching…"
+msgstr "Wyszukiwanie…"
+
+#: src/Checkout/Assets.php:123
+msgid "No points found. Try another postcode or city."
+msgstr "Nie znaleziono punktów. Spróbuj innego kodu pocztowego albo miejscowości."
+
+#: src/Checkout/Assets.php:124
+msgid "The search failed. Please try again."
+msgstr "Wyszukiwanie nie powiodło się. Spróbuj ponownie."
+
+#: src/Checkout/Assets.php:125
+msgid "Close"
+msgstr "Zamknij"
+
+#: src/Checkout/PickupPointCheckout.php:147
+#: assets/js/checkout-blocks.js:109
+msgid "Change"
+msgstr "Zmień"
+
+#: src/Checkout/PickupPointCheckout.php:148
+#: assets/js/checkout-blocks.js:109
+msgid "Choose a parcel locker"
+msgstr "Wybierz automat"
+
+#: src/Checkout/PickupPointCheckout.php:148
+#: assets/js/checkout-blocks.js:109
+msgid "Choose a pickup point"
+msgstr "Wybierz punkt odbioru"
+
+#: templates/checkout/pickup-point-summary.php:20
+#: assets/js/checkout-blocks.js:100
+msgid "No parcel locker chosen."
+msgstr "Nie wybrano automatu."
+
+#: templates/checkout/pickup-point-summary.php:20
+#: assets/js/checkout-blocks.js:100
+msgid "No pickup point chosen."
+msgstr "Nie wybrano punktu odbioru."
+
+#. translators: %s: maximum amount, e.g. 4 000,00 zł.
+#. translators: %s: maximum cash on delivery amount.
+#: templates/checkout/pickup-point-summary.php:31
+#: assets/js/checkout-blocks.js:96
+#, php-format,js-format
+msgid "Cash on delivery available (up to %s)."
+msgstr "Punkt realizuje pobranie (do %s)."
+
+#: src/Checkout/PickupPointCheckout.php:257
+msgid "Chosen pickup points by type (PUNKT, AUTOMAT)."
+msgstr "Wybrane punkty odbioru według typu (PUNKT, AUTOMAT)."
+
+#: src/En/Client.php:122
+msgid "Elektroniczny Nadawca returned an invalid password expiry date."
+msgstr "Elektroniczny Nadawca zwrócił nieprawidłową datę ważności hasła."
+
+#. translators: %s: voivodeship code.
+#: src/En/Client.php:187
+#, php-format
+msgid "Invalid voivodeship code: %s."
+msgstr "Nieprawidłowy kod województwa: %s."
+
+#: src/En/Client.php:532
+msgid "Enter the Elektroniczny Nadawca login and password in the plugin settings."
+msgstr "Wpisz login i hasło do Elektronicznego Nadawcy w ustawieniach wtyczki."
+
+#. translators: %s: error message from Elektroniczny Nadawca.
+#: src/En/Client.php:549
+#, php-format
+msgid "Elektroniczny Nadawca returned an error: %s"
+msgstr "Elektroniczny Nadawca zwrócił błąd: %s"
+
+#: src/En/Client.php:558
+msgid "Elektroniczny Nadawca returned an invalid response."
+msgstr "Elektroniczny Nadawca zwrócił nieprawidłową odpowiedź."
+
+#. translators: 1: error description from Elektroniczny Nadawca, 2: error number.
+#: src/En/Client.php:599
+#: src/En/Client.php:660
+#: src/En/Client.php:690
+#, php-format
+msgid "%1$s (EN error %2$d)"
+msgstr "%1$s (błąd EN %2$d)"
+
+#. translators: %s: error message from the HTTP layer.
+#: src/En/SoapTransport.php:138
+#, php-format
+msgid "Could not connect to Elektroniczny Nadawca: %s"
+msgstr "Nie udało się połączyć z Elektronicznym Nadawcą: %s"
+
+#: src/En/SoapTransport.php:148
+msgid "Elektroniczny Nadawca rejected the login or password."
+msgstr "Elektroniczny Nadawca odrzucił login lub hasło."
+
+#. translators: %d: HTTP status code.
+#: src/En/SoapTransport.php:159
+#, php-format
+msgid "Elektroniczny Nadawca returned an unexpected response (HTTP %d)."
+msgstr "Elektroniczny Nadawca zwrócił nieoczekiwaną odpowiedź (HTTP %d)."
+
+#: src/Points/OrderPoint.php:115
+msgid "Pocztex parcel locker"
+msgstr "Automat Pocztex"
+
+#: src/Points/OrderPoint.php:116
+#: views/admin/order-shipments.php:153
+msgid "Pickup point"
+msgstr "Punkt odbioru"
+
+#. translators: %d: point ID (PNI).
+#: templates/emails/pickup-point.php:26
+#: templates/emails/plain/pickup-point.php:23
+#, php-format
+msgid "Point ID (PNI): %d"
+msgstr "Identyfikator punktu (PNI): %d"
+
+#. translators: %d: point ID (PNI).
+#: views/admin/order-pickup-point.php:21
+#, php-format
+msgid "PNI: %d"
+msgstr "PNI: %d"
+
+#: views/admin/order-pickup-point.php:24
+#: views/admin/order-shipments.php:155
+#: views/admin/order-shipments.php:161
+msgid "Not chosen."
+msgstr "Nie wybrano."
+
+#: views/admin/order-pickup-point.php:28
+msgid "Change on the map"
+msgstr "Zmień na mapie"
+
+#: src/Points/OrderPointDisplay.php:187
+msgid "Saving…"
+msgstr "Zapisywanie…"
+
+#: src/Points/OrderPointDisplay.php:188
+msgid "The point could not be saved."
+msgstr "Nie udało się zapisać punktu."
+
+#: src/Points/OrderPointDisplay.php:215
+msgid "This point cannot be used for the shipping method of the order."
+msgstr "Tego punktu nie można użyć z metodą wysyłki tego zamówienia."
+
+#. translators: 1: point name, 2: point address, 3: PNI.
+#: src/Points/OrderPoint.php:63
+#, php-format
+msgid "Pickup point changed to %1$s, %2$s (PNI %3$d)."
+msgstr "Punkt odbioru zmieniony na: %1$s, %2$s (PNI %3$d)."
+
+#: src/Points/PointValidator.php:33
+msgid "Cash on delivery is not available for the chosen shipping method. Choose another payment or shipping method."
+msgstr "Płatność przy odbiorze nie jest dostępna dla wybranej metody wysyłki. Wybierz inną płatność albo inną metodę wysyłki."
+
+#: src/Points/PointValidator.php:42
+msgid "The chosen pickup point is not available any more. Please choose another one."
+msgstr "Wybrany punkt odbioru nie jest już dostępny. Wybierz inny."
+
+#: src/Points/PointValidator.php:44
+#: assets/js/checkout-blocks.js:49
+msgid "Please choose a parcel locker on the map."
+msgstr "Wybierz automat na mapie."
+
+#: src/Points/PointValidator.php:45
+#: assets/js/checkout-blocks.js:49
+msgid "Please choose a pickup point on the map."
+msgstr "Wybierz punkt odbioru na mapie."
+
+#: src/Points/PointValidator.php:50
+msgid "The chosen place is not a parcel locker. Please choose a parcel locker on the map."
+msgstr "Wybrane miejsce nie jest automatem. Wybierz automat na mapie."
+
+#: src/Points/PointValidator.php:51
+msgid "The chosen place is a parcel locker. Please choose a pickup point on the map or change the shipping method."
+msgstr "Wybrane miejsce to automat. Wybierz punkt odbioru na mapie albo zmień metodę wysyłki."
+
+#: src/Points/PointValidator.php:55
+msgid "The chosen place does not hand out parcels. Please choose another point on the map."
+msgstr "Wybrane miejsce nie wydaje przesyłek. Wybierz inny punkt na mapie."
+
+#: src/Points/PointValidator.php:63
+#: assets/js/checkout-blocks.js:51
+msgid "The chosen point does not accept cash on delivery. Choose another point or another payment method."
+msgstr "Wybrany punkt nie realizuje pobrania. Wybierz inny punkt albo inną metodę płatności."
+
+#. translators: %s: maximum cash on delivery amount, e.g. 4 000,00 zł.
+#. translators: %s: maximum cash on delivery amount.
+#: src/Points/PointValidator.php:69
+#: assets/js/checkout-blocks.js:54
+#, php-format,js-format
+msgid "The chosen point accepts cash on delivery up to %s. Choose another point or another payment method."
+msgstr "Wybrany punkt realizuje pobranie do kwoty %s. Wybierz inny punkt albo inną metodę płatności."
+
+#: src/Rest/PointsController.php:114
+msgid "Pickup point not found."
+msgstr "Nie znaleziono punktu odbioru."
+
+#: src/Sender.php:114
+msgid "name"
+msgstr "nazwa"
+
+#: src/Sender.php:115
+#: src/Shipments/ShipmentBuilder.php:62
+msgid "street"
+msgstr "ulica"
+
+#: src/Sender.php:116
+#: src/Shipments/ShipmentBuilder.php:65
+msgid "city"
+msgstr "miejscowość"
+
+#. translators: %s: field name.
+#: src/Sender.php:122
+#, php-format
+msgid "The sender %s is missing."
+msgstr "Brakuje danych nadawcy: %s."
+
+#. translators: 1: field value, 2: maximum number of characters.
+#: src/Sender.php:130
+#, php-format
+msgid "\"%1$s\" is longer than %2$d characters. Enter a shorter version in the sender settings."
+msgstr "„%1$s” ma więcej niż %2$d znaków. Wpisz krótszą wersję w danych nadawcy."
+
+#: src/Sender.php:138
+msgid "The sender postcode must be a Polish postcode (00-000)."
+msgstr "Kod pocztowy nadawcy musi być polskim kodem (00-000)."
+
+#. translators: 1: field label, 2: error description.
+#: src/Settings.php:183
+#, php-format
+msgid "%1$s: %2$s The previous value was kept."
+msgstr "%1$s: %2$s Zachowano poprzednią wartość."
+
+#: src/Settings.php:185
+msgid "Invalid value."
+msgstr "Nieprawidłowa wartość."
+
+#: src/Settings.php:201
+msgid "Choose the parcel locker where you post parcels. The previous posting method was kept."
+msgstr "Wybierz automat, w którym nadajesz paczki. Zachowano poprzedni sposób nadania."
+
+#: src/SettingsSchema.php:77
+msgid "Connection"
+msgstr "Połączenie"
+
+#: src/SettingsSchema.php:78
+msgid "Contract and posting"
+msgstr "Umowa i nadanie"
+
+#: src/SettingsSchema.php:80
+msgid "Shipment defaults"
+msgstr "Parametry przesyłek"
+
+#: src/SettingsSchema.php:81
+msgid "Cash on delivery"
+msgstr "Pobranie"
+
+#: src/SettingsSchema.php:82
+msgid "Logs and data"
+msgstr "Logi i dane"
+
+#: src/SettingsSchema.php:95
+msgid "Contract card and posting office"
+msgstr "Karta umowy i urząd nadania"
+
+#: src/SettingsSchema.php:96
+msgid "Where Pocztex parcels are posted"
+msgstr "Miejsce nadania Pocztex"
+
+#: src/SettingsSchema.php:102
+msgid "Pocztex"
+msgstr "Pocztex"
+
+#: src/Admin/OrderShipmentsBox.php:339
+#: src/SettingsSchema.php:103
+#: src/Shipping/Methods/EcommerceMethod.php:27
+msgid "eCommerce parcel"
+msgstr "Przesyłka eCommerce"
+
+#: src/SettingsSchema.php:106
+msgid "Cash on delivery payout"
+msgstr "Wypłata pobrań"
+
+#: src/SettingsSchema.php:109
+msgid "Logs"
+msgstr "Logi"
+
+#: src/SettingsSchema.php:110
+msgid "Data"
+msgstr "Dane"
+
+#. translators: %d: maximum number of characters.
+#: src/SettingsSchema.php:125
+#, php-format
+msgid "The value is too long, the maximum is %d characters."
+msgstr "Wartość jest za długa, maksimum to %d znaków."
+
+#: src/SettingsSchema.php:135
+msgid "Default contract card"
+msgstr "Domyślna karta umowy"
+
+#: src/SettingsSchema.php:136
+msgid "Used by shipping methods that do not select their own card."
+msgstr "Używana przez metody wysyłki, które nie mają wybranej własnej karty."
+
+#: src/SettingsSchema.php:146
+msgid "Default posting office"
+msgstr "Domyślny urząd nadania"
+
+#: src/SettingsSchema.php:147
+msgid "The office that receives the shipment data when a buffer is sent."
+msgstr "Urząd, do którego trafiają dane przesyłek po wysłaniu bufora."
+
+#: src/SettingsSchema.php:168
+msgid "Posting method"
+msgstr "Sposób nadania"
+
+#: src/SettingsSchema.php:170
+msgid "A courier collects the parcels"
+msgstr "Kurier odbiera paczki"
+
+#: src/SettingsSchema.php:171
+msgid "I post them at the posting office"
+msgstr "Nadaję w urzędzie nadania"
+
+#: src/SettingsSchema.php:172
+msgid "I post them in a Pocztex parcel locker"
+msgstr "Nadaję w automacie Pocztex"
+
+#: src/SettingsSchema.php:181
+msgid "Parcel locker for posting (PNI)"
+msgstr "Automat do nadawania (PNI)"
+
+#: src/SettingsSchema.php:182
+msgid "Required when you post parcels in a parcel locker."
+msgstr "Wymagany, gdy nadajesz paczki w automacie."
+
+#: src/SettingsSchema.php:185
+msgid "The parcel locker ID (PNI) must contain digits only."
+msgstr "Identyfikator automatu (PNI) może zawierać tylko cyfry."
+
+#: src/SettingsSchema.php:189
+msgid "Name"
+msgstr "Nazwa"
+
+#: src/SettingsSchema.php:190
+msgid "Name (continued)"
+msgstr "Nazwa (ciąg dalszy)"
+
+#: src/SettingsSchema.php:191
+msgid "Street"
+msgstr "Ulica"
+
+#: src/SettingsSchema.php:192
+msgid "House number"
+msgstr "Numer domu"
+
+#: src/SettingsSchema.php:193
+msgid "Flat number"
+msgstr "Numer lokalu"
+
+#: src/SettingsSchema.php:199
+msgid "Postcode"
+msgstr "Kod pocztowy"
+
+#: src/SettingsSchema.php:202
+msgid "Enter a Polish postcode, e.g. 00-001."
+msgstr "Wpisz polski kod pocztowy, np. 00-001."
+
+#: src/SettingsSchema.php:204
+msgid "City"
+msgstr "Miejscowość"
+
+#: src/SettingsSchema.php:210
+msgid "Mobile phone"
+msgstr "Telefon komórkowy"
+
+#: src/SettingsSchema.php:213
+msgid "Enter a Polish mobile number (9 digits)."
+msgstr "Wpisz polski numer komórkowy (9 cyfr)."
+
+#: src/SettingsSchema.php:220
+msgid "Phone"
+msgstr "Telefon"
+
+#: src/SettingsSchema.php:223
+msgid "Enter a valid phone number."
+msgstr "Wpisz poprawny numer telefonu."
+
+#: src/SettingsSchema.php:230
+msgid "Email"
+msgstr "E-mail"
+
+#: src/SettingsSchema.php:234
+msgid "Enter a valid email address of up to 50 characters."
+msgstr "Wpisz poprawny adres e-mail (do 50 znaków)."
+
+#: src/SettingsSchema.php:243
+#: views/admin/order-shipments.php:117
+msgid "Format"
+msgstr "Format"
+
+#: src/SettingsSchema.php:245
+msgid "S (up to 9 x 40 x 65 cm)"
+msgstr "S (do 9 x 40 x 65 cm)"
+
+#: src/SettingsSchema.php:246
+msgid "M (up to 20 x 40 x 65 cm)"
+msgstr "M (do 20 x 40 x 65 cm)"
+
+#: src/SettingsSchema.php:247
+msgid "L (up to 42 x 40 x 65 cm)"
+msgstr "L (do 42 x 40 x 65 cm)"
+
+#: src/SettingsSchema.php:248
+msgid "XL (up to 60 x 60 x 70 cm, not for parcel lockers)"
+msgstr "XL (do 60 x 60 x 70 cm, nie do automatów)"
+
+#: src/SettingsSchema.php:249
+msgid "2XL (courier only)"
+msgstr "2XL (tylko kurier)"
+
+#: src/SettingsSchema.php:258
+msgid "Default weight (g)"
+msgstr "Domyślna waga (g)"
+
+#: src/SettingsSchema.php:259
+msgid "Used when products in the order have no weight. Pocztex always requires a weight."
+msgstr "Używana, gdy produkty w zamówieniu nie mają wagi. Pocztex zawsze wymaga wagi."
+
+#: src/SettingsSchema.php:262
+msgid "Enter a weight from 1 to 50000 g."
+msgstr "Wpisz wagę od 1 do 50000 g."
+
+#: src/SettingsSchema.php:269
+msgid "Fragile"
+msgstr "Ostrożnie"
+
+#: src/SettingsSchema.php:270
+msgid "Not available for parcel lockers, Elektroniczny Nadawca rejects it there."
+msgstr "Niedostępne dla automatów, Elektroniczny Nadawca odrzuca tę usługę."
+
+#: src/SettingsSchema.php:273
+msgid "Content"
+msgstr "Zawartość"
+
+#: src/SettingsSchema.php:273
+msgid "Required by Pocztex, e.g. \"Goods\"."
+msgstr "Wymagana przez Pocztex, np. „Towar”."
+
+#: src/SettingsSchema.php:273
+msgid "Goods"
+msgstr "Towar"
+
+#: src/SettingsSchema.php:279
+msgid "Insurance amount (PLN)"
+msgstr "Kwota ubezpieczenia (zł)"
+
+#: src/SettingsSchema.php:280
+msgid "0 means no insurance."
+msgstr "0 oznacza brak ubezpieczenia."
+
+#: src/SettingsSchema.php:283
+msgid "Enter the insurance amount in whole złoty."
+msgstr "Wpisz kwotę ubezpieczenia w pełnych złotych."
+
+#: src/SettingsSchema.php:285
+msgid "Description"
+msgstr "Opis"
+
+#: src/SettingsSchema.php:285
+msgid "Printed on the label (first 40 characters). Use {order_number} for the order number."
+msgstr "Drukowany na etykiecie (pierwsze 40 znaków). Wpisz {order_number} w miejscu numeru zamówienia."
+
+#: src/SettingsSchema.php:285
+#: src/SettingsSchema.php:335
+msgid "Order {order_number}"
+msgstr "Zamówienie {order_number}"
+
+#: src/SettingsSchema.php:291
+#: src/Shipping/Methods/AbstractMethod.php:181
+msgid "Size"
+msgstr "Gabaryt"
+
+#: src/SettingsSchema.php:293
+msgid "Size A"
+msgstr "Gabaryt A"
+
+#: src/SettingsSchema.php:294
+msgid "Size B"
+msgstr "Gabaryt B"
+
+#: src/SettingsSchema.php:303
+msgid "Category"
+msgstr "Kategoria"
+
+#: src/SettingsSchema.php:305
+msgid "Economy"
+msgstr "Ekonomiczna"
+
+#: src/SettingsSchema.php:306
+msgid "Priority"
+msgstr "Priorytetowa"
+
+#: src/SettingsSchema.php:317
+msgid "Bank account number"
+msgstr "Numer rachunku bankowego"
+
+#: src/SettingsSchema.php:318
+msgid "Collected amounts are transferred to this account (26 digits)."
+msgstr "Na ten rachunek trafiają pobrane kwoty (26 cyfr)."
+
+#: src/SettingsSchema.php:321
+msgid "The bank account number is invalid. Check the 26 digits."
+msgstr "Numer rachunku jest nieprawidłowy. Sprawdź 26 cyfr."
+
+#: src/SettingsSchema.php:328
+msgid "Payout method"
+msgstr "Sposób wypłaty"
+
+#: src/SettingsSchema.php:330
+msgid "Bank transfer"
+msgstr "Przelew na rachunek"
+
+#: src/SettingsSchema.php:331
+msgid "Postal order"
+msgstr "Przekaz pocztowy"
+
+#: src/SettingsSchema.php:335
+msgid "Transfer title"
+msgstr "Tytuł przelewu"
+
+#: src/SettingsSchema.php:335
+msgid "Use {order_number} for the order number. Up to 55 characters after replacing it."
+msgstr "Wpisz {order_number} w miejscu numeru zamówienia. Do 55 znaków po podstawieniu."
+
+#: src/SettingsSchema.php:343
+msgid "Log level"
+msgstr "Poziom logowania"
+
+#: src/SettingsSchema.php:345
+msgid "Errors only"
+msgstr "Tylko błędy"
+
+#: src/SettingsSchema.php:346
+msgid "Errors and operations"
+msgstr "Błędy i operacje"
+
+#: src/SettingsSchema.php:347
+msgid "Everything, including Elektroniczny Nadawca calls (troubleshooting)"
+msgstr "Wszystko, także wywołania Elektronicznego Nadawcy (diagnostyka)"
+
+#: src/SettingsSchema.php:356
+msgid "Delete all data on uninstall"
+msgstr "Usuń wszystkie dane przy odinstalowaniu"
+
+#: src/SettingsSchema.php:357
+msgid "Also deletes shipments (tracking numbers, buffers, label status) and the audit log when the plugin is deleted. Settings and the pickup point copy are always deleted."
+msgstr "Przy usuwaniu wtyczki usuwa też przesyłki (numery nadania, bufory, stan etykiet) i rejestr operacji. Ustawienia i kopia punktów odbioru są usuwane zawsze."
+
+#: src/Shipping/Methods/AbstractMethod.php:103
+msgid "Title"
+msgstr "Tytuł"
+
+#: src/Shipping/Methods/AbstractMethod.php:105
+msgid "Shown to customers at checkout."
+msgstr "Widoczny dla klientów w zamówieniu."
+
+#: src/Shipping/Methods/AbstractMethod.php:110
+msgid "Price"
+msgstr "Cena"
+
+#: src/Shipping/Methods/AbstractMethod.php:116
+msgid "Tax status"
+msgstr "Status podatku"
+
+#: src/Shipping/Methods/AbstractMethod.php:121
+msgid "Taxable"
+msgstr "Opodatkowana"
+
+#: src/Shipping/Methods/AbstractMethod.php:122
+msgctxt "Tax status"
+msgid "None"
+msgstr "Brak"
+
+#: src/Shipping/Methods/AbstractMethod.php:126
+msgid "Free shipping from"
+msgstr "Darmowa dostawa od"
+
+#: src/Shipping/Methods/AbstractMethod.php:128
+msgid "Order value after discounts from which this method is free. Leave empty to always charge."
+msgstr "Wartość zamówienia po rabatach, od której metoda jest darmowa. Zostaw puste, aby zawsze naliczać opłatę."
+
+#. translators: %s: store weight unit, e.g. kg.
+#: src/Shipping/Methods/AbstractMethod.php:135
+#, php-format
+msgid "Maximum weight (%s)"
+msgstr "Maksymalna waga (%s)"
+
+#. translators: %s: weight limit of the service, e.g. 2 kg.
+#: src/Shipping/Methods/AbstractMethod.php:141
+#, php-format
+msgid "The method is hidden for heavier orders. Leave empty to use the service limit (%s)."
+msgstr "Dla cięższych zamówień metoda jest ukryta. Zostaw puste, aby użyć limitu usługi (%s)."
+
+#: src/Shipping/Methods/AbstractMethod.php:149
+msgid "Default card from the plugin settings"
+msgstr "Domyślna karta z ustawień wtyczki"
+
+#: src/Shipping/Methods/AbstractMethod.php:172
+msgid "Contract card (production)"
+msgstr "Karta umowy (produkcja)"
+
+#: src/Shipping/Methods/AbstractMethod.php:173
+msgid "Contract card (test)"
+msgstr "Karta umowy (test)"
+
+#: src/Shipping/Methods/AbstractMethod.php:181
+msgid "Parcel format"
+msgstr "Format paczki"
+
+#: src/Shipping/Methods/AbstractMethod.php:184
+msgid "Default from the plugin settings"
+msgstr "Domyślny z ustawień wtyczki"
+
+#: src/Shipping/Methods/EcommerceMethod.php:34
+msgid "Registered business letter (product 845) up to 2 kg. Cash on delivery is not available."
+msgstr "Przesyłka firmowa polecona (produkt 845) do 2 kg. Bez pobrania."
+
+#: src/Admin/OrderShipmentsBox.php:336
+#: src/Shipping/Methods/PocztexCourierMethod.php:27
+msgid "Pocztex Courier"
+msgstr "Pocztex Kurier"
+
+#: src/Shipping/Methods/PocztexCourierMethod.php:34
+msgid "Pocztex door-to-door delivery by courier."
+msgstr "Pocztex z doręczeniem przez kuriera pod drzwi."
+
+#: src/Admin/OrderShipmentsBox.php:338
+#: src/Shipping/Methods/PocztexLockerMethod.php:27
+msgid "Pocztex Parcel Locker"
+msgstr "Pocztex AUTOMAT"
+
+#: src/Shipping/Methods/PocztexLockerMethod.php:34
+msgid "Pocztex collected from a Pocztex parcel locker chosen on the Poczta Polska map. Formats S-L."
+msgstr "Pocztex z odbiorem w automacie wybranym na mapie Poczty Polskiej. Formaty S-L."
+
+#: src/Admin/OrderShipmentsBox.php:337
+#: src/Shipping/Methods/PocztexPointMethod.php:27
+msgid "Pocztex Pickup Point"
+msgstr "Pocztex PUNKT"
+
+#: src/Shipping/Methods/PocztexPointMethod.php:34
+msgid "Pocztex collected at a post office or a partner point (Żabka, Lewiatan, ABC and others) chosen on the Poczta Polska map."
+msgstr "Pocztex z odbiorem w placówce pocztowej albo punkcie partnerskim (Żabka, Lewiatan, ABC i inne) wybranym na mapie Poczty Polskiej."
+
+#: src/Admin/BuffersPage.php:73
+msgid "Poczta Polska buffers"
+msgstr "Bufory Poczty Polskiej"
+
+#: src/Admin/BuffersPage.php:74
+msgid "Buffers"
+msgstr "Bufory"
+
+#. translators: %d: number of shipments.
+#: src/Admin/BuffersPage.php:241
+#, php-format
+msgid "%d shipment deleted."
+msgid_plural "%d shipments deleted."
+msgstr[0] "Usunięto %d przesyłkę."
+msgstr[1] "Usunięto %d przesyłki."
+msgstr[2] "Usunięto %d przesyłek."
+
+#. translators: %d: number of shipments.
+#: src/Admin/BuffersPage.php:252
+#, php-format
+msgid "%d shipment moved."
+msgid_plural "%d shipments moved."
+msgstr[0] "Przeniesiono %d przesyłkę."
+msgstr[1] "Przeniesiono %d przesyłki."
+msgstr[2] "Przeniesiono %d przesyłek."
+
+#: src/Admin/BuffersPage.php:258
+msgid "The buffer date was changed to today."
+msgstr "Data bufora została zmieniona na dzisiejszą."
+
+#. translators: %d: number of shipments.
+#: src/Admin/BuffersPage.php:260
+#, php-format
+msgid "The buffer date was changed to today. %d shipment got a new tracking number, print its label again."
+msgid_plural "The buffer date was changed to today. %d shipments got new tracking numbers, print their labels again."
+msgstr[0] "Data bufora została zmieniona na dzisiejszą. %d przesyłka dostała nowy numer nadania, wydrukuj jej etykietę ponownie."
+msgstr[1] "Data bufora została zmieniona na dzisiejszą. %d przesyłki dostały nowe numery nadania, wydrukuj ich etykiety ponownie."
+msgstr[2] "Data bufora została zmieniona na dzisiejszą. %d przesyłek dostało nowe numery nadania, wydrukuj ich etykiety ponownie."
+
+#. translators: 1: envelope ID, 2: envelope status.
+#: src/Admin/BuffersPage.php:266
+#, php-format
+msgid "The buffer was sent to the post office (envelope %1$d, status %2$s)."
+msgstr "Bufor został wysłany do urzędu nadania (zbiór %1$d, status %2$s)."
+
+#: src/Admin/BuffersPage.php:281
+msgid "The buffer was deleted with its shipments."
+msgstr "Bufor został usunięty razem z przesyłkami."
+
+#: src/Admin/BuffersPage.php:292
+msgid "Choose a pickup date from today on and an hour range."
+msgstr "Wybierz datę odbioru (od dziś) i przedział godzin."
+
+#. translators: 1: date, 2: hour range.
+#: src/Admin/BuffersPage.php:298
+#, php-format
+msgid "The courier was ordered for %1$s, %2$s. Elektroniczny Nadawca sends the confirmation by email."
+msgstr "Kurier zamówiony na %1$s, %2$s. Elektroniczny Nadawca wyśle potwierdzenie e-mailem."
+
+#: src/Admin/BuffersPage.php:301
+#: src/Admin/OrderShipmentsBox.php:225
+msgid "Unknown operation."
+msgstr "Nieznana operacja."
+
+#: src/Admin/OrderBulkActions.php:64
+msgid "Poczta Polska: create shipments"
+msgstr "Poczta Polska: utwórz przesyłki"
+
+#: src/Admin/OrderBulkActions.php:65
+msgid "Poczta Polska: print labels (one PDF)"
+msgstr "Poczta Polska: drukuj etykiety (jeden PDF)"
+
+#: src/Admin/OrderBulkActions.php:66
+msgid "Poczta Polska: delete shipments"
+msgstr "Poczta Polska: usuń przesyłki"
+
+#: src/Admin/OrderBulkActions.php:108
+msgid "None of the selected orders has a shipment in a buffer."
+msgstr "Żadne z wybranych zamówień nie ma przesyłki w buforze."
+
+#. translators: 1: order number, 2: error.
+#: src/Admin/OrderBulkActions.php:117
+#: src/Admin/OrderBulkActions.php:134
+#, php-format
+msgid "Order %1$d: %2$s"
+msgstr "Zamówienie %1$d: %2$s"
+
+#. translators: %d: number of shipments.
+#: src/Admin/OrderBulkActions.php:163
+#, php-format
+msgid "Created %d shipment in Elektroniczny Nadawca."
+msgid_plural "Created %d shipments in Elektroniczny Nadawca."
+msgstr[0] "Utworzono %d przesyłkę w Elektronicznym Nadawcy."
+msgstr[1] "Utworzono %d przesyłki w Elektronicznym Nadawcy."
+msgstr[2] "Utworzono %d przesyłek w Elektronicznym Nadawcy."
+
+#. translators: %d: number of shipments.
+#: src/Admin/OrderBulkActions.php:165
+#, php-format
+msgid "Deleted %d shipment."
+msgid_plural "Deleted %d shipments."
+msgstr[0] "Usunięto %d przesyłkę."
+msgstr[1] "Usunięto %d przesyłki."
+msgstr[2] "Usunięto %d przesyłek."
+
+#: src/Admin/OrderShipmentsBox.php:56
+msgid "Poczta Polska shipment"
+msgstr "Przesyłka Poczta Polska"
+
+#: src/Admin/OrderShipmentsBox.php:143
+msgid "Please wait…"
+msgstr "Proszę czekać…"
+
+#: src/Admin/OrderShipmentsBox.php:144
+msgid "Delete the shipment in Elektroniczny Nadawca?"
+msgstr "Usunąć przesyłkę w Elektronicznym Nadawcy?"
+
+#: src/Admin/OrderShipmentsBox.php:145
+msgid "The operation failed."
+msgstr "Operacja się nie powiodła."
+
+#: src/Admin/OrderShipmentsBox.php:203
+msgid "The shipment was not found."
+msgstr "Nie znaleziono przesyłki."
+
+#: src/Admin/OrderShipmentsBox.php:318
+msgid "Labels"
+msgstr "Etykiety"
+
+#: src/Admin/OrderShipmentsBox.php:352
+msgid "Unconfirmed: check in Elektroniczny Nadawca"
+msgstr "Niepotwierdzona: sprawdź w Elektronicznym Nadawcy"
+
+#: src/Admin/OrderShipmentsBox.php:353
+msgid "In buffer, label printed"
+msgstr "W buforze, etykieta wydrukowana"
+
+#: src/Admin/OrderShipmentsBox.php:353
+msgid "In buffer"
+msgstr "W buforze"
+
+#: src/Admin/OrderShipmentsBox.php:354
+msgid "Sent to the post office"
+msgstr "Wysłana do urzędu"
+
+#: src/Admin/OrderShipmentsBox.php:355
+msgid "Rejected"
+msgstr "Odrzucona"
+
+#: src/Admin/SettingsPage.php:338
+msgid "Where the courier collects the parcels. Empty fields use the store address from WooCommerce settings (shown in grey). The sender on labels comes from the sender profile in Elektroniczny Nadawca (tab \"Contract and posting\")."
+msgstr "Adres, spod którego kurier odbiera paczki. Puste pola biorą adres sklepu z ustawień WooCommerce (widoczny na szaro). Nadawcę na etykietach Elektroniczny Nadawca bierze z profilu nadawcy (zakładka „Umowa i nadanie”)."
+
+#. translators: 1: profile name, 2: profile address.
+#: src/Admin/SettingsPage.php:417
+#, php-format
+msgid "%1$s, %2$s"
+msgstr "%1$s, %2$s"
+
+#: src/En/Client.php:281
+msgid "Elektroniczny Nadawca did not create the buffer."
+msgstr "Elektroniczny Nadawca nie utworzył bufora."
+
+#: src/En/Client.php:434
+msgid "Elektroniczny Nadawca did not return the labels."
+msgstr "Elektroniczny Nadawca nie zwrócił etykiet."
+
+#: src/En/Client.php:459
+msgid "Elektroniczny Nadawca did not confirm sending the buffer."
+msgstr "Elektroniczny Nadawca nie potwierdził wysłania bufora."
+
+#: src/SettingsSchema.php:79
+msgid "Pickup address"
+msgstr "Adres odbioru"
+
+#: src/SettingsSchema.php:99
+msgid "Courier pickup address"
+msgstr "Adres odbioru przesyłek przez kuriera"
+
+#: src/SettingsSchema.php:157
+msgid "Sender profile"
+msgstr "Profil nadawcy"
+
+#: src/SettingsSchema.php:158
+msgid "Elektroniczny Nadawca prints the sender address of this profile on the labels. Profiles are managed in Elektroniczny Nadawca."
+msgstr "Elektroniczny Nadawca drukuje na etykietach adres nadawcy z tego profilu. Profilami zarządza się w Elektronicznym Nadawcy."
+
+#: src/Shipments/BufferService.php:72
+msgid "Choose the contract card and the posting office in the Poczta Polska settings (tab \"Contract and posting\")."
+msgstr "Wybierz kartę umowy i urząd nadania w ustawieniach Poczty Polskiej (zakładka „Umowa i nadanie”)."
+
+#: src/Shipments/BufferService.php:133
+msgid "The buffer was not found among the buffers created by the plugin."
+msgstr "Nie znaleziono tego bufora wśród buforów utworzonych przez wtyczkę."
+
+#: src/Shipments/DraftFactory.php:41
+msgid "The order has no Poczta Polska shipping method. Choose the service for the shipment."
+msgstr "Zamówienie nie ma metody wysyłki Poczty Polskiej. Wybierz usługę dla przesyłki."
+
+#: src/Shipments/ShipmentBuilder.php:60
+msgid "recipient name"
+msgstr "nazwa adresata"
+
+#: src/Shipments/ShipmentBuilder.php:61
+msgid "recipient name (continued)"
+msgstr "nazwa adresata (ciąg dalszy)"
+
+#: src/Shipments/ShipmentBuilder.php:63
+msgid "house number"
+msgstr "numer domu"
+
+#: src/Shipments/ShipmentBuilder.php:64
+msgid "flat number"
+msgstr "numer lokalu"
+
+#: src/Shipments/ShipmentBuilder.php:66
+msgid "email"
+msgstr "e-mail"
+
+#: src/Shipments/ShipmentBuilder.php:67
+msgid "phone"
+msgstr "telefon"
+
+#: src/Shipments/ShipmentBuilder.php:71
+msgid "Domestic services deliver to Poland only."
+msgstr "Usługi krajowe doręczają tylko na adresy w Polsce."
+
+#. translators: %s: field name.
+#: src/Shipments/ShipmentBuilder.php:77
+#, php-format
+msgid "The %s is missing."
+msgstr "Brakuje pola: %s."
+
+#. translators: 1: field name, 2: maximum number of characters.
+#: src/Shipments/ShipmentBuilder.php:84
+#, php-format
+msgid "The %1$s is longer than %2$d characters."
+msgstr "Pole „%1$s” ma więcej niż %2$d znaków."
+
+#: src/Shipments/ShipmentBuilder.php:89
+msgid "The recipient postcode is not a Polish postcode."
+msgstr "Kod pocztowy adresata nie jest polskim kodem."
+
+#: src/Shipments/ShipmentBuilder.php:94
+msgid "A Polish mobile number of the recipient is required for delivery to a pickup point."
+msgstr "Przy odbiorze w punkcie wymagany jest polski numer komórkowy adresata."
+
+#: src/Shipments/ShipmentBuilder.php:98
+msgid "The pickup point is missing."
+msgstr "Brakuje punktu odbioru."
+
+#. translators: %d: maximum weight in grams.
+#: src/Shipments/ShipmentBuilder.php:104
+#, php-format
+msgid "Every parcel must weigh from 1 to %d g."
+msgstr "Każda paczka musi ważyć od 1 do %d g."
+
+#: src/Shipments/ShipmentBuilder.php:110
+msgid "Letters cannot have several parcels."
+msgstr "Przesyłka listowa nie może mieć kilku paczek."
+
+#. translators: %s: parcel format.
+#: src/Shipments/ShipmentBuilder.php:115
+#, php-format
+msgid "The format %s is not available for this service."
+msgstr "Format %s nie jest dostępny dla tej usługi."
+
+#: src/Shipments/ShipmentBuilder.php:119
+msgid "Cash on delivery is not available for this service."
+msgstr "Pobranie nie jest dostępne dla tej usługi."
+
+#: src/Shipments/ShipmentBuilder.php:123
+msgid "Enter the bank account for cash on delivery in the plugin settings."
+msgstr "Wpisz numer rachunku do pobrań w ustawieniach wtyczki."
+
+#: src/Shipments/ShipmentService.php:161
+msgid "Another operation on this order is in progress. Try again in a moment."
+msgstr "Trwa inna operacja na tym zamówieniu. Spróbuj ponownie za chwilę."
+
+#: src/Shipments/ShipmentService.php:168
+msgid "The order already has a shipment. Delete it first or create an additional one."
+msgstr "Zamówienie ma już przesyłkę. Najpierw ją usuń albo utwórz dodatkową."
+
+#: src/Shipments/ShipmentService.php:230
+msgid "Elektroniczny Nadawca did not create the shipment. Create it again."
+msgstr "Elektroniczny Nadawca nie utworzył przesyłki. Utwórz ją ponownie."
+
+#: src/Shipments/ShipmentService.php:246
+msgid "A sent shipment cannot be deleted."
+msgstr "Wysłanej przesyłki nie można usunąć."
+
+#: src/Shipments/ShipmentService.php:288
+msgid "The label was printed or the buffer was sent, so the shipment cannot be changed. You can only delete it."
+msgstr "Etykieta została wydrukowana albo bufor został wysłany, więc przesyłki nie można zmienić. Można ją tylko usunąć."
+
+#: src/Shipments/ShipmentService.php:294
+msgid "The order does not exist."
+msgstr "Zamówienie nie istnieje."
+
+#: src/Shipments/ShipmentService.php:312
+msgid "None of the shipments is in a buffer, there is no label to print."
+msgstr "Żadna z przesyłek nie jest w buforze, nie ma etykiet do wydruku."
+
+#: src/Shipments/ShipmentService.php:833
+msgid "Elektroniczny Nadawca did not return a result for the shipment."
+msgstr "Elektroniczny Nadawca nie zwrócił wyniku dla przesyłki."
+
+#: src/Shipments/ShipmentService.php:910
+msgid "Another operation is in progress. Try again in a moment."
+msgstr "Trwa inna operacja. Spróbuj ponownie za chwilę."
+
+#. translators: %s: environment name (test or production).
+#: views/admin/buffers-page.php:31
+#, php-format
+msgid "Buffers created by the plugin in the %s environment. A buffer collects the shipments posted on one day; send it to the post office when the parcels are ready."
+msgstr "Bufory utworzone przez wtyczkę w środowisku: %s. Bufor zbiera przesyłki nadawane jednego dnia; wyślij go do urzędu, gdy paczki są gotowe."
+
+#: views/admin/buffers-page.php:64
+msgid "There are no buffers yet. A buffer is created with the first shipment of the day."
+msgstr "Nie ma jeszcze buforów. Bufor powstaje przy pierwszej przesyłce danego dnia."
+
+#. translators: 1: buffer ID, 2: posting date, 3: number of shipments.
+#: views/admin/buffers-page.php:75
+#, php-format
+msgid "Buffer %1$d, posting %2$s, %3$d shipment"
+msgid_plural "Buffer %1$d, posting %2$s, %3$d shipments"
+msgstr[0] "Bufor %1$d, nadanie %2$s, %3$d przesyłka"
+msgstr[1] "Bufor %1$d, nadanie %2$s, %3$d przesyłki"
+msgstr[2] "Bufor %1$d, nadanie %2$s, %3$d przesyłek"
+
+#. translators: 1: posting office, 2: contract card.
+#: views/admin/buffers-page.php:88
+#, php-format
+msgid "Posting office: %1$s. Contract card: %2$s."
+msgstr "Urząd nadania: %1$s. Karta umowy: %2$s."
+
+#: views/admin/buffers-page.php:92
+msgid "The posting date has passed. Elektroniczny Nadawca sends a buffer only on its posting date, so change the date to today first (sending does it automatically). Shipments with printed labels get new tracking numbers."
+msgstr "Data nadania minęła. Elektroniczny Nadawca wysyła bufor tylko w dniu nadania, więc najpierw zmień datę na dzisiejszą (wysłanie robi to automatycznie). Przesyłki z wydrukowanymi etykietami dostaną nowe numery nadania."
+
+#: views/admin/buffers-page.php:104
+msgid "Select all"
+msgstr "Zaznacz wszystkie"
+
+#: views/admin/buffers-page.php:105
+msgid "Order"
+msgstr "Zamówienie"
+
+#: views/admin/buffers-page.php:106
+msgid "Recipient"
+msgstr "Adresat"
+
+#: views/admin/buffers-page.php:107
+#: views/admin/order-shipments.php:43
+#: views/admin/order-shipments.php:109
+msgid "Service"
+msgstr "Usługa"
+
+#: views/admin/buffers-page.php:108
+#: views/admin/order-shipments.php:42
+msgid "Tracking number"
+msgstr "Numer nadania"
+
+#: views/admin/buffers-page.php:109
+#: views/admin/buffers-page.php:181
+#: views/admin/order-shipments.php:44
+msgid "Status"
+msgstr "Status"
+
+#: views/admin/buffers-page.php:132
+msgid "Labels of selected (one PDF)"
+msgstr "Etykiety zaznaczonych (jeden PDF)"
+
+#: views/admin/buffers-page.php:141
+msgid "Target buffer"
+msgstr "Bufor docelowy"
+
+#: views/admin/buffers-page.php:148
+msgid "Move selected"
+msgstr "Przenieś zaznaczone"
+
+#: views/admin/buffers-page.php:150
+msgid "Delete the selected shipments in Elektroniczny Nadawca?"
+msgstr "Usunąć zaznaczone przesyłki w Elektronicznym Nadawcy?"
+
+#: views/admin/buffers-page.php:150
+msgid "Delete selected"
+msgstr "Usuń zaznaczone"
+
+#: views/admin/buffers-page.php:156
+msgid "Change the date to today"
+msgstr "Zmień datę na dzisiejszą"
+
+#: views/admin/buffers-page.php:159
+msgid "Send the buffer to the post office? Its shipments cannot be changed afterwards."
+msgstr "Wysłać bufor do urzędu nadania? Potem przesyłek nie da się już zmienić."
+
+#: views/admin/buffers-page.php:159
+msgid "Send to the post office"
+msgstr "Wyślij do urzędu"
+
+#: views/admin/buffers-page.php:161
+msgid "Delete the buffer and all its shipments in Elektroniczny Nadawca?"
+msgstr "Usunąć bufor i wszystkie jego przesyłki w Elektronicznym Nadawcy?"
+
+#: views/admin/buffers-page.php:161
+msgid "Delete buffer"
+msgstr "Usuń bufor"
+
+#: views/admin/buffers-page.php:238
+msgid "Order a courier"
+msgstr "Zamów kuriera"
+
+#: views/admin/buffers-page.php:241
+msgid "The courier collects the parcels from the pickup address in the plugin settings. Elektroniczny Nadawca confirms the order by email."
+msgstr "Kurier odbierze paczki spod adresu odbioru z ustawień wtyczki. Elektroniczny Nadawca potwierdzi zamówienie e-mailem."
+
+#: views/admin/buffers-page.php:252
+msgid "Hours"
+msgstr "Godziny"
+
+#: views/admin/buffers-page.php:260
+msgid "Number of parcels"
+msgstr "Liczba paczek"
+
+#: views/admin/buffers-page.php:264
+msgid "Total weight (kg)"
+msgstr "Łączna waga (kg)"
+
+#: views/admin/buffers-page.php:268
+msgid "Order the courier?"
+msgstr "Zamówić kuriera?"
+
+#: views/admin/buffers-page.php:268
+msgid "Order the courier"
+msgstr "Zamów kuriera"
+
+#: views/admin/order-shipments.php:45
+msgid "Actions"
+msgstr "Akcje"
+
+#. translators: 1: buffer ID, 2: environment (test or production).
+#: views/admin/order-shipments.php:66
+#, php-format
+msgid "Buffer %1$d (%2$s)"
+msgstr "Bufor %1$d (%2$s)"
+
+#: views/admin/order-shipments.php:76
+msgid "Label"
+msgstr "Etykieta"
+
+#: views/admin/order-shipments.php:79
+msgid "Check in EN"
+msgstr "Sprawdź w EN"
+
+#: views/admin/order-shipments.php:82
+msgid "Save changes"
+msgstr "Zapisz zmiany"
+
+#: views/admin/order-shipments.php:85
+msgid "Delete"
+msgstr "Usuń"
+
+#: views/admin/order-shipments.php:96
+msgid "Fix this before creating the shipment:"
+msgstr "Popraw przed utworzeniem przesyłki:"
+
+#: views/admin/order-shipments.php:106
+msgid "Shipment details"
+msgstr "Dane przesyłki"
+
+#: views/admin/order-shipments.php:125
+msgid "Parcels"
+msgstr "Paczki"
+
+#: views/admin/order-shipments.php:129
+msgid "Total weight (g)"
+msgstr "Łączna waga (g)"
+
+#: views/admin/order-shipments.php:133
+msgid "Recipient mobile"
+msgstr "Telefon komórkowy"
+
+#. translators: %s: cash on delivery amount.
+#: views/admin/order-shipments.php:171
+#, php-format
+msgid "Cash on delivery: %s"
+msgstr "Pobranie: %s"
+
+#: views/admin/order-shipments.php:176
+msgid "Create shipment in Elektroniczny Nadawca"
+msgstr "Utwórz przesyłkę w Elektronicznym Nadawcy"
+
+#: src/Privacy.php:66
+msgid "Poczta Polska pickup point"
+msgstr "Punkt odbioru Poczty Polskiej"
+
+#. translators: 1: point name, 2: point address, 3: point ID (PNI).
+#: src/Privacy.php:68
+#, php-format
+msgid "%1$s, %2$s (PNI %3$d)"
+msgstr "%1$s, %2$s (PNI %3$d)"
+
+#: src/Privacy.php:80
+msgid "Poczta Polska tracking numbers"
+msgstr "Numery nadania Poczty Polskiej"
+
+#: src/Privacy.php:125
+msgid "This store sends parcels with Poczta Polska S.A. To register a shipment, the recipient name, delivery address, phone number, email address and, for cash on delivery, the amount are sent to Poczta Polska through its Elektroniczny Nadawca service. Poczta Polska processes them to deliver the parcel and to notify the recipient."
+msgstr "Ten sklep wysyła przesyłki przez Pocztę Polską S.A. Aby nadać przesyłkę, imię i nazwisko odbiorcy, adres dostawy, numer telefonu, adres e-mail oraz, przy płatności za pobraniem, kwota pobrania są przekazywane Poczcie Polskiej przez usługę Elektroniczny Nadawca. Poczta Polska przetwarza je, aby doręczyć przesyłkę i powiadomić odbiorcę."
+
+#: src/Privacy.php:126
+msgid "When you choose a pickup point or a parcel locker, the Poczta Polska map is loaded from mapa.ecommerce.poczta-polska.pl. Your browser sends your IP address, your delivery address (to centre the map) and the address you search for to Poczta Polska. The chosen point is saved in your order."
+msgstr "Gdy wybierasz punkt odbioru lub automat paczkowy, mapa Poczty Polskiej jest wczytywana z mapa.ecommerce.poczta-polska.pl. Twoja przeglądarka przekazuje Poczcie Polskiej adres IP, adres dostawy (aby wyśrodkować mapę) i wyszukiwany adres. Wybrany punkt jest zapisywany w zamówieniu."
+
+#: views/admin/order-tracking-column.php:14
+msgid "Error"
+msgstr "Błąd"
+
+#: src/Admin/SettingsPage.php:443
+msgid "Poczta Polska integration environment for checking the plugin. Shipments are not posted for real."
+msgstr "Środowisko integracyjne Poczty Polskiej do sprawdzania wtyczki. Przesyłki nie są naprawdę nadawane."
+
+#: src/Admin/SettingsPage.php:444
+msgid "Real shipments posted under your agreement with Poczta Polska."
+msgstr "Prawdziwe przesyłki nadawane w ramach umowy z Pocztą Polską."
+
+#: views/admin/connection-section.php:38
+msgid "Active"
+msgstr "Aktywne"
+
+#: views/admin/connection-section.php:43
+msgid "Login"
+msgstr "Login"
+
+#: views/admin/connection-section.php:47
+msgid "Password"
+msgstr "Hasło"
+
+#. translators: %s: date.
+#: views/admin/connection-section.php:54
+#, php-format
+msgid "The password is valid until %s."
+msgstr "Hasło jest ważne do %s."
+
+#: views/admin/connection-section.php:66
+msgid "Shipments are created in the selected environment. The connection test uses the saved login and password, so save your changes first."
+msgstr "Przesyłki są tworzone w wybranym środowisku. Test połączenia używa zapisanego loginu i hasła, więc najpierw zapisz zmiany."
+
+#: views/admin/order-shipments.php:54
+msgid "The other parcels got new numbers: they are on the new label and appear here after the buffer is sent."
+msgstr "Pozostałe paczki dostały nowe numery: są na nowej etykiecie i pojawią się tutaj po wysłaniu bufora."
+
+#. translators: %d: point ID (PNI). Keep %d, the script replaces it.
+#: src/Admin/OrderShipmentsBox.php:147
+#, php-format
+msgid "Point PNI %d chosen, save the shipment to apply it."
+msgstr "Wybrano punkt PNI %d, zapisz przesyłkę, aby go użyć."
+
+#: src/Admin/OrderShipmentsBox.php:250
+msgid "Enter a Polish mobile number with 9 digits."
+msgstr "Podaj polski numer komórkowy, 9 cyfr."
+
+#: src/Admin/OrderShipmentsBox.php:254
+msgid "Enter the phone number with digits only (5 to 19, optionally with +)."
+msgstr "Podaj numer telefonu samymi cyframi (od 5 do 19, opcjonalnie z +)."
+
+#: views/admin/order-shipments.php:137
+msgid "Recipient phone (landline)"
+msgstr "Telefon stacjonarny"
+
+#. translators: 1: point name and address, 2: point ID (PNI).
+#: views/admin/order-shipments.php:160
+#, php-format
+msgid "%1$s (PNI %2$d)"
+msgstr "%1$s (PNI %2$d)"
+
+#: views/admin/order-shipments.php:178
+msgid "Before the label is printed you can change the service, format, parcels, weight, phone numbers or pickup point and click \"Save changes\": the shipment gets a new tracking number. A new pickup point is also saved in the order."
+msgstr "Przed wydrukiem etykiety możesz zmienić usługę, format, liczbę paczek, wagę, telefony lub punkt odbioru i kliknąć „Zapisz zmiany”: przesyłka dostanie nowy numer nadania. Nowy punkt odbioru zapisze się też w zamówieniu."
+
+#: src/Privacy.php:127
+msgid "The store keeps the tracking numbers of your parcels with the order. Recipient data stays in the order; the plugin keeps only phone numbers that the store corrected for a shipment, and removes them together with the order data."
+msgstr "Sklep przechowuje numery nadania Twoich przesyłek razem z zamówieniem. Dane odbiorcy zostają w zamówieniu; wtyczka zapisuje tylko numery telefonów poprawione przez sklep dla przesyłki i usuwa je razem z danymi zamówienia."
+
+#: src/Admin/OrderShipmentsBox.php:270
+msgid "Choose a posting office from the list."
+msgstr "Wybierz urząd nadania z listy."
+
+#: views/admin/buffers-page.php:179
+#: views/admin/order-shipments.php:142
+msgid "Posting office"
+msgstr "Urząd nadania"
+
+#: views/admin/order-shipments.php:148
+msgid "The shipment goes to the buffer of this office and is posted there."
+msgstr "Przesyłka trafi do bufora tego urzędu i tam zostanie nadana."
+
+#: src/Shipments/ShipmentService.php:348
+msgid "Shipments can be moved only to a buffer with the same contract card and posting office."
+msgstr "Przesyłki można przenieść tylko do bufora z tą samą kartą umowy i tym samym urzędem nadania."
+
+#: src/Admin/BuffersPage.php:276
+msgid "The envelope statuses were refreshed."
+msgstr "Statusy zbiorów zostały odświeżone."
+
+#. translators: 1: envelope ID, 2: envelope status.
+#: src/Admin/OrderShipmentsBox.php:372
+#, php-format
+msgid "Envelope %1$d: %2$s"
+msgstr "Zbiór %1$d: %2$s"
+
+#: src/Shipments/EnvelopeStatus.php:103
+msgid "Sent"
+msgstr "Wysłany"
+
+#: src/Shipments/EnvelopeStatus.php:104
+msgid "Delivered"
+msgstr "Dostarczony"
+
+#: src/Shipments/EnvelopeStatus.php:105
+msgid "Validated"
+msgstr "Zwalidowany"
+
+#: src/Shipments/EnvelopeStatus.php:106
+msgid "Accepted"
+msgstr "Przyjęty"
+
+#: src/Shipments/EnvelopeStatus.php:107
+msgid "Faulty: check the envelope in Elektroniczny Nadawca"
+msgstr "Błędny: sprawdź zbiór w Elektronicznym Nadawcy"
+
+#: src/Shipments/EnvelopeStatus.php:108
+msgid "Not checked yet"
+msgstr "Jeszcze nie sprawdzony"
+
+#: src/Shipments/ShipmentService.php:675
+msgid "The buffer no longer exists in Elektroniczny Nadawca (deleted or sent there). Check the shipment in Elektroniczny Nadawca before creating it again."
+msgstr "Bufora nie ma już w Elektronicznym Nadawcy (usunięty albo wysłany poza wtyczką). Sprawdź przesyłkę w Elektronicznym Nadawcy, zanim utworzysz ją ponownie."
+
+#. translators: %s: buffer IDs.
+#: views/admin/buffers-page.php:49
+#, php-format
+msgid "Buffer %s no longer exists in Elektroniczny Nadawca (deleted or sent there). Its shipments are marked: check them in Elektroniczny Nadawca before creating them again."
+msgid_plural "Buffers %s no longer exist in Elektroniczny Nadawca (deleted or sent there). Their shipments are marked: check them in Elektroniczny Nadawca before creating them again."
+msgstr[0] "Bufora %s nie ma już w Elektronicznym Nadawcy (usunięty albo wysłany poza wtyczką). Jego przesyłki są oznaczone: sprawdź je w Elektronicznym Nadawcy, zanim utworzysz je ponownie."
+msgstr[1] "Buforów %s nie ma już w Elektronicznym Nadawcy (usunięte albo wysłane poza wtyczką). Ich przesyłki są oznaczone: sprawdź je w Elektronicznym Nadawcy, zanim utworzysz je ponownie."
+msgstr[2] "Buforów %s nie ma już w Elektronicznym Nadawcy (usunięte albo wysłane poza wtyczką). Ich przesyłki są oznaczone: sprawdź je w Elektronicznym Nadawcy, zanim utworzysz je ponownie."
+
+#: views/admin/buffers-page.php:171
+msgid "Sent envelopes"
+msgstr "Wysłane zbiory"
+
+#: views/admin/buffers-page.php:177
+msgid "Envelope"
+msgstr "Zbiór"
+
+#: views/admin/buffers-page.php:180
+msgid "Orders"
+msgstr "Zamówienia"
+
+#. translators: %d: number of shipments.
+#: views/admin/buffers-page.php:209
+#, php-format
+msgid "%d shipment"
+msgid_plural "%d shipments"
+msgstr[0] "%d przesyłka"
+msgstr[1] "%d przesyłki"
+msgstr[2] "%d przesyłek"
+
+#: views/admin/buffers-page.php:229
+msgid "Refresh statuses"
+msgstr "Odśwież statusy"
+
+#: views/admin/buffers-page.php:178
+msgid "Sent on"
+msgstr "Wysłano"
+
+#: src/Shipments/ShipmentService.php:819
+msgid "The buffer no longer exists in Elektroniczny Nadawca (deleted or sent there). Create the shipment again: it goes to a new buffer."
+msgstr "Bufora nie ma już w Elektronicznym Nadawcy (usunięty albo wysłany poza wtyczką). Utwórz przesyłkę ponownie: trafi do nowego bufora."

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://e-nadawca.poczta-polska.pl"><SOAP-ENV:Body><ns1:getProfilListResponse><profil nazwa="KLIENT0TES" ulica="Testowa" numerDomu="1" miejscowosc="Warszawa" kodPocztowy="00900" kraj="Polska" idProfil="860575" nazwaSkrocona="profil-testowy"/></ns1:getProfilListResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>

@@ -21,6 +21,9 @@ auth.json
 /coverage/
 /test-results/
 /playwright-report/
+/tests/e2e/results/
+/tests/e2e/report/
+/tests/e2e/.auth/
 .wp-env.override.json
 
 # OS and editors

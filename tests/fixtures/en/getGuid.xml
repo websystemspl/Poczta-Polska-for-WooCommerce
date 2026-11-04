@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://e-nadawca.poczta-polska.pl"><SOAP-ENV:Body><ns1:getGuidResponse><guid>DD304386306345A0A8646EA5F8CB8EB4</guid><guid>80465206D9FC499BB864D5F9416FE0CA</guid><guid>28A856F6E9AB40DA97F93D627CC99EEC</guid></ns1:getGuidResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>

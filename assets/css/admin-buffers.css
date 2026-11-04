@@ -1,0 +1,77 @@
+/**
+ * Poczta Polska buffers screen.
+ */
+
+.ppwc-buffers .postbox {
+	margin-top: 20px;
+}
+
+/* WordPress pads .hndle only inside #poststuff. */
+.ppwc-buffers .postbox-header .hndle {
+	margin: 0;
+	padding: 8px 12px;
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.ppwc-buffers .inside {
+	margin: 0;
+	padding: 0 12px 12px;
+}
+
+.ppwc-buffers .notice.inline {
+	margin: 12px 0;
+}
+
+.ppwc-buffers table.widefat {
+	margin: 12px 0 0;
+}
+
+.ppwc-buffer__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	margin: 12px 0 0;
+}
+
+.ppwc-buffer__actions--buffer {
+	padding-top: 12px;
+	border-top: 1px solid #f0f0f1;
+}
+
+.ppwc-buffer__actions .button-link-delete {
+	margin-left: auto;
+}
+
+.ppwc-courier__fields {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 16px;
+	margin: 12px 0;
+}
+
+.ppwc-courier__field {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin: 0;
+}
+
+.ppwc-courier__field label {
+	font-weight: 600;
+}
+
+.ppwc-courier__field input,
+.ppwc-courier__field select {
+	margin: 0;
+}
+
+.ppwc-courier__field input[type="number"] {
+	width: 7em;
+}
+
+.ppwc-envelope--error {
+	color: #d63638;
+}
