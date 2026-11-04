@@ -1,6 +1,6 @@
 # Poczta Polska for WooCommerce – dokumentacja
 
-Dokumentacja wtyczki w wersji 0.2.0. Opisuje instalację, konfigurację, pracę sprzedawcy, budowę wtyczki, obsługę błędów oraz budowanie i wdrażanie nowych wersji.
+Dokumentacja wtyczki w wersji 0.2.1. Opisuje instalację, konfigurację, pracę sprzedawcy, budowę wtyczki, obsługę błędów oraz budowanie i wdrażanie nowych wersji.
 
 | Rozdział | Dla kogo |
 |---|---|
