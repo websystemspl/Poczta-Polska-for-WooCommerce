@@ -56,7 +56,7 @@ jobs:
           php-version: '8.5'
           coverage: none
           tools: composer:v2
-      - run: composer audit --no-interaction
+      - run: composer audit --locked --no-interaction
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
