@@ -4,13 +4,12 @@
  *
  * @package PocztaPolska\WooCommerce
  *
- * @var array{order_id: int, point_type: string, label: string, logo: string, text: string, pni: int} $args PNI 0 when no point is chosen.
+ * @var array{order_id: int, point_type: string, label: string, text: string, pni: int} $args PNI 0 when no point is chosen.
  */
 
 defined( 'ABSPATH' ) || exit;
 ?>
 <div class="ppwc-admin-point" data-order-id="<?php echo esc_attr( (string) $args['order_id'] ); ?>" data-point-type="<?php echo esc_attr( $args['point_type'] ); ?>">
-	<p><?php echo wp_kses( $args['logo'], \PocztaPolska\WooCommerce\Support\Template::KSES_IMG ); ?></p>
 	<p>
 		<strong><?php echo esc_html( $args['label'] ); ?>:</strong><br />
 		<span class="ppwc-admin-point__text">

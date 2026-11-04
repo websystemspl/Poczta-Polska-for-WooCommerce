@@ -10,7 +10,6 @@ declare( strict_types=1 );
 namespace PocztaPolska\WooCommerce\Admin;
 
 use PocztaPolska\WooCommerce\AuditLog;
-use PocztaPolska\WooCommerce\Checkout\Assets;
 use PocztaPolska\WooCommerce\En\Dictionary;
 use PocztaPolska\WooCommerce\Logger;
 use PocztaPolska\WooCommerce\Points\PointsRepository;
@@ -228,7 +227,6 @@ final class SettingsPage {
 		Template::view(
 			'admin/settings-page.php',
 			array(
-				'logo'    => Assets::logo( Assets::LOGO_POCZTA_POLSKA, 180 ),
 				'title'   => get_admin_page_title(),
 				'tabs'    => $tabs,
 				'current' => $current,

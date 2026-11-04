@@ -6,6 +6,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 ## [Unreleased]
 
 ### Changed
+- The Poczta Polska and Pocztex logos are no longer bundled or shown (checkout, order screen, settings): the brand files cannot be distributed under the GPL.
 - The warning about an unpatched PHP version is shown only on the dashboard, the plugins list and the WooCommerce and plugin screens, not on every admin page. The error about a missing SOAP extension stays on every admin page.
 - readme.txt: the external services section states when the map script is loaded; the 0.2.0 changelog lists all features of the release.
 

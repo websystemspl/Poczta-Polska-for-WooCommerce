@@ -6,21 +6,19 @@
  * Keep the class names, data attributes and the hidden field: the script relies on them.
  *
  * @package PocztaPolska\WooCommerce
- * @version 1.0.0
+ * @version 1.1.0
  *
  * @var string                                              $point_type   PUNKT or AUTOMAT.
  * @var \PocztaPolska\WooCommerce\En\Dto\PickupPoint|null $point        Chosen point.
  * @var string|null                                         $problem      Problem with the chosen point, e.g. no cash on delivery.
  * @var float                                               $order_total  Order total in PLN.
  * @var string                                              $field_name   Name of the hidden field.
- * @var string                                              $logo         Logo HTML.
  * @var string                                              $button_label Button label.
  */
 
 defined( 'ABSPATH' ) || exit;
 ?>
 <div class="ppwc-pickup" data-point-type="<?php echo esc_attr( $point_type ); ?>" data-order-total="<?php echo esc_attr( wc_format_decimal( $order_total, 2 ) ); ?>">
-	<?php echo wp_kses( $logo, \PocztaPolska\WooCommerce\Support\Template::KSES_IMG ); ?>
 	<input type="hidden" name="<?php echo esc_attr( $field_name ); ?>" value="<?php echo esc_attr( null !== $point ? (string) $point->pni : '' ); ?>" />
 	<div class="ppwc-pickup__summary" aria-live="polite">
 		<?php

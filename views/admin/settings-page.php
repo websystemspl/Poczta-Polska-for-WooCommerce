@@ -4,13 +4,12 @@
  *
  * @package PocztaPolska\WooCommerce
  *
- * @var array{logo: string, title: string, tabs: array<string, array{label: string, url: string}>, current: string, option: string, group: string, page: string} $args
+ * @var array{title: string, tabs: array<string, array{label: string, url: string}>, current: string, option: string, group: string, page: string} $args
  */
 
 defined( 'ABSPATH' ) || exit;
 ?>
 <div class="wrap">
-	<p class="ppwc-settings-logo"><?php echo wp_kses( $args['logo'], \PocztaPolska\WooCommerce\Support\Template::KSES_IMG ); ?></p>
 	<h1><?php echo esc_html( $args['title'] ); ?></h1>
 	<nav class="nav-tab-wrapper" aria-label="<?php esc_attr_e( 'Settings sections', 'poczta-polska-for-woocommerce' ); ?>">
 		<?php foreach ( $args['tabs'] as $ppwc_slug => $ppwc_tab ) : ?>

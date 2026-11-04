@@ -27,7 +27,7 @@
 | `src/Privacy.php`, `src/AuditLog.php`, `src/Logger.php` | prywatność, rejestr operacji, log WooCommerce z maskowaniem |
 | `templates/` | szablony dla klienta i e-maili (do nadpisania w motywie) |
 | `views/admin/` | widoki panelu |
-| `assets/` | skrypty, style, logo Poczty Polskiej i Pocztex |
+| `assets/` | skrypty i style |
 | `languages/` | tłumaczenie pl_PL (PHP i JavaScript) |
 | `resources/wsdl/labs.wsdl` | lokalna kopia WSDL WebAPI EN (wersja w97) |
 

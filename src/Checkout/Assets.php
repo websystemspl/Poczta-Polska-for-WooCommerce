@@ -31,32 +31,6 @@ final class Assets {
 
 	public const HANDLE_STYLE = 'ppwc-checkout';
 
-	/**
-	 * Official logos from https://www.poczta-polska.pl/grupa-pp/poczta-polska/logotypy/,
-	 * bundled unchanged (the brand book forbids modifying the files).
-	 */
-	public const LOGO_POCZTA_POLSKA = 'assets/images/poczta-polska.svg';
-
-	public const LOGO_POCZTEX = 'assets/images/pocztex.svg';
-
-	/**
-	 * Returns an img tag with an official logo. The widths keep the minimum sizes of the
-	 * brand books: 19 mm (about 72 px) for Poczta Polska, 40 mm (about 150 px) for Pocztex.
-	 *
-	 * @param string $logo  LOGO_* constant.
-	 * @param int    $width Width in CSS pixels.
-	 */
-	public static function logo( string $logo, int $width ): string {
-		$alt = self::LOGO_POCZTEX === $logo ? 'Pocztex' : 'Poczta Polska';
-
-		return sprintf(
-			'<img class="ppwc-logo" src="%1$s" width="%2$d" alt="%3$s" />',
-			esc_url( PPWC_PLUGIN_URL . $logo ),
-			$width,
-			esc_attr( $alt )
-		);
-	}
-
 	private const HANDLE_CLASSIC = 'ppwc-checkout-classic';
 
 	/**
