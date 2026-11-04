@@ -5,7 +5,9 @@
 	"license": "GPL-2.0-or-later",
 	"scripts": {
 		"test:e2e": "playwright test",
-		"test:e2e:report": "playwright show-report tests/e2e/report"
+		"test:e2e:report": "playwright show-report tests/e2e/report",
+		"test:k6": "k6 run tests/k6/checkout.js",
+		"test:k6:bulk": "k6 run tests/k6/bulk-shipments.js"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.64.1"

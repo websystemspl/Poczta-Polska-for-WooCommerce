@@ -11,6 +11,7 @@ Kod jest w repozytorium `https://github.com/websystemspl/Poczta-Polska-for-WooCo
 | PHP | 8.2+ z rozszerzeniami `soap`, `sodium`, `mbstring` | testy, analiza |
 | Composer | 2 | PHPCS, PHPStan, PHPUnit (tylko narzędzia, wtyczka nie ma zależności w czasie działania) |
 | Node.js, npm | 20+ | testy E2E (Playwright) |
+| k6 | 1.0+ | testy wydajnościowe (`tests/k6/README.md`) |
 | WP-CLI | 2.x | tłumaczenia, Plugin Check |
 | WordPress z WooCommerce | aktualne | testy E2E, Plugin Check |
 
@@ -30,6 +31,7 @@ composer lint       # PHPCS: WordPress-Extra, WordPress-Docs, PHPCompatibilityWP
 composer analyse    # PHPStan, poziom 8, stuby WordPress i WooCommerce
 composer test       # PHPUnit (bez WordPressa: Brain Monkey i nagrane odpowiedzi EN)
 npm run test:e2e    # E2E w przeglądarce, instrukcja w tests/e2e/README.md
+npm run test:k6     # wydajność zakupów (k6), instrukcja w tests/k6/README.md
 ```
 
 Plugin Check (wytyczne katalogu WordPress.org) uruchamia się w instalacji WordPressa z wtyczką i włączoną wtyczką Plugin Check:

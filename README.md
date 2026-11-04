@@ -112,6 +112,7 @@ composer analyse          # analiza statyczna (PHPStan, poziom 8)
 composer test             # testy jednostkowe (PHPUnit)
 npm install && npx playwright install chromium
 npm run test:e2e          # testy E2E w przeglądarce, instrukcja: tests/e2e/README.md
+npm run test:k6           # test wydajnościowy zakupów (k6), instrukcja: tests/k6/README.md
 composer build            # paczka ZIP w dist/
 ```
 
