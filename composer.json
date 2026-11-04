@@ -10,7 +10,7 @@
 	"require-dev": {
 		"brain/monkey": "^2.6",
 		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-		"php-stubs/woocommerce-stubs": "^10.0",
+		"php-stubs/woocommerce-stubs": "^11.2",
 		"phpcompatibility/phpcompatibility-wp": "^2.1",
 		"phpstan/extension-installer": "^1.4",
 		"phpstan/phpstan": "^2.1",
