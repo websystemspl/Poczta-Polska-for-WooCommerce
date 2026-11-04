@@ -25,6 +25,7 @@ composer lint       # PHPCS: WordPress-Extra, WordPress-Docs, PHPCompatibilityWP
 composer analyse    # PHPStan, poziom 8
 composer test       # PHPUnit
 npm run test:e2e    # E2E, gdy zmiana dotyczy zamówienia albo panelu (tests/e2e/README.md)
+npm run test:k6     # wydajność checkoutu (k6), gdy zmiana dotyczy koszyka, checkoutu albo punktów (tests/k6/README.md)
 ```
 
 Przed wydaniem dodatkowo Plugin Check (PCP) w WordPressie z wtyczką oraz testy regresji na koncie testowym EN (INT): przesyłka z zamówienia, etykieta, wysłanie bufora, punkty odbioru.
