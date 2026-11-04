@@ -14,6 +14,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - The daily pickup point refresh is not scheduled twice when a refresh is already queued.
 
 ### Added
+- `.github/scripts/build-docs.sh`: the documentation from `docs/` as one DOCX file and a PDF made from it (title page, table of contents, screenshots). Screenshots retaken without the logos.
 - k6 load tests (`tests/k6/`): customers placing orders with Poczta Polska methods and pickup points, and shop managers creating shipments in bulk at the same time (OPZ II.7.4.e).
 - Documentation in Polish (`docs/`): installation and configuration, shop manager guide, architecture and API, WordPress.org and updates, logs and errors, build and release.
 - Unit tests for renumbering after a buffer date change, sub-parcel numbers, buffers deleted outside the plugin, sent envelope statuses, pickup point lookups and their limit, the audit log, privacy export and erasure, bulk actions and the tracking column (in-memory `$wpdb` and options for tests).
