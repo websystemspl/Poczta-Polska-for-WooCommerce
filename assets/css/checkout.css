@@ -1,0 +1,69 @@
+/* Poczta Polska pickup point picker (classic checkout and Checkout block). */
+.ppwc-logo {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	/* Clear space required by the brand book. */
+	margin: 0.25em 0 0.75em;
+}
+
+.ppwc-pickup {
+	margin: 0.5em 0 1em;
+	padding: 0.75em 1em;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+}
+
+.ppwc-pickup__summary {
+	margin-bottom: 0.5em;
+}
+
+.ppwc-pickup__cod {
+	display: block;
+	margin-top: 0.25em;
+	font-size: 0.9em;
+}
+
+.ppwc-pickup__problem {
+	margin: 0.5em 0;
+	color: #cc1818;
+}
+
+.ppwc-fallback {
+	max-width: 32rem;
+	width: calc(100% - 2rem);
+}
+
+.ppwc-fallback form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	align-items: flex-end;
+}
+
+.ppwc-fallback label {
+	flex: 1 1 100%;
+}
+
+.ppwc-fallback input {
+	display: block;
+	width: 100%;
+}
+
+.ppwc-fallback__results {
+	max-height: 50vh;
+	margin: 0;
+	padding: 0;
+	overflow-y: auto;
+	list-style: none;
+}
+
+.ppwc-fallback__results button {
+	width: 100%;
+	margin: 0 0 0.5em;
+	padding: 0.5em;
+	text-align: start;
+	background: none;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	cursor: pointer;
+}

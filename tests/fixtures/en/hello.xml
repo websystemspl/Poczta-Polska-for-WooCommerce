@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://e-nadawca.poczta-polska.pl"><SOAP-ENV:Body><ns1:helloResponse><out>Hello ping</out></ns1:helloResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>

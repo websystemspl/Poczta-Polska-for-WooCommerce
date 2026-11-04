@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://e-nadawca.poczta-polska.pl"><SOAP-ENV:Body><ns1:sendEnvelopeResponse><idEnvelope>7817336</idEnvelope><envelopeStatus>WYSLANY</envelopeStatus><envelopeFilename>261102_110244_KLIENT0TES.xml</envelopeFilename></ns1:sendEnvelopeResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>

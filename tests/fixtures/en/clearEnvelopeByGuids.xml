@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://e-nadawca.poczta-polska.pl"><SOAP-ENV:Body><ns1:clearEnvelopeByGuidsResponse><error errorNumber="50701" errorDesc="Przesyłka nie istnieje" guid="C0CFBBA51E594468B532C3CC5C713390"/><error errorNumber="50701" errorDesc="Przesyłka nie istnieje" guid="FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"/></ns1:clearEnvelopeByGuidsResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>

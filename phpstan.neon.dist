@@ -1,0 +1,20 @@
+parameters:
+	level: 8
+	# Values returned by apply_filters() can be anything, whatever the hook docblock says.
+	treatPhpDocTypesAsCertain: false
+	paths:
+		- poczta-polska-for-woocommerce.php
+		- uninstall.php
+		- src
+	bootstrapFiles:
+		- tests/phpstan/bootstrap.php
+		- tests/phpstan/storeapi-stubs.php
+		- vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
+	scanFiles:
+		- vendor/php-stubs/woocommerce-stubs/woocommerce-packages-stubs.php
+	dynamicConstantNames:
+		- PPWC_VERSION
+		- PPWC_PLUGIN_FILE
+		- PPWC_PLUGIN_DIR
+		- PPWC_PLUGIN_URL
+		- PPWC_MIN_PHP

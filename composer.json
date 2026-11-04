@@ -1,0 +1,48 @@
+{
+	"name": "websystemspl/poczta-polska-for-woocommerce",
+	"description": "Poczta Polska shipping for WooCommerce: Pocztex and eCommerce methods, pickup point map, cash on delivery and shipments in Elektroniczny Nadawca.",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": ">=8.2",
+		"ext-soap": "*"
+	},
+	"require-dev": {
+		"brain/monkey": "^2.6",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"php-stubs/woocommerce-stubs": "^10.0",
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"phpstan/extension-installer": "^1.4",
+		"phpstan/phpstan": "^2.1",
+		"phpunit/phpunit": "^11.5",
+		"szepeviktor/phpstan-wordpress": "^2.0",
+		"wp-coding-standards/wpcs": "^3.1"
+	},
+	"autoload": {
+		"psr-4": {
+			"PocztaPolska\\WooCommerce\\": "src/"
+		}
+	},
+	"config": {
+		"sort-packages": true,
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"phpstan/extension-installer": true
+		},
+		"platform": {
+			"php": "8.2.35"
+		}
+	},
+	"scripts": {
+		"lint": "phpcs",
+		"lint:fix": "phpcbf",
+		"analyse": "phpstan analyse --memory-limit=1G",
+		"test": "phpunit",
+		"build": "bash bin/build-zip.sh"
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"PocztaPolska\\WooCommerce\\Tests\\": "tests/"
+		}
+	}
+}
