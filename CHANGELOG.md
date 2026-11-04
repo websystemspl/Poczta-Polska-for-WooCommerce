@@ -5,6 +5,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Added
+- Documentation in Polish (`docs/`): installation and configuration, shop manager guide, architecture and API, WordPress.org and updates, logs and errors, build and release.
+
 ## [0.2.0] - 2026-11-04
 
 ### Added
