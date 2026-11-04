@@ -38,7 +38,7 @@
 		"lint:fix": "phpcbf",
 		"analyse": "phpstan analyse --memory-limit=1G",
 		"test": "phpunit",
-		"build": "bash bin/build-zip.sh"
+		"build": "bash .github/scripts/build-zip.sh"
 	},
 	"autoload-dev": {
 		"psr-4": {

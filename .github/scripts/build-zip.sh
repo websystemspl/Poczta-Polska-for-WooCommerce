@@ -2,7 +2,7 @@
 # Builds the release ZIP in dist/: plugin files without the paths listed in .distignore.
 set -euo pipefail
 
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/../.."
 
 slug="poczta-polska-for-woocommerce"
 version="$(sed -n 's/^ \* Version: *//p' "$slug.php" | tr -d '[:space:]')"

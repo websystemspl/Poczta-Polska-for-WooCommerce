@@ -12,6 +12,7 @@ Kod jest w repozytorium `https://github.com/websystemspl/Poczta-Polska-for-WooCo
 | Composer | 2 | PHPCS, PHPStan, PHPUnit (tylko narzędzia, wtyczka nie ma zależności w czasie działania) |
 | Node.js, npm | 20+ | testy E2E (Playwright) |
 | k6 | 1.0+ | testy wydajnościowe (`tests/k6/README.md`) |
+| Python 3 z pakietem `markdown`, LibreOffice | aktualne | dokumentacja w DOCX i PDF (rozdział 6.9) |
 | WP-CLI | 2.x | tłumaczenia, Plugin Check |
 | WordPress z WooCommerce | aktualne | testy E2E, Plugin Check |
 
@@ -90,7 +91,7 @@ Plik `.po` nie może mieć pustych tłumaczeń ani wpisów `fuzzy`. Plik JSON za
 composer build
 ```
 
-Skrypt `bin/build-zip.sh` sprawdza, czy `Version` w nagłówku zgadza się ze `Stable tag` w `readme.txt`, kopiuje pliki z pominięciem ścieżek z `.distignore` (narzędzia, testy, `vendor`, `node_modules`, pliki konfiguracji, dokumentacja deweloperska) i tworzy `dist/poczta-polska-for-woocommerce-X.Y.Z.zip` z katalogiem `poczta-polska-for-woocommerce/` w środku. Taki plik instaluje się w WordPressie przez **Wtyczki → Dodaj nową → Wyślij wtyczkę na serwer**.
+Skrypt `.github/scripts/build-zip.sh` sprawdza, czy `Version` w nagłówku zgadza się ze `Stable tag` w `readme.txt`, kopiuje pliki z pominięciem ścieżek z `.distignore` (narzędzia, testy, `vendor`, `node_modules`, pliki konfiguracji, dokumentacja deweloperska) i tworzy `dist/poczta-polska-for-woocommerce-X.Y.Z.zip` z katalogiem `poczta-polska-for-woocommerce/` w środku. Taki plik instaluje się w WordPressie przez **Wtyczki → Dodaj nową → Wyślij wtyczkę na serwer**.
 
 ## 6.7. Katalog WordPress.org
 
@@ -122,3 +123,16 @@ Instalacja i aktualizacja w sklepie: rozdziały [1](01-instalacja-i-konfiguracja
 - PHP 8.2+ z `soap` i `sodium`, połączenie wychodzące HTTPS do adresów WebAPI EN,
 - działający WP-Cron albo cron systemowy uruchamiający `wp-cron.php` (zadania Action Scheduler),
 - opcjonalnie stała `PPWC_ENCRYPTION_KEY` w `wp-config.php` (długi losowy ciąg) jako osobny klucz szyfrowania haseł EN; ustaw ją przed wpisaniem haseł.
+
+## 6.9. Dokumentacja w DOCX i PDF
+
+Źródłem dokumentacji są pliki Markdown w `docs/` (ten rozdział też). Wersję do przekazania Zamawiającemu buduje skrypt:
+
+```bash
+.github/scripts/build-docs.sh            # pliki w dist/
+.github/scripts/build-docs.sh ~/Pulpit   # albo w podanym katalogu
+```
+
+Skrypt składa rozdziały w jeden dokument ze stroną tytułową, spisem treści i osadzonymi zrzutami ekranu (`docs/img/`), po czym LibreOffice tworzy `Poczta-Polska-for-WooCommerce-dokumentacja-{wersja}.docx`, a z tego pliku `.pdf`. Oba mają ten sam układ; poprawki można nanieść w DOCX i wyeksportować PDF ponownie. Numer wersji bierze z nagłówka wtyczki, datę z dnia budowania. Katalog roboczy (`PPWC_DOCS_WORK`, domyślnie `~/ppwc-docs-build`) musi być czytelny dla LibreOffice; wersja ze snapa nie czyta `/tmp` ani katalogów ukrytych.
+
+Zrzuty ekranu w `docs/img/` odświeża się po zmianach w panelu (Playwright, patrz `tests/e2e/README.md`); login do EN na zrzutach jest zamaskowany.

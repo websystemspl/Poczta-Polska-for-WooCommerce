@@ -69,7 +69,7 @@ jobs:
     needs: [ quality, tests ]
     steps:
       - uses: actions/checkout@v7
-      - run: bash bin/build-zip.sh
+      - run: bash .github/scripts/build-zip.sh
       - uses: actions/upload-artifact@v7
         with:
           name: poczta-polska-for-woocommerce

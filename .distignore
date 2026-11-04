@@ -1,4 +1,4 @@
-# Files left out of the release ZIP (bin/build-zip.sh, WP-CLI dist-archive).
+# Files left out of the release ZIP (.github/scripts/build-zip.sh, WP-CLI dist-archive).
 /.git
 /.github
 /.gitignore
