@@ -49,7 +49,8 @@ final class RequirementsNotice {
 			);
 		}
 
-		if ( ! $this->requirements->is_php_patched() ) {
+		// The PHP warning only on the store and plugin screens, so it does not nag on every admin page.
+		if ( ! $this->requirements->is_php_patched() && self::is_store_screen() ) {
 			$patched = $this->requirements->patched_php_version();
 
 			$this->print_notice(
@@ -68,6 +69,15 @@ final class RequirementsNotice {
 					)
 			);
 		}
+	}
+
+	/**
+	 * Whether the current screen is the dashboard, the plugins list, a WooCommerce screen or a plugin screen.
+	 */
+	private static function is_store_screen(): bool {
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+
+		return $screen instanceof \WP_Screen && 1 === preg_match( '/^(dashboard|plugins|woocommerce_page_|toplevel_page_ppwc|poczta-polska_page_|shop_order|edit-shop_order)/', $screen->id );
 	}
 
 	/**

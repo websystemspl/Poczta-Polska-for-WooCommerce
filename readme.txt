@@ -114,7 +114,7 @@ Poczta Polska privacy policy: https://www.poczta-polska.pl/polityka-prywatnosci/
 
 The map lets customers choose a pickup point or a parcel locker. Its script is loaded from `https://mapa.ecommerce.poczta-polska.pl/widget/scripts/ppwidget.js`, as Poczta Polska requires.
 
-* **When:** on the checkout page, and in the admin on the order screen and the plugin settings, where a point can be chosen.
+* **When:** the script is loaded when the checkout page opens (also before a Poczta Polska method is chosen), and in the admin on the order screen and the plugin settings. The map itself and its connections start only when the customer or the shop manager opens it.
 * **What is sent:** the browser connects to Poczta Polska, which receives its IP address. To centre the map, the delivery address from the checkout form (street, postcode and city) is passed to the map, together with any address searched on the map. Nothing else is sent to the map service.
 
 Poczta Polska terms of service: https://www.poczta-polska.pl/regulaminy/
@@ -127,6 +127,10 @@ The plugin adds a suggested paragraph to **Settings → Privacy → Policy Guide
 == Changelog ==
 
 = 0.2.0 =
+* Settings screen: Elektroniczny Nadawca connection per environment (test and production) with encrypted passwords and a connection test, contract card and posting office, sender profile, shipment defaults, cash on delivery, logs and audit log.
+* Shipping methods Pocztex Kurier, Pocztex PUNKT, Pocztex AUTOMAT and Przesyłka eCommerce for shipping zones, with price, free shipping threshold, weight limit, contract card per environment and parcel format.
+* Poczta Polska pickup point map in the block and the classic checkout, with a fallback search in the local copy of points; the chosen point is validated on the server and saved in the order, shown on the order page, in emails and in the admin.
+* Cash on delivery only for Pocztex and only in points that accept it, within the point's limit.
 * Shipments in Elektroniczny Nadawca from the order screen and in bulk: labels, buffers per posting office, sending to the post office, envelope status, courier orders.
 * Shipment changes before the label: service, format, parcels, weight, mobile and landline, pickup point on the map, posting office.
 * Tracking number column in the orders list, privacy tools, security hardening of public endpoints.

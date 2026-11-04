@@ -9,6 +9,9 @@
 /build
 /dist
 /node_modules
+/test-results
+/playwright-report
+/coverage
 /tests
 /vendor
 /composer.json
