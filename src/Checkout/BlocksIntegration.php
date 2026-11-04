@@ -94,7 +94,6 @@ final class BlocksIntegration implements IntegrationInterface {
 		return array(
 			'pointTypes' => $point_types,
 			'locale'     => str_replace( '_', '-', determine_locale() ),
-			'logoUrl'    => PPWC_PLUGIN_URL . Assets::LOGO_POCZTEX,
 		);
 	}
 }

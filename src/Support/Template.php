@@ -26,20 +26,6 @@ final class Template {
 	public const THEME_PATH = 'poczta-polska-for-woocommerce/';
 
 	/**
-	 * Allowed HTML of the logo images.
-	 *
-	 * @var array<string, array<string, bool>>
-	 */
-	public const KSES_IMG = array(
-		'img' => array(
-			'class' => true,
-			'src'   => true,
-			'width' => true,
-			'alt'   => true,
-		),
-	);
-
-	/**
 	 * Renders a storefront or email template.
 	 *
 	 * @param string               $name Template path relative to templates/, e.g. checkout/pickup-point.php.

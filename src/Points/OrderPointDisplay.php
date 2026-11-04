@@ -151,7 +151,6 @@ final class OrderPointDisplay {
 				'order_id'   => $order->get_id(),
 				'point_type' => $type,
 				'label'      => OrderPoint::type_label( $type ),
-				'logo'       => Assets::logo( Assets::LOGO_POCZTA_POLSKA, 120 ),
 				'text'       => null !== $point ? $point['name'] . ', ' . $point['address'] : '',
 				'pni'        => null !== $point ? $point['pni'] : 0,
 			)

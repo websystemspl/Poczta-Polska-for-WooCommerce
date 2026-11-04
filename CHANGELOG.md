@@ -5,6 +5,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Changed
+- The Poczta Polska and Pocztex logos are no longer bundled or shown (checkout, order screen, settings): the brand files cannot be distributed under the GPL.
+- The warning about an unpatched PHP version is shown only on the dashboard, the plugins list and the WooCommerce and plugin screens, not on every admin page. The error about a missing SOAP extension stays on every admin page.
+- readme.txt: the external services section states when the map script is loaded; the 0.2.0 changelog lists all features of the release.
+
+### Fixed
+- The daily pickup point refresh is not scheduled twice when a refresh is already queued.
+
 ### Added
 - Documentation in Polish (`docs/`): installation and configuration, shop manager guide, architecture and API, WordPress.org and updates, logs and errors, build and release.
 - Unit tests for renumbering after a buffer date change, sub-parcel numbers, buffers deleted outside the plugin, sent envelope statuses, pickup point lookups and their limit, the audit log, privacy export and erasure, bulk actions and the tracking column (in-memory `$wpdb` and options for tests).

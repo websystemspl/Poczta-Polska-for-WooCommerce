@@ -101,7 +101,6 @@
 			);
 
 		return el( 'div', { className: 'ppwc-pickup ppwc-pickup--blocks' },
-			settings.logoUrl ? el( 'img', { className: 'ppwc-logo', src: settings.logoUrl, width: 150, alt: 'Pocztex' } ) : null,
 			summary,
 			problem ? el( 'p', { className: 'ppwc-pickup__problem', role: 'alert' }, problem ) : null,
 			el( 'button', { type: 'button', className: 'wc-block-components-button wp-element-button ppwc-pickup__choose contained', onClick: choose },

@@ -1,12 +1,4 @@
 /* Poczta Polska pickup point picker (classic checkout and Checkout block). */
-.ppwc-logo {
-	display: block;
-	max-width: 100%;
-	height: auto;
-	/* Clear space required by the brand book. */
-	margin: 0.25em 0 0.75em;
-}
-
 .ppwc-pickup {
 	margin: 0.5em 0 1em;
 	padding: 0.75em 1em;

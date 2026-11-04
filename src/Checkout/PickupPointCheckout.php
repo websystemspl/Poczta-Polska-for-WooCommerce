@@ -142,7 +142,6 @@ final class PickupPointCheckout {
 				'problem'      => $problem,
 				'order_total'  => $total,
 				'field_name'   => self::FIELD . '[' . $type . ']',
-				'logo'         => Assets::logo( Assets::LOGO_POCZTEX, 150 ),
 				'button_label' => null !== $point
 					? __( 'Change', 'poczta-polska-for-woocommerce' )
 					: ( PickupPoint::TYPE_LOCKER === $type ? __( 'Choose a parcel locker', 'poczta-polska-for-woocommerce' ) : __( 'Choose a pickup point', 'poczta-polska-for-woocommerce' ) ),

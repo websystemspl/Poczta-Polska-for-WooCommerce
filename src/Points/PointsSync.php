@@ -185,7 +185,7 @@ final class PointsSync {
 	 * the local hour across daylight saving time changes.
 	 */
 	private static function schedule_next(): void {
-		if ( function_exists( 'as_schedule_single_action' ) ) {
+		if ( function_exists( 'as_schedule_single_action' ) && ! as_has_scheduled_action( self::HOOK_DAILY, array(), Lifecycle::ACTION_GROUP ) ) {
 			as_schedule_single_action( self::next_run(), self::HOOK_DAILY, array(), Lifecycle::ACTION_GROUP );
 		}
 	}
