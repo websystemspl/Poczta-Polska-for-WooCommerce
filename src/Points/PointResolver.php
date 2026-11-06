@@ -39,13 +39,14 @@ final class PointResolver {
 	public const TRANSIENT_PREFIX = 'ppwc_point_';
 
 	/**
-	 * Counter of EN lookups started by visitors.
+	 * Prefix of the per-visitor counters of EN lookups (uninstall.php removes these transients too).
 	 */
-	private const LOOKUPS_TRANSIENT = 'ppwc_point_lookups';
+	private const LOOKUPS_TRANSIENT = 'ppwc_point_lookups_';
 
 	/**
-	 * EN lookups allowed per window for visitors: the public REST route and the checkout accept any
-	 * PNI, so without a limit anyone could make the shop call EN with its credentials.
+	 * EN lookups allowed per window for one visitor (IP address): the public REST route and the
+	 * checkout accept any PNI, so without a limit anyone could make the shop call EN with its
+	 * credentials. The budget is per address, so one visitor cannot use it up for everyone.
 	 */
 	private const LOOKUPS_LIMIT = 30;
 
@@ -116,22 +117,33 @@ final class PointResolver {
 
 	/**
 	 * Whether a point missing from the local copy may be looked up in EN now. Shop managers are not
-	 * limited; visitors share a small budget per time window.
+	 * limited; each visitor has a small budget per time window.
 	 */
 	private static function may_ask_en(): bool {
 		if ( current_user_can( 'edit_shop_orders' ) ) {
 			return true;
 		}
 
-		$count = (int) get_transient( self::LOOKUPS_TRANSIENT );
+		$transient = self::LOOKUPS_TRANSIENT . substr( md5( self::visitor_address() ), 0, 16 );
+		$count     = (int) get_transient( $transient );
 
 		if ( $count >= self::LOOKUPS_LIMIT ) {
 			return false;
 		}
 
-		set_transient( self::LOOKUPS_TRANSIENT, $count + 1, self::LOOKUPS_WINDOW );
+		set_transient( $transient, $count + 1, self::LOOKUPS_WINDOW );
 
 		return true;
+	}
+
+	/**
+	 * IP address of the visitor as the web server reports it (a proxy in front of the shop must set
+	 * REMOTE_ADDR itself, as WordPress expects).
+	 */
+	private static function visitor_address(): string {
+		$address = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( (string) $_SERVER['REMOTE_ADDR'] ) ) : '';
+
+		return '' !== $address ? $address : 'unknown';
 	}
 
 	/**

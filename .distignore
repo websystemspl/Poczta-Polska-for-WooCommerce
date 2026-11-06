@@ -27,6 +27,10 @@
 /CONTRIBUTING.md
 /docs
 /PROJEKT.md
+/WYMAGANIA.md
+/SPEC_TECHNICZNA.md
+/OPZ.md
+/credentials.md
 /_internal
 *.zip
 .DS_Store

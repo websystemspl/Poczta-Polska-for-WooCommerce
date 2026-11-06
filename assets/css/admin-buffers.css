@@ -2,6 +2,14 @@
  * Poczta Polska buffers screen.
  */
 
+.ppwc-buffers__sync {
+	margin: 0 0 1em;
+}
+
+.ppwc-buffers__sync .description {
+	margin-left: 0.5em;
+}
+
 .ppwc-buffers .postbox {
 	margin-top: 20px;
 }

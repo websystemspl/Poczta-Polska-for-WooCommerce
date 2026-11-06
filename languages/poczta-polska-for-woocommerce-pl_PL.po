@@ -49,21 +49,21 @@ msgstr "Łączenie z Elektronicznym Nadawcą…"
 msgid "The test failed. Try again or check the WooCommerce logs (source: poczta-polska)."
 msgstr "Test się nie udał. Spróbuj ponownie albo sprawdź logi WooCommerce (źródło: poczta-polska)."
 
-#: src/Admin/SettingsPage.php:447
+#: src/Admin/SettingsPage.php:445
 msgid "Test the test connection"
 msgstr "Testuj połączenie testowe"
 
-#: src/Admin/SettingsPage.php:448
+#: src/Admin/SettingsPage.php:446
 msgid "Test the production connection"
 msgstr "Testuj połączenie produkcyjne"
 
-#: src/Admin/BuffersPage.php:194
+#: src/Admin/BuffersPage.php:192
 #: src/Admin/ConnectionTest.php:69
 #: src/Admin/OrderShipmentsBox.php:166
 #: src/Admin/OrderShipmentsBox.php:304
-#: src/Admin/SettingsPage.php:199
-#: src/Admin/SettingsPage.php:247
-#: src/Points/OrderPointDisplay.php:207
+#: src/Admin/SettingsPage.php:198
+#: src/Admin/SettingsPage.php:245
+#: src/Points/OrderPointDisplay.php:206
 msgid "You are not allowed to do this."
 msgstr "Nie masz uprawnień do tej operacji."
 
@@ -117,7 +117,7 @@ msgstr[1] "Hasło do Elektronicznego Nadawcy wygaśnie za %d dni. Zmień je w El
 msgstr[2] "Hasło do Elektronicznego Nadawcy wygaśnie za %d dni. Zmień je w Elektronicznym Nadawcy i wpisz w ustawieniach wtyczki."
 
 #: src/Admin/PasswordExpiry.php:155
-#: src/Admin/SettingsPage.php:78
+#: src/Admin/SettingsPage.php:77
 msgid "Poczta Polska settings"
 msgstr "Ustawienia Poczty Polskiej"
 
@@ -126,30 +126,30 @@ msgid "Poczta Polska for WooCommerce needs the PHP SOAP extension to connect to 
 msgstr "Poczta Polska for WooCommerce potrzebuje rozszerzenia PHP SOAP do połączenia z Elektronicznym Nadawcą. Poproś dostawcę hostingu o jego włączenie."
 
 #. translators: %s: current PHP version.
-#: src/Admin/RequirementsNotice.php:60
+#: src/Admin/RequirementsNotice.php:61
 #, php-format
 msgid "Poczta Polska for WooCommerce: PHP %s does not receive security fixes anymore. Update PHP to a supported, patched version."
 msgstr "Poczta Polska for WooCommerce: PHP %s nie dostaje już poprawek bezpieczeństwa. Zaktualizuj PHP do wspieranej wersji z poprawkami."
 
 #. translators: 1: current PHP version, 2: first patched PHP version.
-#: src/Admin/RequirementsNotice.php:65
+#: src/Admin/RequirementsNotice.php:66
 #, php-format
 msgid "Poczta Polska for WooCommerce: PHP %1$s may be missing critical security fixes (CVE-2026-109618, CVE-2026-109619). Update PHP to %2$s or newer, or confirm with your hosting provider that the fixes are backported."
 msgstr "Poczta Polska for WooCommerce: w PHP %1$s może brakować krytycznych poprawek bezpieczeństwa (CVE-2026-109618, CVE-2026-109619). Zaktualizuj PHP do %2$s lub nowszego albo potwierdź u dostawcy hostingu, że poprawki zostały wprowadzone."
 
 #: src/Admin/OrderTrackingColumn.php:99
 #: src/Admin/OrderTrackingColumn.php:104
+#: src/Admin/SettingsPage.php:65
 #: src/Admin/SettingsPage.php:66
-#: src/Admin/SettingsPage.php:67
 msgid "Poczta Polska"
 msgstr "Poczta Polska"
 
-#: src/Admin/SettingsPage.php:79
-#: src/Admin/SettingsPage.php:103
+#: src/Admin/SettingsPage.php:78
+#: src/Admin/SettingsPage.php:102
 msgid "Settings"
 msgstr "Ustawienia"
 
-#: src/Admin/SettingsPage.php:158
+#: src/Admin/SettingsPage.php:157
 msgid "Elektroniczny Nadawca connection"
 msgstr "Połączenie z Elektronicznym Nadawcą"
 
@@ -157,7 +157,7 @@ msgstr "Połączenie z Elektronicznym Nadawcą"
 msgid "Environment"
 msgstr "Środowisko"
 
-#: views/admin/settings-page.php:15
+#: views/admin/settings-page.php:14
 msgid "Settings sections"
 msgstr "Sekcje ustawień"
 
@@ -170,17 +170,17 @@ msgid "The refresh was queued. It runs in the background within a few minutes."
 msgstr "Odświeżanie dodano do kolejki. Wykona się w tle w ciągu kilku minut."
 
 #. translators: 1: number of points, 2: date of the oldest refresh.
-#: src/Admin/SettingsPage.php:300
+#: src/Admin/SettingsPage.php:298
 #, php-format
 msgid "Points in the copy: %1$s. Oldest refreshed voivodeship: %2$s. The copy refreshes daily at about 5:00."
 msgstr "Punktów w kopii: %1$s. Najdawniej odświeżone województwo: %2$s. Kopia odświeża się codziennie ok. 5:00."
 
-#: src/Admin/SettingsPage.php:302
+#: src/Admin/SettingsPage.php:300
 msgid "never"
 msgstr "nigdy"
 
 #. translators: %s: error message.
-#: src/Admin/SettingsPage.php:306
+#: src/Admin/SettingsPage.php:304
 #, php-format
 msgid "One voivodeship failed to refresh: %s"
 msgid_plural "Some voivodeships failed to refresh, e.g.: %s"
@@ -192,15 +192,15 @@ msgstr[2] "Nie udało się odświeżyć niektórych województw, np.: %s"
 msgid "Refresh now"
 msgstr "Odśwież teraz"
 
-#: src/Admin/SettingsPage.php:274
+#: src/Admin/SettingsPage.php:272
 msgid "Settings changed"
 msgstr "Zmiana ustawień"
 
-#: src/Admin/SettingsPage.php:275
+#: src/Admin/SettingsPage.php:273
 msgid "Pickup point changed"
 msgstr "Zmiana punktu odbioru"
 
-#: src/Admin/SettingsPage.php:276
+#: src/Admin/SettingsPage.php:274
 msgid "Pickup points refresh started"
 msgstr "Ręczne odświeżenie punktów odbioru"
 
@@ -224,7 +224,7 @@ msgstr "Rejestr operacji"
 msgid "The latest 50 administrative operations."
 msgstr "50 ostatnich operacji administracyjnych."
 
-#: views/admin/buffers-page.php:248
+#: views/admin/buffers-page.php:233
 #: views/admin/logs-tab.php:33
 msgid "Date"
 msgstr "Data"
@@ -245,7 +245,7 @@ msgstr "Szczegóły"
 msgid "No operations yet."
 msgstr "Brak operacji."
 
-#: src/Admin/SettingsPage.php:287
+#: src/Admin/SettingsPage.php:285
 msgid "System"
 msgstr "System"
 
@@ -258,12 +258,12 @@ msgid "Production"
 msgstr "Produkcyjne"
 
 #. translators: %s: environment name.
-#: src/Admin/SettingsPage.php:332
+#: src/Admin/SettingsPage.php:330
 #, php-format
 msgid "Cards and offices come from Elektroniczny Nadawca and are saved separately for each environment. Active environment: %s."
 msgstr "Karty i urzędy pochodzą z Elektronicznego Nadawcy i zapisują się osobno dla każdego środowiska. Aktywne środowisko: %s."
 
-#: src/Admin/SettingsPage.php:336
+#: src/Admin/SettingsPage.php:334
 msgid "Refresh the lists"
 msgstr "Odśwież listy"
 
@@ -272,25 +272,25 @@ msgstr "Odśwież listy"
 msgid "Choose on the map"
 msgstr "Wybierz na mapie"
 
-#: src/Admin/SettingsPage.php:406
+#: src/Admin/SettingsPage.php:404
 msgid "— Select —"
 msgstr "— Wybierz —"
 
 #. translators: 1: card number, 2: card description.
-#: src/Admin/SettingsPage.php:411
+#: src/Admin/SettingsPage.php:409
 #: src/Shipping/Methods/AbstractMethod.php:160
 #, php-format
 msgid "%1$d — %2$s"
 msgstr "%1$d — %2$s"
 
 #. translators: 1: office name printed on labels, 2: office ID.
-#: src/Admin/SettingsPage.php:423
+#: src/Admin/SettingsPage.php:421
 #, php-format
 msgid "%1$s (%2$d)"
 msgstr "%1$s (%2$d)"
 
 #. translators: %s: saved ID that Elektroniczny Nadawca no longer returns.
-#: src/Admin/SettingsPage.php:432
+#: src/Admin/SettingsPage.php:430
 #, php-format
 msgid "%s (not available in Elektroniczny Nadawca)"
 msgstr "%s (niedostępne w Elektronicznym Nadawcy)"
@@ -311,50 +311,50 @@ msgstr "Zostaw puste, aby zachować zapisane hasło."
 msgid "Remove the saved password"
 msgstr "Usuń zapisane hasło"
 
-#: src/Checkout/Assets.php:118
+#: src/Checkout/Assets.php:92
 msgid "Find a pickup point"
 msgstr "Znajdź punkt odbioru"
 
-#: src/Checkout/Assets.php:119
+#: src/Checkout/Assets.php:93
 msgid "The Poczta Polska map is not available. Search for a point by postcode, city or street."
 msgstr "Mapa Poczty Polskiej jest niedostępna. Wyszukaj punkt po kodzie pocztowym, miejscowości albo ulicy."
 
-#: src/Checkout/Assets.php:120
+#: src/Checkout/Assets.php:94
 msgid "Postcode, city or street"
 msgstr "Kod pocztowy, miejscowość albo ulica"
 
-#: src/Checkout/Assets.php:121
+#: src/Checkout/Assets.php:95
 msgid "Search"
 msgstr "Szukaj"
 
-#: src/Checkout/Assets.php:122
+#: src/Checkout/Assets.php:96
 msgid "Searching…"
 msgstr "Wyszukiwanie…"
 
-#: src/Checkout/Assets.php:123
+#: src/Checkout/Assets.php:97
 msgid "No points found. Try another postcode or city."
 msgstr "Nie znaleziono punktów. Spróbuj innego kodu pocztowego albo miejscowości."
 
-#: src/Checkout/Assets.php:124
+#: src/Checkout/Assets.php:98
 msgid "The search failed. Please try again."
 msgstr "Wyszukiwanie nie powiodło się. Spróbuj ponownie."
 
-#: src/Checkout/Assets.php:125
+#: src/Checkout/Assets.php:99
 msgid "Close"
 msgstr "Zamknij"
 
-#: src/Checkout/PickupPointCheckout.php:147
-#: assets/js/checkout-blocks.js:109
+#: src/Checkout/PickupPointCheckout.php:146
+#: assets/js/checkout-blocks.js:108
 msgid "Change"
 msgstr "Zmień"
 
-#: src/Checkout/PickupPointCheckout.php:148
-#: assets/js/checkout-blocks.js:109
+#: src/Checkout/PickupPointCheckout.php:147
+#: assets/js/checkout-blocks.js:108
 msgid "Choose a parcel locker"
 msgstr "Wybierz automat"
 
-#: src/Checkout/PickupPointCheckout.php:148
-#: assets/js/checkout-blocks.js:109
+#: src/Checkout/PickupPointCheckout.php:147
+#: assets/js/checkout-blocks.js:108
 msgid "Choose a pickup point"
 msgstr "Wybierz punkt odbioru"
 
@@ -376,7 +376,7 @@ msgstr "Nie wybrano punktu odbioru."
 msgid "Cash on delivery available (up to %s)."
 msgstr "Punkt realizuje pobranie (do %s)."
 
-#: src/Checkout/PickupPointCheckout.php:257
+#: src/Checkout/PickupPointCheckout.php:256
 msgid "Chosen pickup points by type (PUNKT, AUTOMAT)."
 msgstr "Wybrane punkty odbioru według typu (PUNKT, AUTOMAT)."
 
@@ -445,30 +445,30 @@ msgid "Point ID (PNI): %d"
 msgstr "Identyfikator punktu (PNI): %d"
 
 #. translators: %d: point ID (PNI).
-#: views/admin/order-pickup-point.php:21
+#: views/admin/order-pickup-point.php:20
 #, php-format
 msgid "PNI: %d"
 msgstr "PNI: %d"
 
-#: views/admin/order-pickup-point.php:24
+#: views/admin/order-pickup-point.php:23
 #: views/admin/order-shipments.php:155
 #: views/admin/order-shipments.php:161
 msgid "Not chosen."
 msgstr "Nie wybrano."
 
-#: views/admin/order-pickup-point.php:28
+#: views/admin/order-pickup-point.php:27
 msgid "Change on the map"
 msgstr "Zmień na mapie"
 
-#: src/Points/OrderPointDisplay.php:187
+#: src/Points/OrderPointDisplay.php:186
 msgid "Saving…"
 msgstr "Zapisywanie…"
 
-#: src/Points/OrderPointDisplay.php:188
+#: src/Points/OrderPointDisplay.php:187
 msgid "The point could not be saved."
 msgstr "Nie udało się zapisać punktu."
 
-#: src/Points/OrderPointDisplay.php:215
+#: src/Points/OrderPointDisplay.php:214
 msgid "This point cannot be used for the shipping method of the order."
 msgstr "Tego punktu nie można użyć z metodą wysyłki tego zamówienia."
 
@@ -993,7 +993,7 @@ msgid "Buffers"
 msgstr "Bufory"
 
 #. translators: %d: number of shipments.
-#: src/Admin/BuffersPage.php:241
+#: src/Admin/BuffersPage.php:239
 #, php-format
 msgid "%d shipment deleted."
 msgid_plural "%d shipments deleted."
@@ -1002,7 +1002,7 @@ msgstr[1] "Usunięto %d przesyłki."
 msgstr[2] "Usunięto %d przesyłek."
 
 #. translators: %d: number of shipments.
-#: src/Admin/BuffersPage.php:252
+#: src/Admin/BuffersPage.php:250
 #, php-format
 msgid "%d shipment moved."
 msgid_plural "%d shipments moved."
@@ -1010,12 +1010,12 @@ msgstr[0] "Przeniesiono %d przesyłkę."
 msgstr[1] "Przeniesiono %d przesyłki."
 msgstr[2] "Przeniesiono %d przesyłek."
 
-#: src/Admin/BuffersPage.php:258
+#: src/Admin/BuffersPage.php:256
 msgid "The buffer date was changed to today."
 msgstr "Data bufora została zmieniona na dzisiejszą."
 
 #. translators: %d: number of shipments.
-#: src/Admin/BuffersPage.php:260
+#: src/Admin/BuffersPage.php:258
 #, php-format
 msgid "The buffer date was changed to today. %d shipment got a new tracking number, print its label again."
 msgid_plural "The buffer date was changed to today. %d shipments got new tracking numbers, print their labels again."
@@ -1024,26 +1024,26 @@ msgstr[1] "Data bufora została zmieniona na dzisiejszą. %d przesyłki dostały
 msgstr[2] "Data bufora została zmieniona na dzisiejszą. %d przesyłek dostało nowe numery nadania, wydrukuj ich etykiety ponownie."
 
 #. translators: 1: envelope ID, 2: envelope status.
-#: src/Admin/BuffersPage.php:266
+#: src/Admin/BuffersPage.php:264
 #, php-format
 msgid "The buffer was sent to the post office (envelope %1$d, status %2$s)."
 msgstr "Bufor został wysłany do urzędu nadania (zbiór %1$d, status %2$s)."
 
-#: src/Admin/BuffersPage.php:281
+#: src/Admin/BuffersPage.php:298
 msgid "The buffer was deleted with its shipments."
 msgstr "Bufor został usunięty razem z przesyłkami."
 
-#: src/Admin/BuffersPage.php:292
+#: src/Admin/BuffersPage.php:309
 msgid "Choose a pickup date from today on and an hour range."
 msgstr "Wybierz datę odbioru (od dziś) i przedział godzin."
 
 #. translators: 1: date, 2: hour range.
-#: src/Admin/BuffersPage.php:298
+#: src/Admin/BuffersPage.php:315
 #, php-format
 msgid "The courier was ordered for %1$s, %2$s. Elektroniczny Nadawca sends the confirmation by email."
 msgstr "Kurier zamówiony na %1$s, %2$s. Elektroniczny Nadawca wyśle potwierdzenie e-mailem."
 
-#: src/Admin/BuffersPage.php:301
+#: src/Admin/BuffersPage.php:318
 #: src/Admin/OrderShipmentsBox.php:225
 msgid "Unknown operation."
 msgstr "Nieznana operacja."
@@ -1133,12 +1133,12 @@ msgstr "Wysłana do urzędu"
 msgid "Rejected"
 msgstr "Odrzucona"
 
-#: src/Admin/SettingsPage.php:338
+#: src/Admin/SettingsPage.php:336
 msgid "Where the courier collects the parcels. Empty fields use the store address from WooCommerce settings (shown in grey). The sender on labels comes from the sender profile in Elektroniczny Nadawca (tab \"Contract and posting\")."
 msgstr "Adres, spod którego kurier odbiera paczki. Puste pola biorą adres sklepu z ustawień WooCommerce (widoczny na szaro). Nadawcę na etykietach Elektroniczny Nadawca bierze z profilu nadawcy (zakładka „Umowa i nadanie”)."
 
 #. translators: 1: profile name, 2: profile address.
-#: src/Admin/SettingsPage.php:417
+#: src/Admin/SettingsPage.php:415
 #, php-format
 msgid "%1$s, %2$s"
 msgstr "%1$s, %2$s"
@@ -1296,17 +1296,17 @@ msgid "Another operation is in progress. Try again in a moment."
 msgstr "Trwa inna operacja. Spróbuj ponownie za chwilę."
 
 #. translators: %s: environment name (test or production).
-#: views/admin/buffers-page.php:31
+#: views/admin/buffers-page.php:30
 #, php-format
 msgid "Buffers created by the plugin in the %s environment. A buffer collects the shipments posted on one day; send it to the post office when the parcels are ready."
 msgstr "Bufory utworzone przez wtyczkę w środowisku: %s. Bufor zbiera przesyłki nadawane jednego dnia; wyślij go do urzędu, gdy paczki są gotowe."
 
-#: views/admin/buffers-page.php:64
+#: views/admin/buffers-page.php:49
 msgid "There are no buffers yet. A buffer is created with the first shipment of the day."
 msgstr "Nie ma jeszcze buforów. Bufor powstaje przy pierwszej przesyłce danego dnia."
 
 #. translators: 1: buffer ID, 2: posting date, 3: number of shipments.
-#: views/admin/buffers-page.php:75
+#: views/admin/buffers-page.php:60
 #, php-format
 msgid "Buffer %1$d, posting %2$s, %3$d shipment"
 msgid_plural "Buffer %1$d, posting %2$s, %3$d shipments"
@@ -1315,109 +1315,109 @@ msgstr[1] "Bufor %1$d, nadanie %2$s, %3$d przesyłki"
 msgstr[2] "Bufor %1$d, nadanie %2$s, %3$d przesyłek"
 
 #. translators: 1: posting office, 2: contract card.
-#: views/admin/buffers-page.php:88
+#: views/admin/buffers-page.php:73
 #, php-format
 msgid "Posting office: %1$s. Contract card: %2$s."
 msgstr "Urząd nadania: %1$s. Karta umowy: %2$s."
 
-#: views/admin/buffers-page.php:92
+#: views/admin/buffers-page.php:77
 msgid "The posting date has passed. Elektroniczny Nadawca sends a buffer only on its posting date, so change the date to today first (sending does it automatically). Shipments with printed labels get new tracking numbers."
 msgstr "Data nadania minęła. Elektroniczny Nadawca wysyła bufor tylko w dniu nadania, więc najpierw zmień datę na dzisiejszą (wysłanie robi to automatycznie). Przesyłki z wydrukowanymi etykietami dostaną nowe numery nadania."
 
-#: views/admin/buffers-page.php:104
+#: views/admin/buffers-page.php:89
 msgid "Select all"
 msgstr "Zaznacz wszystkie"
 
-#: views/admin/buffers-page.php:105
+#: views/admin/buffers-page.php:90
 msgid "Order"
 msgstr "Zamówienie"
 
-#: views/admin/buffers-page.php:106
+#: views/admin/buffers-page.php:91
 msgid "Recipient"
 msgstr "Adresat"
 
-#: views/admin/buffers-page.php:107
+#: views/admin/buffers-page.php:92
 #: views/admin/order-shipments.php:43
 #: views/admin/order-shipments.php:109
 msgid "Service"
 msgstr "Usługa"
 
-#: views/admin/buffers-page.php:108
+#: views/admin/buffers-page.php:93
 #: views/admin/order-shipments.php:42
 msgid "Tracking number"
 msgstr "Numer nadania"
 
-#: views/admin/buffers-page.php:109
-#: views/admin/buffers-page.php:181
+#: views/admin/buffers-page.php:94
+#: views/admin/buffers-page.php:166
 #: views/admin/order-shipments.php:44
 msgid "Status"
 msgstr "Status"
 
-#: views/admin/buffers-page.php:132
+#: views/admin/buffers-page.php:117
 msgid "Labels of selected (one PDF)"
 msgstr "Etykiety zaznaczonych (jeden PDF)"
 
-#: views/admin/buffers-page.php:141
+#: views/admin/buffers-page.php:126
 msgid "Target buffer"
 msgstr "Bufor docelowy"
 
-#: views/admin/buffers-page.php:148
+#: views/admin/buffers-page.php:133
 msgid "Move selected"
 msgstr "Przenieś zaznaczone"
 
-#: views/admin/buffers-page.php:150
+#: views/admin/buffers-page.php:135
 msgid "Delete the selected shipments in Elektroniczny Nadawca?"
 msgstr "Usunąć zaznaczone przesyłki w Elektronicznym Nadawcy?"
 
-#: views/admin/buffers-page.php:150
+#: views/admin/buffers-page.php:135
 msgid "Delete selected"
 msgstr "Usuń zaznaczone"
 
-#: views/admin/buffers-page.php:156
+#: views/admin/buffers-page.php:141
 msgid "Change the date to today"
 msgstr "Zmień datę na dzisiejszą"
 
-#: views/admin/buffers-page.php:159
+#: views/admin/buffers-page.php:144
 msgid "Send the buffer to the post office? Its shipments cannot be changed afterwards."
 msgstr "Wysłać bufor do urzędu nadania? Potem przesyłek nie da się już zmienić."
 
-#: views/admin/buffers-page.php:159
+#: views/admin/buffers-page.php:144
 msgid "Send to the post office"
 msgstr "Wyślij do urzędu"
 
-#: views/admin/buffers-page.php:161
+#: views/admin/buffers-page.php:146
 msgid "Delete the buffer and all its shipments in Elektroniczny Nadawca?"
 msgstr "Usunąć bufor i wszystkie jego przesyłki w Elektronicznym Nadawcy?"
 
-#: views/admin/buffers-page.php:161
+#: views/admin/buffers-page.php:146
 msgid "Delete buffer"
 msgstr "Usuń bufor"
 
-#: views/admin/buffers-page.php:238
+#: views/admin/buffers-page.php:223
 msgid "Order a courier"
 msgstr "Zamów kuriera"
 
-#: views/admin/buffers-page.php:241
+#: views/admin/buffers-page.php:226
 msgid "The courier collects the parcels from the pickup address in the plugin settings. Elektroniczny Nadawca confirms the order by email."
 msgstr "Kurier odbierze paczki spod adresu odbioru z ustawień wtyczki. Elektroniczny Nadawca potwierdzi zamówienie e-mailem."
 
-#: views/admin/buffers-page.php:252
+#: views/admin/buffers-page.php:237
 msgid "Hours"
 msgstr "Godziny"
 
-#: views/admin/buffers-page.php:260
+#: views/admin/buffers-page.php:245
 msgid "Number of parcels"
 msgstr "Liczba paczek"
 
-#: views/admin/buffers-page.php:264
+#: views/admin/buffers-page.php:249
 msgid "Total weight (kg)"
 msgstr "Łączna waga (kg)"
 
-#: views/admin/buffers-page.php:268
+#: views/admin/buffers-page.php:253
 msgid "Order the courier?"
 msgstr "Zamówić kuriera?"
 
-#: views/admin/buffers-page.php:268
+#: views/admin/buffers-page.php:253
 msgid "Order the courier"
 msgstr "Zamów kuriera"
 
@@ -1503,11 +1503,11 @@ msgstr "Gdy wybierasz punkt odbioru lub automat paczkowy, mapa Poczty Polskiej j
 msgid "Error"
 msgstr "Błąd"
 
-#: src/Admin/SettingsPage.php:443
+#: src/Admin/SettingsPage.php:441
 msgid "Poczta Polska integration environment for checking the plugin. Shipments are not posted for real."
 msgstr "Środowisko integracyjne Poczty Polskiej do sprawdzania wtyczki. Przesyłki nie są naprawdę nadawane."
 
-#: src/Admin/SettingsPage.php:444
+#: src/Admin/SettingsPage.php:442
 msgid "Real shipments posted under your agreement with Poczta Polska."
 msgstr "Prawdziwe przesyłki nadawane w ramach umowy z Pocztą Polską."
 
@@ -1573,7 +1573,7 @@ msgstr "Sklep przechowuje numery nadania Twoich przesyłek razem z zamówieniem.
 msgid "Choose a posting office from the list."
 msgstr "Wybierz urząd nadania z listy."
 
-#: views/admin/buffers-page.php:179
+#: views/admin/buffers-page.php:164
 #: views/admin/order-shipments.php:142
 msgid "Posting office"
 msgstr "Urząd nadania"
@@ -1586,7 +1586,7 @@ msgstr "Przesyłka trafi do bufora tego urzędu i tam zostanie nadana."
 msgid "Shipments can be moved only to a buffer with the same contract card and posting office."
 msgstr "Przesyłki można przenieść tylko do bufora z tą samą kartą umowy i tym samym urzędem nadania."
 
-#: src/Admin/BuffersPage.php:276
+#: src/Admin/BuffersPage.php:293
 msgid "The envelope statuses were refreshed."
 msgstr "Statusy zbiorów zostały odświeżone."
 
@@ -1624,29 +1624,20 @@ msgstr "Jeszcze nie sprawdzony"
 msgid "The buffer no longer exists in Elektroniczny Nadawca (deleted or sent there). Check the shipment in Elektroniczny Nadawca before creating it again."
 msgstr "Bufora nie ma już w Elektronicznym Nadawcy (usunięty albo wysłany poza wtyczką). Sprawdź przesyłkę w Elektronicznym Nadawcy, zanim utworzysz ją ponownie."
 
-#. translators: %s: buffer IDs.
-#: views/admin/buffers-page.php:49
-#, php-format
-msgid "Buffer %s no longer exists in Elektroniczny Nadawca (deleted or sent there). Its shipments are marked: check them in Elektroniczny Nadawca before creating them again."
-msgid_plural "Buffers %s no longer exist in Elektroniczny Nadawca (deleted or sent there). Their shipments are marked: check them in Elektroniczny Nadawca before creating them again."
-msgstr[0] "Bufora %s nie ma już w Elektronicznym Nadawcy (usunięty albo wysłany poza wtyczką). Jego przesyłki są oznaczone: sprawdź je w Elektronicznym Nadawcy, zanim utworzysz je ponownie."
-msgstr[1] "Buforów %s nie ma już w Elektronicznym Nadawcy (usunięte albo wysłane poza wtyczką). Ich przesyłki są oznaczone: sprawdź je w Elektronicznym Nadawcy, zanim utworzysz je ponownie."
-msgstr[2] "Buforów %s nie ma już w Elektronicznym Nadawcy (usunięte albo wysłane poza wtyczką). Ich przesyłki są oznaczone: sprawdź je w Elektronicznym Nadawcy, zanim utworzysz je ponownie."
-
-#: views/admin/buffers-page.php:171
+#: views/admin/buffers-page.php:156
 msgid "Sent envelopes"
 msgstr "Wysłane zbiory"
 
-#: views/admin/buffers-page.php:177
+#: views/admin/buffers-page.php:162
 msgid "Envelope"
 msgstr "Zbiór"
 
-#: views/admin/buffers-page.php:180
+#: views/admin/buffers-page.php:165
 msgid "Orders"
 msgstr "Zamówienia"
 
 #. translators: %d: number of shipments.
-#: views/admin/buffers-page.php:209
+#: views/admin/buffers-page.php:194
 #, php-format
 msgid "%d shipment"
 msgid_plural "%d shipments"
@@ -1654,14 +1645,35 @@ msgstr[0] "%d przesyłka"
 msgstr[1] "%d przesyłki"
 msgstr[2] "%d przesyłek"
 
-#: views/admin/buffers-page.php:229
+#: views/admin/buffers-page.php:214
 msgid "Refresh statuses"
 msgstr "Odśwież statusy"
 
-#: views/admin/buffers-page.php:178
+#: views/admin/buffers-page.php:163
 msgid "Sent on"
 msgstr "Wysłano"
 
 #: src/Shipments/ShipmentService.php:819
 msgid "The buffer no longer exists in Elektroniczny Nadawca (deleted or sent there). Create the shipment again: it goes to a new buffer."
 msgstr "Bufora nie ma już w Elektronicznym Nadawcy (usunięty albo wysłany poza wtyczką). Utwórz przesyłkę ponownie: trafi do nowego bufora."
+
+#: src/Admin/BuffersPage.php:270
+msgid "All buffers of the plugin exist in Elektroniczny Nadawca."
+msgstr "Wszystkie bufory wtyczki istnieją w Elektronicznym Nadawcy."
+
+#. translators: 1: number of buffers, 2: buffer IDs.
+#: src/Admin/BuffersPage.php:275
+#, php-format
+msgid "%1$d buffer no longer exists in Elektroniczny Nadawca and was removed from the list (%2$s). Its shipments are marked as rejected."
+msgid_plural "%1$d buffers no longer exist in Elektroniczny Nadawca and were removed from the list (%2$s). Their shipments are marked as rejected."
+msgstr[0] "%1$d bufor już nie istnieje w Elektronicznym Nadawcy i został usunięty z listy (%2$s). Jego przesyłki są oznaczone jako odrzucone."
+msgstr[1] "%1$d bufory już nie istnieją w Elektronicznym Nadawcy i zostały usunięte z listy (%2$s). Ich przesyłki są oznaczone jako odrzucone."
+msgstr[2] "%1$d buforów już nie istnieje w Elektronicznym Nadawcy i zostało usuniętych z listy (%2$s). Ich przesyłki są oznaczone jako odrzucone."
+
+#: views/admin/buffers-page.php:44
+msgid "Check buffers against Elektroniczny Nadawca"
+msgstr "Sprawdź bufory w Elektronicznym Nadawcy"
+
+#: views/admin/buffers-page.php:45
+msgid "Removes from the list the buffers deleted in Elektroniczny Nadawca outside the plugin."
+msgstr "Usuwa z listy bufory skasowane w Elektronicznym Nadawcy poza wtyczką."

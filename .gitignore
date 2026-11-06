@@ -1,5 +1,9 @@
 # Internal project notes (never part of the repository handed over to the client)
 PROJEKT.md
+WYMAGANIA.md
+SPEC_TECHNICZNA.md
+OPZ.md
+credentials.md
 _internal/
 
 # Dependencies and build output

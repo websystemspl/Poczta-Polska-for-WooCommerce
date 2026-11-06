@@ -77,23 +77,6 @@ final class Schema {
 		update_option( self::VERSION_OPTION, self::VERSION, true );
 	}
 
-	/**
-	 * Drops tables.
-	 *
-	 * @param string[] $tables Table names without the prefix.
-	 */
-	public static function drop( array $tables ): void {
-		global $wpdb;
-
-		foreach ( $tables as $table ) {
-			if ( ! in_array( $table, array( self::POINTS, self::SHIPMENTS, self::AUDIT_LOG ), true ) ) {
-				continue;
-			}
-
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange -- Removing own tables on uninstall.
-			$wpdb->query( $wpdb->prepare( 'DROP TABLE IF EXISTS %i', self::table( $table ) ) );
-		}
-	}
 
 	/**
 	 * CREATE TABLE statements in the format dbDelta() expects.

@@ -79,6 +79,10 @@ Yes. The plugin uses your Elektroniczny Nadawca account. Prices, services and th
 
 From Poczta Polska, together with access to Elektroniczny Nadawca. The test (INT) and the production environment have separate credentials.
 
+= How are the Elektroniczny Nadawca passwords stored? =
+
+Encrypted with libsodium. The key comes from the `PPWC_ENCRYPTION_KEY` constant in `wp-config.php`, or from the WordPress keys and salts when the constant is not set. Set the constant before entering the passwords: changing the WordPress salts (or the constant) invalidates the stored passwords and you have to enter them again.
+
 = Why is the eCommerce letter not offered for some carts? =
 
 It is limited to 2000 g and needs the weight of every product. The plugin warns you about products without a weight. Pocztex methods use the default weight from the settings for such products.

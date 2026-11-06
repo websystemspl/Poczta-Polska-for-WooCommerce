@@ -97,7 +97,6 @@ final class BuffersPage {
 
 		$service    = new ShipmentService();
 		$repository = new ShipmentRepository();
-		$forgotten  = $service->sync_buffers( true );
 		$counts     = $repository->count_by_buffer( Settings::environment() );
 		$offices    = Dictionary::posting_offices();
 		$cards      = Dictionary::cards();
@@ -178,7 +177,6 @@ final class BuffersPage {
 				'notice'        => $notice,
 				'notice_type'   => $type,
 				'sent'          => $sent,
-				'forgotten'     => $forgotten,
 				'courier_hours' => self::COURIER_HOURS,
 				'courier_date'  => (string) wp_date( 'Y-m-d', time() + ( (int) wp_date( 'G' ) >= 14 ? DAY_IN_SECONDS : 0 ) ),
 				'today'         => $today,
@@ -264,6 +262,25 @@ final class BuffersPage {
 
 				/* translators: 1: envelope ID, 2: envelope status. */
 				return sprintf( __( 'The buffer was sent to the post office (envelope %1$d, status %2$s).', 'poczta-polska-for-woocommerce' ), $sent['envelope_id'], $sent['status'] );
+
+			case 'sync':
+				$forgotten = $service->sync_buffers( true );
+
+				if ( array() === $forgotten ) {
+					return __( 'All buffers of the plugin exist in Elektroniczny Nadawca.', 'poczta-polska-for-woocommerce' );
+				}
+
+				return sprintf(
+					/* translators: 1: number of buffers, 2: buffer IDs. */
+					_n(
+						'%1$d buffer no longer exists in Elektroniczny Nadawca and was removed from the list (%2$s). Its shipments are marked as rejected.',
+						'%1$d buffers no longer exist in Elektroniczny Nadawca and were removed from the list (%2$s). Their shipments are marked as rejected.',
+						count( $forgotten ),
+						'poczta-polska-for-woocommerce'
+					),
+					count( $forgotten ),
+					implode( ', ', $forgotten )
+				);
 
 			case 'refresh_envelopes':
 				$repository = new ShipmentRepository();

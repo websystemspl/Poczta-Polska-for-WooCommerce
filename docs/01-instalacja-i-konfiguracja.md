@@ -36,6 +36,14 @@ Zalecana kolejność: skonfiguruj i sprawdź wszystko na środowisku testowym, a
 
 ![Zakładka „Połączenie”](img/ustawienia-polaczenie.png)
 
+**Klucz szyfrowania haseł.** Hasła EN są szyfrowane kluczem wyprowadzonym z kluczy i soli WordPressa (`AUTH_KEY`, `AUTH_SALT`, `SECURE_AUTH_KEY`, `SECURE_AUTH_SALT` w `wp-config.php`). Zmiana tych soli, np. po incydencie bezpieczeństwa albo przy przenoszeniu sklepu, unieważnia zapisane hasła i trzeba je wpisać ponownie. Zalecamy więc ustawić osobny klucz **przed wpisaniem haseł**, dodając do `wp-config.php`:
+
+```php
+define( 'PPWC_ENCRYPTION_KEY', 'długi losowy ciąg, co najmniej 32 znaki' );
+```
+
+Klucz przechowuj poza repozytorium kodu i kopiuj razem z kopią zapasową sklepu. Zmiana klucza również wymaga ponownego wpisania haseł.
+
 Wtyczka codziennie sprawdza ważność hasła EN i na 14 dni przed wygaśnięciem pokazuje ostrzeżenie w panelu. Hasło zmienia się w Elektronicznym Nadawcy, a potem wpisuje nowe w tej zakładce.
 
 ### Zakładka „Umowa i nadanie”
