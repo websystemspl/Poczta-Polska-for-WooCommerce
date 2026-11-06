@@ -128,7 +128,7 @@ final class PointResolverTest extends TestCase {
 
 	public function test_another_visitor_has_an_own_budget(): void {
 		$this->transients[ self::budget( '203.0.113.5' ) ] = 30;
-		$_SERVER['REMOTE_ADDR']                             = '198.51.100.7';
+		$_SERVER['REMOTE_ADDR']                            = '198.51.100.7';
 		$this->client->shouldReceive( 'pickup_points_by_pni' )->once()->andReturn( array( self::point() ) );
 
 		$this->assertNotNull( ( new PointResolver() )->resolve( self::PNI ) );
