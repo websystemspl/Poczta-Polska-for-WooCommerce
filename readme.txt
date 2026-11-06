@@ -4,7 +4,7 @@ Tags: poczta polska, pocztex, shipping, pickup point, cash on delivery
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 0.2.1
+Stable tag: 0.2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -129,6 +129,12 @@ Poczta Polska privacy policy: https://www.poczta-polska.pl/polityka-prywatnosci/
 The plugin adds a suggested paragraph to **Settings → Privacy → Policy Guide**. It supports the WordPress personal data export and erasure tools: the pickup point and tracking numbers of an order are exported, and the pickup point is erased with the order data. Recipient data stays in the order; the plugin keeps only phone numbers that the store corrected for a shipment, and erases them with the order data.
 
 == Changelog ==
+
+= 0.2.2 =
+* The limit of Elektroniczny Nadawca lookups for pickup points missing from the local copy applies per visitor address.
+* The Buffers screen no longer contacts Elektroniczny Nadawca when opened; the check for buffers deleted outside the plugin runs from a button.
+* A password value with the `ppwc1:` prefix sent from the settings form is kept only when it decrypts.
+* FAQ: how the passwords are stored and why to set `PPWC_ENCRYPTION_KEY`.
 
 = 0.2.1 =
 * The Poczta Polska and Pocztex logos are no longer bundled or shown.
