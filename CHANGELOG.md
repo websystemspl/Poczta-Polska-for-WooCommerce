@@ -5,6 +5,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-11-06
+
 ### Changed
 - The limit of Elektroniczny Nadawca lookups for pickup points missing from the local copy (30 per 10 minutes) applies per visitor address, so one visitor cannot use it up for everyone.
 - The Buffers screen no longer calls Elektroniczny Nadawca when it is opened; the check for buffers deleted outside the plugin runs from the "Check buffers against Elektroniczny Nadawca" button.
