@@ -107,7 +107,7 @@ final class PrivacyTest extends TestCase {
 				'draft' => array(
 					'customer_number' => 'PPWC-ABC',
 					'contact'         => array( 'mobile' => '601302890' ),
-					'recipient'       => array( 'name' => 'Dariusz Ławiński' ),
+					'recipient'       => array( 'name' => 'Jan Kowalski' ),
 				),
 			)
 		);

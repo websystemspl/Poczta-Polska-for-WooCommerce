@@ -5,6 +5,16 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Changed
+- The limit of Elektroniczny Nadawca lookups for pickup points missing from the local copy (30 per 10 minutes) applies per visitor address, so one visitor cannot use it up for everyone.
+- The Buffers screen no longer calls Elektroniczny Nadawca when it is opened; the check for buffers deleted outside the plugin runs from the "Check buffers against Elektroniczny Nadawca" button.
+- A password value with the `ppwc1:` prefix sent from the settings form is kept only when it decrypts; otherwise it is encrypted like any new password.
+- Documentation and readme recommend `PPWC_ENCRYPTION_KEY` in `wp-config.php`, because changing the WordPress salts invalidates the stored passwords.
+- Test data no longer contains a real name; `WYMAGANIA.md`, `SPEC_TECHNICZNA.md`, `OPZ.md` and `credentials.md` are ignored by git and left out of the ZIP.
+
+### Removed
+- Unused `Schema::drop()`.
+
 ## [0.2.1] - 2026-11-04
 
 ### Changed

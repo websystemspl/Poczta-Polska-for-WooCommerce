@@ -42,6 +42,18 @@ final class PointResolverTest extends TestCase {
 		$this->client = Mockery::mock( ClientInterface::class );
 		Filters\expectApplied( 'ppwc_en_client' )->zeroOrMoreTimes()->andReturn( $this->client );
 		Functions\when( 'current_user_can' )->justReturn( false );
+		Functions\when( 'sanitize_text_field' )->returnArg();
+		Functions\when( 'wp_unslash' )->returnArg();
+		$_SERVER['REMOTE_ADDR'] = '203.0.113.5';
+	}
+
+	/**
+	 * Transient of the lookup budget of an address.
+	 *
+	 * @param string $address IP address.
+	 */
+	private static function budget( string $address ): string {
+		return 'ppwc_point_lookups_' . substr( md5( $address ), 0, 16 );
 	}
 
 	protected function tearDown(): void {
@@ -102,7 +114,7 @@ final class PointResolverTest extends TestCase {
 		$this->assertArrayNotHasKey( 'ppwc_point_' . self::PNI, $this->transients );
 	}
 
-	public function test_visitors_share_a_limited_number_of_en_lookups(): void {
+	public function test_a_visitor_has_a_limited_number_of_en_lookups(): void {
 		$this->client->shouldReceive( 'pickup_points_by_pni' )->times( 30 )->andReturn( array() );
 
 		$resolver = new PointResolver();
@@ -111,12 +123,21 @@ final class PointResolverTest extends TestCase {
 			$resolver->resolve( $pni );
 		}
 
-		$this->assertSame( 30, $this->transients['ppwc_point_lookups'] );
+		$this->assertSame( 30, $this->transients[ self::budget( '203.0.113.5' ) ] );
+	}
+
+	public function test_another_visitor_has_an_own_budget(): void {
+		$this->transients[ self::budget( '203.0.113.5' ) ] = 30;
+		$_SERVER['REMOTE_ADDR']                             = '198.51.100.7';
+		$this->client->shouldReceive( 'pickup_points_by_pni' )->once()->andReturn( array( self::point() ) );
+
+		$this->assertNotNull( ( new PointResolver() )->resolve( self::PNI ) );
+		$this->assertSame( 1, $this->transients[ self::budget( '198.51.100.7' ) ] );
 	}
 
 	public function test_shop_managers_are_not_limited(): void {
 		Functions\when( 'current_user_can' )->alias( static fn( string $capability ): bool => 'edit_shop_orders' === $capability );
-		$this->transients['ppwc_point_lookups'] = 30;
+		$this->transients[ self::budget( '203.0.113.5' ) ] = 30;
 		$this->client->shouldReceive( 'pickup_points_by_pni' )->once()->andReturn( array( self::point() ) );
 
 		$this->assertNotNull( ( new PointResolver() )->resolve( self::PNI ) );

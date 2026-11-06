@@ -12,7 +12,6 @@
  *     notice: string,
  *     notice_type: string,
  *     sent: list<array{id: int, sent_at: string, office: string, shipments: int, orders: list<array{number: string, url: string}>, status: string, error: bool}>,
- *     forgotten: list<int>,
  *     courier_hours: list<string>,
  *     courier_date: string,
  *     today: string
@@ -39,26 +38,12 @@ defined( 'ABSPATH' ) || exit;
 		<div class="notice notice-<?php echo esc_attr( $args['notice_type'] ); ?> is-dismissible"><p><?php echo esc_html( $args['notice'] ); ?></p></div>
 	<?php endif; ?>
 
-	<?php if ( array() !== $args['forgotten'] ) : ?>
-		<div class="notice notice-warning">
-			<p>
-				<?php
-				echo esc_html(
-					sprintf(
-						/* translators: %s: buffer IDs. */
-						_n(
-							'Buffer %s no longer exists in Elektroniczny Nadawca (deleted or sent there). Its shipments are marked: check them in Elektroniczny Nadawca before creating them again.',
-							'Buffers %s no longer exist in Elektroniczny Nadawca (deleted or sent there). Their shipments are marked: check them in Elektroniczny Nadawca before creating them again.',
-							count( $args['forgotten'] ),
-							'poczta-polska-for-woocommerce'
-						),
-						implode( ', ', $args['forgotten'] )
-					)
-				);
-				?>
-			</p>
-		</div>
-	<?php endif; ?>
+	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="ppwc-buffers__sync">
+		<?php wp_nonce_field( 'ppwc_buffers' ); ?>
+		<input type="hidden" name="action" value="ppwc_buffers" />
+		<button type="submit" name="operation" value="sync" class="button"><?php esc_html_e( 'Check buffers against Elektroniczny Nadawca', 'poczta-polska-for-woocommerce' ); ?></button>
+		<span class="description"><?php esc_html_e( 'Removes from the list the buffers deleted in Elektroniczny Nadawca outside the plugin.', 'poczta-polska-for-woocommerce' ); ?></span>
+	</form>
 
 	<?php if ( array() === $args['buffers'] ) : ?>
 		<p><?php esc_html_e( 'There are no buffers yet. A buffer is created with the first shipment of the day.', 'poczta-polska-for-woocommerce' ); ?></p>

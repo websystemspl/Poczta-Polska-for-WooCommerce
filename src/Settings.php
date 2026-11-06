@@ -227,10 +227,11 @@ final class Settings {
 
 			if ( ! empty( $input[ 'en_' . $env . '_password_clear' ] ) ) {
 				$clean[ 'en_' . $env . '_password' ] = '';
-			} elseif ( Crypto::is_encrypted( $password ) ) {
+			} elseif ( Crypto::is_encrypted( $password ) && '' !== Crypto::decrypt( $password ) ) {
 				// WordPress runs the sanitize callback twice when the option is saved for the first time
 				// (update_option() falls back to add_option()), so the second pass gets the
-				// already encrypted value.
+				// already encrypted value. Anything with the prefix that does not decrypt is treated
+				// as a new password below.
 				$clean[ 'en_' . $env . '_password' ] = $password;
 			} elseif ( '' !== $password ) {
 				$clean[ 'en_' . $env . '_password' ] = Crypto::encrypt( $password );
