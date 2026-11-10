@@ -320,6 +320,7 @@ final class OrderShipmentsBox {
 
 		nocache_headers();
 		header( 'Content-Type: application/pdf' );
+		header( 'X-Content-Type-Options: nosniff' );
 		header( 'Content-Disposition: attachment; filename="etykiety-' . gmdate( 'Ymd-His' ) . '.pdf"' );
 		header( 'Content-Length: ' . strlen( $pdf ) );
 		echo $pdf; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- PDF file from Elektroniczny Nadawca.
