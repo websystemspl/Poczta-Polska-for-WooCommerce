@@ -2,7 +2,7 @@
 
 Wtyczka łączy sklep WooCommerce z systemem **Elektroniczny Nadawca (EN)** Poczty Polskiej. Klient sklepu wybiera dostawę Pocztą Polską przy zamówieniu, a sprzedawca nadaje paczki prosto z panelu WordPressa, bez przepisywania danych do EN.
 
-Wersja 0.2.3, przed odbiorem przez Pocztę Polską. Zmiany: [CHANGELOG.md](CHANGELOG.md).
+Wersja 0.2.4, przed odbiorem przez Pocztę Polską. Zmiany: [CHANGELOG.md](CHANGELOG.md).
 
 ## Co robi wtyczka
 
