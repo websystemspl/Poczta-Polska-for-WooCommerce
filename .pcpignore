@@ -1,0 +1,28 @@
+# Development files left out of the release ZIP (see .distignore). Plugin Check skips them
+# when "Use .pcpignore custom exclusions" is on (admin screen) or with --use-pcpignore (CLI).
+# A trailing slash means a directory; entries are relative to the plugin root.
+.git/
+.github/
+bin/
+build/
+dist/
+docs/
+node_modules/
+tests/
+vendor/
+.distignore
+.gitignore
+.pcpignore
+.phpcs-cache
+.phpunit.result.cache
+CHANGELOG.md
+CONTRIBUTING.md
+README.md
+composer.json
+composer.lock
+package.json
+package-lock.json
+phpcs.xml.dist
+phpstan.neon.dist
+phpunit.xml.dist
+playwright.config.ts

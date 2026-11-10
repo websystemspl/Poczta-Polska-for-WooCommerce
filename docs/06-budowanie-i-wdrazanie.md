@@ -38,10 +38,10 @@ npm run test:k6     # wydajność zakupów (k6), instrukcja w tests/k6/README.md
 Plugin Check (wytyczne katalogu WordPress.org) uruchamia się w instalacji WordPressa z wtyczką i włączoną wtyczką Plugin Check:
 
 ```bash
-wp plugin check poczta-polska-for-woocommerce \
-  --exclude-directories=vendor,tests,bin,dist,node_modules,.github \
-  --exclude-files=composer.json,composer.lock,package.json,package-lock.json,playwright.config.ts,phpcs.xml.dist,phpstan.neon.dist,phpunit.xml.dist,.gitignore,.distignore,README.md,CHANGELOG.md,CONTRIBUTING.md,LICENSE
+wp plugin check poczta-polska-for-woocommerce --use-pcpignore
 ```
+
+Plik `.pcpignore` wymienia pliki deweloperskie, których nie ma w paczce ZIP (testy, narzędzia, konfiguracje). W panelu **Narzędzia → Sprawdź Wtyczkę** zaznacz **Use .pcpignore custom exclusions**, inaczej Plugin Check zgłosi te pliki. Najpewniejsze sprawdzenie to rozpakowana paczka z `composer build`: zawiera dokładnie to, co trafi do katalogu WordPress.org.
 
 Pominięte pliki nie trafiają do paczki ZIP. Przed uruchomieniem usuń ukryty plik `.phpcs-cache`, jeśli istnieje.
 

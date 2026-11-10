@@ -26,7 +26,7 @@ final class OrderBulkActionsTest extends TestCase {
 
 	use WordPressStore;
 
-	private const REDIRECT = 'https://poczta.localhost/wp-admin/admin.php?page=wc-orders';
+	private const REDIRECT = 'https://example.com/wp-admin/admin.php?page=wc-orders';
 
 	/**
 	 * EN client.

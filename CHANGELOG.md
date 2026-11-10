@@ -5,6 +5,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Added
+- `.pcpignore` for Plugin Check: the development files left out of the release ZIP are skipped when the "Use .pcpignore custom exclusions" option (admin screen) or `--use-pcpignore` (WP-CLI) is on.
+
+### Changed
+- Unit test data uses `example.com` instead of a local hostname.
+
 ## [0.2.3] - 2026-11-10
 
 ### Security
