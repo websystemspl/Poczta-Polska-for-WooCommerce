@@ -3,6 +3,7 @@
 /.github
 /.gitignore
 /.distignore
+/.pcpignore
 /.phpcs-cache
 /.phpunit.result.cache
 /bin
