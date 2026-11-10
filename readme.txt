@@ -4,7 +4,7 @@ Tags: poczta polska, pocztex, shipping, pickup point, cash on delivery
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 0.2.2
+Stable tag: 0.2.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,11 +63,12 @@ Each method is added to WooCommerce shipping zones like any other method, with i
 
 1. Install and activate WooCommerce.
 2. Install the plugin from the WordPress plugin directory, or upload it to the `/wp-content/plugins/` directory, and activate it.
-3. Go to **Poczta Polska → Settings** and enter the Elektroniczny Nadawca WebAPI login and password. Start with the test environment (INT), save and click "Test the test connection".
-4. On the **Contract and posting** tab choose the contract card, the posting office and the sender profile.
-5. Fill in the **Pickup address** (used by the courier), the **Shipment defaults** and, if you use cash on delivery, the bank account.
-6. Add the Poczta Polska methods to a shipping zone in **WooCommerce → Settings → Shipping**.
-7. When everything works in the test environment, switch the plugin to production.
+3. Recommended: before entering any password, add a random key to `wp-config.php`, for example `define( 'PPWC_ENCRYPTION_KEY', '...' );` with at least 32 random characters. The plugin uses it to encrypt the Elektroniczny Nadawca passwords. Without it the WordPress keys and salts are used, and changing them invalidates the stored passwords.
+4. Go to **Poczta Polska → Settings** and enter the Elektroniczny Nadawca WebAPI login and password. Start with the test environment (INT), save and click "Test the test connection".
+5. On the **Contract and posting** tab choose the contract card, the posting office and the sender profile.
+6. Fill in the **Pickup address** (used by the courier), the **Shipment defaults** and, if you use cash on delivery, the bank account.
+7. Add the Poczta Polska methods to a shipping zone in **WooCommerce → Settings → Shipping**.
+8. When everything works in the test environment, switch the plugin to production.
 
 == Frequently Asked Questions ==
 
@@ -129,6 +130,10 @@ Poczta Polska privacy policy: https://www.poczta-polska.pl/polityka-prywatnosci/
 The plugin adds a suggested paragraph to **Settings → Privacy → Policy Guide**. It supports the WordPress personal data export and erasure tools: the pickup point and tracking numbers of an order are exported, and the pickup point is erased with the order data. Recipient data stays in the order; the plugin keeps only phone numbers that the store corrected for a shipment, and erases them with the order data.
 
 == Changelog ==
+
+= 0.2.3 =
+* Label PDF downloads send the `X-Content-Type-Options: nosniff` header.
+* Installation steps recommend setting `PPWC_ENCRYPTION_KEY` in `wp-config.php` before entering the passwords.
 
 = 0.2.2 =
 * The limit of Elektroniczny Nadawca lookups for pickup points missing from the local copy applies per visitor address.
