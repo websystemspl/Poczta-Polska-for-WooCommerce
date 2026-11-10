@@ -5,6 +5,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.2.5] - 2026-11-10
+
+### Changed
+- `readme.txt`: `Contributors` is the WordPress.org account that publishes the plugin (`przemograczyk0223`) and Web Systems (`websystems2006`).
+
 ## [0.2.4] - 2026-11-10
 
 ### Added
