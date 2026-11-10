@@ -5,6 +5,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.2.4] - 2026-11-10
+
 ### Added
 - `.pcpignore` for Plugin Check: the development files left out of the release ZIP are skipped when the "Use .pcpignore custom exclusions" option (admin screen) or `--use-pcpignore` (WP-CLI) is on.
 
