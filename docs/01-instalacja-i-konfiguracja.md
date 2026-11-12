@@ -29,8 +29,8 @@ Wszystkie ustawienia są w **Poczta Polska → Ustawienia**, w sześciu zakładk
 Dwie karty: **Testowe (INT)** i **Produkcyjne**. W każdej:
 
 - **Login** i **Hasło** do WebAPI Elektronicznego Nadawcy. Hasło jest zapisywane zaszyfrowane i nigdy nie wraca do formularza: puste pole zostawia zapisane hasło, a pole wyboru **Usuń zapisane hasło** je kasuje.
-- **Testuj połączenie** – sprawdza zapisane dane (najpierw zapisz zmiany) i pokazuje datę ważności hasła EN.
-- Przełącznik **Używaj tego środowiska** – wybiera środowisko, w którym wtyczka tworzy przesyłki. Domyślnie testowe.
+- **Testuj połączenie** - sprawdza zapisane dane (najpierw zapisz zmiany) i pokazuje datę ważności hasła EN.
+- Przełącznik **Używaj tego środowiska** - wybiera środowisko, w którym wtyczka tworzy przesyłki. Domyślnie testowe.
 
 Zalecana kolejność: skonfiguruj i sprawdź wszystko na środowisku testowym, a dopiero potem przełącz na produkcyjne.
 
@@ -94,7 +94,7 @@ Bramka płatności **Płatność przy odbiorze** (`cod`) musi być włączona w 
 ### Zakładka „Logi i dane”
 
 - **Poziom logowania**: tylko błędy, błędy i operacje, albo wszystko (diagnostyka). Szczegóły w rozdziale [5](05-logi-i-bledy.md).
-- **Usuń wszystkie dane przy odinstalowaniu** – opis w rozdziale [4.4](04-wordpress-org-i-aktualizacje.md#44-odinstalowanie).
+- **Usuń wszystkie dane przy odinstalowaniu** - opis w rozdziale [4.4](04-wordpress-org-i-aktualizacje.md#44-odinstalowanie).
 - Stan kopii punktów odbioru z przyciskiem **Odśwież teraz**, link do logów i rejestr ostatnich operacji administracyjnych.
 
 ## 1.4. Metody dostawy
@@ -116,7 +116,7 @@ Każdą metodę można dodać kilka razy, np. dwa warianty kuriera z różnymi c
 | Cena | Koszt dostawy. |
 | Status podatku | Czy doliczać podatek do kosztu dostawy. |
 | Darmowa dostawa od | Wartość zamówienia po rabatach, od której metoda jest darmowa. Puste: zawsze płatna. |
-| Maksymalna waga (kg) | Cięższe zamówienia nie widzą tej metody. Puste: limit usługi (20 kg dla Pocztexu, 2 kg dla eCommerce). |
+| Maksymalna waga (kg) | Cięższe zamówienia nie widzą tej metody. Puste: limit usługi (50 kg dla Pocztex Kurier, 20 kg dla Pocztex PUNKT i AUTOMAT, 2 kg dla eCommerce). |
 | Karta umowy (produkcja), Karta umowy (test) | Karta dla tej metody, np. inna dla Pocztexu i inna dla listów. Puste: karta domyślna. |
 | Format paczki | Format dla tej metody. Puste: format domyślny z ustawień. |
 
@@ -128,7 +128,7 @@ Zasady działania metod:
 
 ## 1.5. Punkty odbioru
 
-Wtyczka przechowuje kopię punktów odbioru z EN (ok. 21 tys. punktów) i odświeża ją codziennie około 5:00. Pierwsze pobranie zaczyna się przy pierwszym wejściu do panelu po włączeniu wtyczki i wymaga zapisanych danych logowania do EN. Jeśli dane wpisano później, po konfiguracji kliknij **Odśwież teraz** w zakładce „Logi i dane”. Kopia służy do sprawdzania punktów i limitów pobrania po stronie serwera oraz jako zapasowa wyszukiwarka, gdy mapa Poczty Polskiej jest niedostępna.
+Wtyczka przechowuje kopię punktów odbioru z EN (ponad 20 tysięcy punktów) i odświeża ją codziennie około 5:00. Pierwsze pobranie zaczyna się przy pierwszym wejściu do panelu po włączeniu wtyczki i wymaga zapisanych danych logowania do EN. Jeśli dane wpisano później, po konfiguracji kliknij **Odśwież teraz** w zakładce „Logi i dane”. Kopia służy do sprawdzania punktów i limitów pobrania po stronie serwera oraz jako zapasowa wyszukiwarka, gdy mapa Poczty Polskiej jest niedostępna.
 
 Zadania w tle korzystają z Action Scheduler (część WooCommerce). Na stronach z małym ruchem warto uruchamiać WP-Cron z harmonogramu systemu, żeby zadania wykonywały się o czasie.
 
@@ -136,6 +136,6 @@ Zadania w tle korzystają z Action Scheduler (część WooCommerce). Na stronach
 
 1. Zakładka „Połączenie”: **Testuj połączenie** dla środowiska testowego zwraca datę ważności hasła.
 2. Zakładka „Umowa i nadanie”: listy kart, urzędów i profili są wypełnione, wartości wybrane.
-3. Zakładka „Logi i dane”: kopia punktów ma kilkadziesiąt tysięcy punktów.
+3. Zakładka „Logi i dane”: kopia punktów ma ponad 20 tysięcy punktów.
 4. Zamówienie testowe w sklepie z metodą Pocztex PUNKT: mapa się otwiera, punkt zapisuje się w zamówieniu.
 5. W zamówieniu: **Utwórz przesyłkę w Elektronicznym Nadawcy**, pobierz etykietę (rozdział [2](02-instrukcja-sprzedawcy.md)).

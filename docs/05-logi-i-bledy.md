@@ -40,7 +40,7 @@ Komunikaty z Elektronicznego Nadawcy wtyczka pokazuje po polsku, w brzmieniu z E
 |---|---|---|
 | „Elektroniczny Nadawca odrzucił login lub hasło.” | błędne dane albo wygasłe hasło EN | sprawdź dane w zakładce „Połączenie” i aktywne środowisko; zmień hasło w EN i wpisz nowe |
 | „Wpisz login i hasło do Elektronicznego Nadawcy w ustawieniach wtyczki.” | brak danych dla aktywnego środowiska | uzupełnij zakładkę „Połączenie” |
-| brak połączenia, przekroczony czas | EN niedostępny albo serwer sklepu nie łączy się z EN | sprawdź połączenie wychodzące HTTPS; przesyłka zostaje w stanie „Niepotwierdzona” – po powrocie EN kliknij **Sprawdź w EN** |
+| brak połączenia, przekroczony czas | EN niedostępny albo serwer sklepu nie łączy się z EN | sprawdź połączenie wychodzące HTTPS; przesyłka zostaje w stanie „Niepotwierdzona” - po powrocie EN kliknij **Sprawdź w EN** |
 | błąd 84049 | punkt nie przyjmuje pobrania | wybierz inny punkt albo inną płatność |
 | błąd 30707 | brak telefonu komórkowego przy odbiorze w punkcie | wpisz komórkę w panelu przesyłki |
 | błąd 84024 | Pocztex bez zawartości | uzupełnij „Zawartość” w zakładce „Parametry przesyłek” |

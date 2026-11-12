@@ -1,4 +1,4 @@
-# Poczta Polska for WooCommerce – dokumentacja
+# Poczta Polska for WooCommerce - dokumentacja
 
 Dokumentacja wtyczki w wersji 0.2.5. Opisuje instalację, konfigurację, pracę sprzedawcy, budowę wtyczki, obsługę błędów oraz budowanie i wdrażanie nowych wersji.
 
@@ -13,9 +13,9 @@ Dokumentacja wtyczki w wersji 0.2.5. Opisuje instalację, konfigurację, pracę 
 
 Pojęcia używane w dokumentacji:
 
-- **EN** – Elektroniczny Nadawca, system Poczty Polskiej do nadawania przesyłek. Wtyczka łączy się z nim przez WebAPI.
-- **Środowisko testowe (INT)** i **produkcyjne** – dwie osobne instancje EN z osobnymi danymi logowania. Przesyłki z INT nie są nadawane naprawdę.
-- **Karta umowy** – umowa sprzedawcy z Pocztą Polską zapisana w EN. Na jednym koncie może być kilka kart.
-- **Bufor** – w EN zbiór przesyłek przygotowanych do nadania jednego dnia. Po wysłaniu bufor staje się **zbiorem** (kopertą) w urzędzie nadania.
-- **PNI** – numer placówki lub automatu Poczty Polskiej.
-- **Numer nadania** – numer przesyłki widoczny na etykiecie (np. `PX6038626979`).
+- **EN** - Elektroniczny Nadawca, system Poczty Polskiej do nadawania przesyłek. Wtyczka łączy się z nim przez WebAPI.
+- **Środowisko testowe (INT)** i **produkcyjne** - dwie osobne instancje EN z osobnymi danymi logowania. Przesyłki z INT nie są nadawane naprawdę.
+- **Karta umowy** - umowa sprzedawcy z Pocztą Polską zapisana w EN. Na jednym koncie może być kilka kart.
+- **Bufor** - w EN zbiór przesyłek przygotowanych do nadania jednego dnia. Po wysłaniu bufor staje się **zbiorem** (kopertą) w urzędzie nadania.
+- **PNI** - numer placówki lub automatu Poczty Polskiej.
+- **Numer nadania** - numer przesyłki widoczny na etykiecie (np. `PX6038626979`).
