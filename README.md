@@ -116,7 +116,7 @@ npm run test:k6           # test wydajnościowy zakupów (k6), instrukcja: tests
 composer build            # paczka ZIP w dist/
 ```
 
-Każdy pull request sprawdza automatycznie GitHub Actions: PHPCS, PHPStan, PHPUnit na PHP 8.2–8.5, audyt zależności Composer i npm oraz zbudowanie paczki ZIP.
+Każdy pull request sprawdza automatycznie GitHub Actions: PHPCS, PHPStan, PHPUnit na PHP 8.2-8.5, audyt zależności Composer i npm oraz zbudowanie paczki ZIP.
 
 ## Licencja
 

@@ -41,7 +41,7 @@ W edycji zamówienia jest panel **Przesyłka Poczta Polska**. Pola są wypełnio
 | Pole | Znaczenie |
 |---|---|
 | Usługa | Pocztex Kurier, PUNKT, AUTOMAT albo przesyłka eCommerce. Domyślnie usługa z zamówienia. |
-| Format | S–2XL dla Pocztexu, gabaryt A albo B dla eCommerce. |
+| Format | S-2XL dla Pocztexu, gabaryt A albo B dla eCommerce. |
 | Paczki | Liczba kartonów jednej przesyłki Pocztex (przesyłka wielopaczkowa). |
 | Łączna waga (g) | Z wag produktów albo domyślna waga z ustawień; przy kilku paczkach dzielona po równo. |
 | Telefon komórkowy | Wymagany przy odbiorze w punkcie i automacie (EN wysyła na niego powiadomienia). Polski numer, 9 cyfr. |
@@ -122,7 +122,7 @@ Działania w buforze:
 
 - Kolumna **Poczta Polska** pokazuje numery nadania i stan przesyłki.
 - Akcje zbiorcze (zaznacz zamówienia, wybierz akcję, **Zastosuj**), do 100 zamówień naraz:
-  - **Poczta Polska: utwórz przesyłki** – tworzy przesyłki z ustawieniami domyślnymi,
+  - **Poczta Polska: utwórz przesyłki** - tworzy przesyłki z ustawieniami domyślnymi,
   - **Poczta Polska: drukuj etykiety (jeden PDF)**,
   - **Poczta Polska: usuń przesyłki**.
 

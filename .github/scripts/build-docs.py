@@ -65,7 +65,7 @@ def prepare(name: str) -> str:
     if name == 'README.md':
         # The index table of the README is replaced by the generated table of contents.
         text = re.sub(r'\| Rozdział \|.*?\n\n', '', text, flags=re.S)
-        text = text.replace('# Poczta Polska for WooCommerce – dokumentacja\n', '# Wprowadzenie\n')
+        text = text.replace('# Poczta Polska for WooCommerce - dokumentacja\n', '# Wprowadzenie\n')
 
     return text
 
@@ -104,7 +104,7 @@ a { color: #0645ad; }
 '''
 
 page = f'''<!DOCTYPE html>
-<html lang="pl"><head><meta charset="utf-8"><title>Poczta Polska for WooCommerce – dokumentacja {options.version}</title><style>{CSS}</style></head>
+<html lang="pl"><head><meta charset="utf-8"><title>Poczta Polska for WooCommerce - dokumentacja {options.version}</title><style>{CSS}</style></head>
 <body>
 <div class="title">
 <h1>Poczta Polska for WooCommerce</h1>

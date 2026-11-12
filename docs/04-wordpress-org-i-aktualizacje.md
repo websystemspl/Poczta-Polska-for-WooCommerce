@@ -2,7 +2,7 @@
 
 ## 4.1. Instalacja z katalogu
 
-Wtyczka jest publikowana w katalogu WordPress.org pod nazwą **Poczta Polska for WooCommerce** (identyfikator `poczta-polska-for-woocommerce`).
+Wtyczka została zgłoszona do katalogu WordPress.org 10.11.2026. Po zatwierdzeniu przez zespół WordPress.org będzie dostępna pod nazwą **Poczta Polska for WooCommerce** (identyfikator `poczta-polska-for-woocommerce`).
 
 1. W panelu WordPressa: **Wtyczki → Dodaj nową**.
 2. W polu wyszukiwania wpisz „Poczta Polska for WooCommerce”.
@@ -27,7 +27,7 @@ Przy aktualizacji:
 
 Zalecenia:
 
-1. Przeczytaj listę zmian (zakładka **Changelog** w katalogu albo `CHANGELOG.md`). Zmiana pierwszej cyfry wersji (np. 1.x → 2.0) może wymagać czynności po aktualizacji – są wtedy opisane w changelogu.
+1. Przeczytaj listę zmian (zakładka **Changelog** w katalogu albo `CHANGELOG.md`). Zmiana pierwszej cyfry wersji (np. 1.x → 2.0) może wymagać czynności po aktualizacji - są wtedy opisane w changelogu.
 2. Zrób kopię zapasową bazy danych.
 3. Na sklepie z dużym ruchem sprawdź aktualizację najpierw na kopii sklepu (staging), najlepiej podłączonej do środowiska testowego EN.
 4. Nie aktualizuj w trakcie wysyłania buforów. Przesyłki utworzone przed aktualizacją można dalej obsługiwać normalnie.

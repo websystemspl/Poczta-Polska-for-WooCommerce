@@ -110,14 +110,14 @@ W danych przesyłki wtyczka nie przechowuje adresu odbiorcy (zostaje w zamówien
 
 | Trasa | Parametry | Wynik |
 |---|---|---|
-| `GET /wp-json/ppwc/v1/points` | `search` (2–60 znaków: kod pocztowy, miejscowość, ulica), `type` (`PUNKT` albo `AUTOMAT`), `cod` (kwota pobrania w zł, opcjonalnie) | do 20 punktów z kopii: `pni`, `name`, `type`, `network`, `address`, `cod_limit`, `pickup` |
-| `GET /wp-json/ppwc/v1/points/{pni}` | – | jeden punkt albo 404 |
+| `GET /wp-json/ppwc/v1/points` | `search` (2-60 znaków: kod pocztowy, miejscowość, ulica), `type` (`PUNKT` albo `AUTOMAT`), `cod` (kwota pobrania w zł, opcjonalnie) | do 20 punktów z kopii: `pni`, `name`, `type`, `network`, `address`, `cod_limit`, `pickup` |
+| `GET /wp-json/ppwc/v1/points/{pni}` | - | jeden punkt albo 404 |
 
 Wyszukiwanie korzysta tylko z kopii lokalnej. Pojedynczy punkt spoza kopii jest pobierany z EN; dla niezalogowanych najwyżej 30 takich zapytań na 10 minut.
 
 ### Store API (zamówienie na blokach)
 
-- Dane koszyka: `extensions.ppwc.points` – wybrane punkty `{ "PUNKT": {…}|null, "AUTOMAT": {…}|null }`.
+- Dane koszyka: `extensions.ppwc.points` - wybrane punkty `{ "PUNKT": {…}|null, "AUTOMAT": {…}|null }`.
 - Aktualizacja: `POST /wp-json/wc/store/v1/cart/extensions` z `{"namespace":"ppwc","data":{"type":"PUNKT","pni":536973}}`.
 - Walidacja przy złożeniu zamówienia (`POST /checkout`): błąd `ppwc_pickup_point` (HTTP 400) z komunikatem dla klienta.
 
