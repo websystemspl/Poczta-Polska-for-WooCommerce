@@ -30,7 +30,7 @@ Klient widzi wtedy komunikat przy wyborze punktu albo przy przycisku zamówienia
 
 ## 2.2. Punkt odbioru w zamówieniu
 
-W edycji zamówienia, pod adresem wysyłki, jest sekcja **Punkt odbioru** (albo **Automat Pocztex**) z nazwą, adresem i numerem PNI. Przycisk **Zmień na mapie** pozwala wybrać inny punkt, np. na prośbę klienta. Zmiana zapisuje się od razu i trafia do notatek zamówienia (widocznych dla klienta) oraz do rejestru operacji.
+W edycji zamówienia, pod adresem wysyłki, jest sekcja **Punkt odbioru** (albo **Automat Pocztex**) z nazwą, adresem i numerem PNI. Przycisk **Zmień na mapie** pozwala wybrać inny punkt, np. na prośbę klienta. Zmiana zapisuje się od razu i trafia do prywatnych notatek zamówienia (klient ich nie widzi) oraz do rejestru operacji.
 
 Punkt można też zmienić w panelu przesyłki (rozdział 2.4).
 
