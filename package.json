@@ -10,6 +10,6 @@
 		"test:k6:bulk": "k6 run tests/k6/bulk-shipments.js"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.64.1"
+		"@playwright/test": "^1.65.0"
 	}
 }
