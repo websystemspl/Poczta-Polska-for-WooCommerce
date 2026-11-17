@@ -5,6 +5,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Changed
+- Shipment panel: the fields sit in one even grid, the "Fragile" checkbox has its normal size next to its label, and the insurance and value fields have shorter labels.
+
 ## [0.2.6] - 2026-11-17
 
 ### Added

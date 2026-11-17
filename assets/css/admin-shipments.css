@@ -4,8 +4,9 @@
 
 .ppwc-shipments__fields {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
 	gap: 12px 16px;
+	align-items: start;
 	margin: 12px 0;
 }
 
@@ -18,17 +19,37 @@
 
 .ppwc-shipments__field label {
 	font-weight: 600;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-.ppwc-shipments__field input,
+.ppwc-shipments__field input:not([type="checkbox"]),
 .ppwc-shipments__field select {
 	width: 100%;
 	max-width: none;
 	margin: 0;
 }
 
+/* The checkbox sits in a row with its label, at the height of the other inputs. */
+.ppwc-shipments__field--checkbox label {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	min-height: 30px;
+	overflow: visible;
+}
+
+.ppwc-shipments__field--checkbox input[type="checkbox"] {
+	width: 16px;
+	height: 16px;
+	margin: 0;
+	flex: none;
+}
+
 .ppwc-shipments__field .description {
 	font-size: 12px;
+	line-height: 1.4;
 }
 
 .ppwc-shipments__point {
