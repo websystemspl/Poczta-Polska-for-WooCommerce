@@ -4,7 +4,7 @@ Tags: poczta polska, pocztex, shipping, pickup point, cash on delivery
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 0.2.6
+Stable tag: 0.2.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -130,6 +130,9 @@ Poczta Polska privacy policy: https://www.poczta-polska.pl/polityka-prywatnosci/
 The plugin adds a suggested paragraph to **Settings → Privacy → Policy Guide**. It supports the WordPress personal data export and erasure tools: the pickup point and tracking numbers of an order are exported, and the pickup point is erased with the order data. Recipient data stays in the order; the plugin keeps only phone numbers that the store corrected for a shipment, and erases them with the order data.
 
 == Changelog ==
+
+= 0.2.7 =
+* Shipment panel: even field layout and a correctly sized "Fragile" checkbox.
 
 = 0.2.6 =
 * Shipment panel: "Fragile", additional insurance and declared value for each Pocztex shipment.
