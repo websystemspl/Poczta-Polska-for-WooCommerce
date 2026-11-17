@@ -1692,21 +1692,21 @@ msgid "The shipment goes to the buffer of this office; a courier collects it (pl
 msgstr "Przesyłka trafi do bufora tego urzędu; odbiera ją kurier (ustawienia wtyczki)."
 
 #: views/admin/order-shipments.php:167
-msgid "Additional insurance (PLN)"
-msgstr "Dodatkowe ubezpieczenie (zł)"
+msgid "Insurance (PLN)"
+msgstr "Ubezpieczenie (zł)"
 
 #: views/admin/order-shipments.php:169
-msgid "0: only the cover included in the service (up to PLN 1,000)."
-msgstr "0: tylko ochrona w cenie usługi (do 1000 zł)."
+msgid "Additional insurance; 0: only the cover included (up to PLN 1,000)."
+msgstr "Dodatkowe ubezpieczenie; 0: tylko ochrona w cenie (do 1000 zł)."
 
 #: views/admin/order-shipments.php:172
-msgid "Declared value (PLN)"
-msgstr "Zadeklarowana wartość (zł)"
+msgid "Value (PLN)"
+msgstr "Wartość (zł)"
 
 #: views/admin/order-shipments.php:174
-msgid "0: no declared value."
-msgstr "0: bez deklaracji wartości."
+msgid "Declared value of the parcel; 0: none."
+msgstr "Zadeklarowana wartość przesyłki; 0: brak."
 
 #: views/admin/order-shipments.php:181
-msgid "Not sent for parcel lockers: Elektroniczny Nadawca rejects it there."
-msgstr "Nie jest wysyłane przy automatach: Elektroniczny Nadawca je tam odrzuca."
+msgid "Not available in parcel lockers."
+msgstr "Niedostępne w automatach."

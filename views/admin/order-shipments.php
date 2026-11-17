@@ -164,21 +164,21 @@ defined( 'ABSPATH' ) || exit;
 				</p>
 			<?php endif; ?>
 			<p class="ppwc-shipments__field ppwc-shipments__pocztex-only"<?php echo 'ppwc_ecommerce' !== $args['service'] ? '' : ' hidden'; ?>>
-				<label for="ppwc-insurance-<?php echo esc_attr( (string) $args['order_id'] ); ?>"><?php esc_html_e( 'Additional insurance (PLN)', 'poczta-polska-for-woocommerce' ); ?></label>
+				<label for="ppwc-insurance-<?php echo esc_attr( (string) $args['order_id'] ); ?>"><?php esc_html_e( 'Insurance (PLN)', 'poczta-polska-for-woocommerce' ); ?></label>
 				<input type="number" id="ppwc-insurance-<?php echo esc_attr( (string) $args['order_id'] ); ?>" name="ppwc_insurance" min="0" max="100000" step="1" value="<?php echo esc_attr( (string) $args['insurance'] ); ?>" aria-describedby="ppwc-insurance-help-<?php echo esc_attr( (string) $args['order_id'] ); ?>" />
-				<span class="description" id="ppwc-insurance-help-<?php echo esc_attr( (string) $args['order_id'] ); ?>"><?php esc_html_e( '0: only the cover included in the service (up to PLN 1,000).', 'poczta-polska-for-woocommerce' ); ?></span>
+				<span class="description" id="ppwc-insurance-help-<?php echo esc_attr( (string) $args['order_id'] ); ?>"><?php esc_html_e( 'Additional insurance; 0: only the cover included (up to PLN 1,000).', 'poczta-polska-for-woocommerce' ); ?></span>
 			</p>
 			<p class="ppwc-shipments__field ppwc-shipments__pocztex-only"<?php echo 'ppwc_ecommerce' !== $args['service'] ? '' : ' hidden'; ?>>
-				<label for="ppwc-value-<?php echo esc_attr( (string) $args['order_id'] ); ?>"><?php esc_html_e( 'Declared value (PLN)', 'poczta-polska-for-woocommerce' ); ?></label>
+				<label for="ppwc-value-<?php echo esc_attr( (string) $args['order_id'] ); ?>"><?php esc_html_e( 'Value (PLN)', 'poczta-polska-for-woocommerce' ); ?></label>
 				<input type="number" id="ppwc-value-<?php echo esc_attr( (string) $args['order_id'] ); ?>" name="ppwc_value" min="0" max="1000000" step="1" value="<?php echo esc_attr( (string) $args['value'] ); ?>" aria-describedby="ppwc-value-help-<?php echo esc_attr( (string) $args['order_id'] ); ?>" />
-				<span class="description" id="ppwc-value-help-<?php echo esc_attr( (string) $args['order_id'] ); ?>"><?php esc_html_e( '0: no declared value.', 'poczta-polska-for-woocommerce' ); ?></span>
+				<span class="description" id="ppwc-value-help-<?php echo esc_attr( (string) $args['order_id'] ); ?>"><?php esc_html_e( 'Declared value of the parcel; 0: none.', 'poczta-polska-for-woocommerce' ); ?></span>
 			</p>
-			<p class="ppwc-shipments__field ppwc-shipments__pocztex-only"<?php echo 'ppwc_ecommerce' !== $args['service'] ? '' : ' hidden'; ?>>
+			<p class="ppwc-shipments__field ppwc-shipments__field--checkbox ppwc-shipments__pocztex-only"<?php echo 'ppwc_ecommerce' !== $args['service'] ? '' : ' hidden'; ?>>
 				<label for="ppwc-fragile-<?php echo esc_attr( (string) $args['order_id'] ); ?>">
 					<input type="checkbox" id="ppwc-fragile-<?php echo esc_attr( (string) $args['order_id'] ); ?>" name="ppwc_fragile" value="yes" <?php checked( $args['fragile'] ); ?> />
 					<?php esc_html_e( 'Fragile', 'poczta-polska-for-woocommerce' ); ?>
 				</label>
-				<span class="description"><?php esc_html_e( 'Not sent for parcel lockers: Elektroniczny Nadawca rejects it there.', 'poczta-polska-for-woocommerce' ); ?></span>
+				<span class="description"><?php esc_html_e( 'Not available in parcel lockers.', 'poczta-polska-for-woocommerce' ); ?></span>
 			</p>
 		</div>
 		<p class="ppwc-shipments__point"<?php echo '' === ( $args['point_types'][ $args['service'] ] ?? '' ) ? ' hidden' : ''; ?>>
