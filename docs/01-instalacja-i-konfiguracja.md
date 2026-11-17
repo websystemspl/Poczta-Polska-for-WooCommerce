@@ -56,7 +56,7 @@ Ustawienia dotyczą aktywnego środowiska; dla drugiego środowiska zapisują si
 | Domyślny urząd nadania | Urząd, do którego trafiają dane przesyłek po wysłaniu bufora. Lista urzędów z umowy w EN. Dla pojedynczej przesyłki można wybrać inny. |
 | Profil nadawcy | Adres nadawcy drukowany na etykietach. Profilami zarządza się w Elektronicznym Nadawcy. |
 | Sposób nadania | **Kurier odbiera paczki**, **Nadaję w urzędzie nadania** albo **Nadaję w automacie Pocztex**. |
-| Automat do nadawania (PNI) | Wymagany przy nadawaniu w automacie. Przycisk obok otwiera mapę Poczty Polskiej. |
+| Automat do nadawania (PNI) | Opcjonalny. EN przyjmuje nadanie w automacie bez wskazania konkretnego automatu; wpisz PNI tylko, gdy umowa wskazuje konkretny automat. Przycisk obok otwiera mapę Poczty Polskiej. |
 
 Listy kart, urzędów i profili są pobierane z EN i przechowywane przez 12 godzin. Link **Odśwież listy** pobiera je od nowa.
 
@@ -76,7 +76,7 @@ Wartości domyślne dla nowych przesyłek; w każdej przesyłce można je zmieni
 | Domyślna waga (g) | Używana, gdy produkty nie mają wagi. Pocztex zawsze wymaga wagi. |
 | Ostrożnie | Usługa „ostrożnie”. Pomijana przy automatach, bo EN jej tam nie przyjmuje. |
 | Zawartość | Wymagana przez Pocztex, np. „Towar”. |
-| Kwota ubezpieczenia (zł) | 0 oznacza brak ubezpieczenia. |
+| Kwota ubezpieczenia (zł) | 0 oznacza brak dodatkowego ubezpieczenia: każda paczka Pocztex ma w cenie ochronę do 1000 zł. Kwotę można zmienić dla pojedynczej przesyłki. |
 | Opis | Drukowany na etykiecie (pierwsze 40 znaków). `{order_number}` zostaje zastąpione numerem zamówienia. |
 | Gabaryt (eCommerce) | Gabaryt A albo B. |
 | Kategoria (eCommerce) | Ekonomiczna albo priorytetowa. |

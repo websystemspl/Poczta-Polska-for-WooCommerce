@@ -5,6 +5,18 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Added
+- Shipment panel: "Fragile", "Additional insurance (PLN)" and "Declared value (PLN)" can be set for each Pocztex shipment before the label is printed (defaults from the settings).
+
+### Changed
+- Posting in a Pocztex parcel locker no longer requires the locker's PNI: Elektroniczny Nadawca accepts `shipmentChannel=APM` alone (verified on INT). The PNI stays optional.
+- Shipment panel: the format list shows only the formats of the chosen service; a format the service does not allow is reported as an error instead of being silently replaced.
+- Shipment panel: the office field is called "Office of the buffer" when parcels are posted in a parcel locker or collected by a courier, with a note on where the shipment is posted.
+- Settings: the descriptions of the insurance amount (cover up to PLN 1,000 is included) and of the posting locker PNI.
+
+### Fixed
+- Multi-parcel shipments: the description and the "fragile" service are sent for every parcel, so each label shows them.
+
 ## [0.2.5] - 2026-11-10
 
 ### Changed

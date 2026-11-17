@@ -29,12 +29,55 @@
 		label.textContent = text || label.dataset.empty;
 	}
 
+	// Formats of a service, from the data attribute of the box.
+	function formatsOf( box, service ) {
+		let formats = {};
+
+		try {
+			formats = JSON.parse( box.dataset.formats || '{}' );
+		} catch ( error ) {
+			formats = {};
+		}
+
+		return formats[ service ] || [];
+	}
+
+	// The format list shows only the formats of the chosen service; the current one stays when it fits.
+	function refreshFormats( box ) {
+		const service = box.querySelector( '[name="ppwc_service"]' );
+		const select = box.querySelector( '[name="ppwc_format"]' );
+
+		if ( ! service || ! select ) {
+			return;
+		}
+
+		const formats = formatsOf( box, service.value );
+		const current = select.value;
+
+		select.replaceChildren();
+		formats.forEach( function ( format ) {
+			const option = document.createElement( 'option' );
+
+			option.value = format;
+			option.textContent = format;
+			select.appendChild( option );
+		} );
+		select.value = formats.includes( current ) ? current : formats[ formats.length - 1 ] || '';
+
+		// Insurance, declared value and "fragile" exist only for Pocztex.
+		box.querySelectorAll( '.ppwc-shipments__pocztex-only' ).forEach( function ( field ) {
+			field.hidden = 'ppwc_ecommerce' === service.value;
+		} );
+	}
+
 	document.addEventListener( 'change', function ( event ) {
 		const box = event.target.closest( '.ppwc-shipments' );
 
 		if ( ! box || 'ppwc_service' !== event.target.name ) {
 			return;
 		}
+
+		refreshFormats( box );
 
 		const type = pointTypeOf( box );
 		const input = box.querySelector( '[name="ppwc_pickup_pni"]' );
@@ -117,6 +160,9 @@
 			phone: value( 'ppwc_phone' ),
 			pickup_pni: pointTypeOf( box ) ? value( 'ppwc_pickup_pni' ) : '',
 			office_id: value( 'ppwc_office_id' ),
+			fragile: box.querySelector( '[name="ppwc_fragile"]' ) && box.querySelector( '[name="ppwc_fragile"]' ).checked ? 'yes' : 'no',
+			insurance: value( 'ppwc_insurance' ),
+			value: value( 'ppwc_value' ),
 		} );
 
 		box.querySelectorAll( 'button' ).forEach( function ( element ) {

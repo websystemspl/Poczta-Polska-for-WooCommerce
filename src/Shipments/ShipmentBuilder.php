@@ -168,7 +168,9 @@ final class ShipmentBuilder {
 		$data['masa'] = $draft->weights[0] ?? 0;
 
 		// Parcel lockers reject the "fragile" service (EN FAQ 12).
-		if ( ! empty( $draft->options['fragile'] ) && PickupPoint::TYPE_LOCKER !== $service->point_type ) {
+		$fragile = ! empty( $draft->options['fragile'] ) && PickupPoint::TYPE_LOCKER !== $service->point_type;
+
+		if ( $fragile ) {
 			$data['ostroznie'] = true;
 		}
 
@@ -184,18 +186,33 @@ final class ShipmentBuilder {
 			);
 		}
 
+		// Declared value (przesyłka z określoną wartością), in grosze.
+		$value = (int) ( $draft->options['value'] ?? 0 );
+
+		if ( $value > 0 ) {
+			$data['wartosc'] = $value;
+		}
+
 		$data['zawartosc'] = array( 'zawartoscInna' => (string) ( $draft->options['content'] ?? '' ) );
 
 		$subs = array();
 
 		foreach ( $draft->sub_guids as $index => $guid ) {
+			// Every parcel carries the description and the "fragile" service: the label of each one shows them.
+			$sub = array(
+				'guid'   => $guid,
+				'opis'   => $data['opis'],
+				'masa'   => $draft->weights[ $index + 1 ] ?? 0,
+				'format' => $draft->format,
+			);
+
+			if ( $fragile ) {
+				$sub['ostroznie'] = true;
+			}
+
 			$subs[] = array(
 				'type' => 'sub' . ucfirst( $service->en_type ),
-				'data' => array(
-					'guid'   => $guid,
-					'masa'   => $draft->weights[ $index + 1 ] ?? 0,
-					'format' => $draft->format,
-				),
+				'data' => $sub,
 			);
 		}
 
@@ -211,9 +228,13 @@ final class ShipmentBuilder {
 		$posting = (int) ( $draft->options['posting_pni'] ?? 0 );
 
 		// Courier pickup is the EN default: no punktNadania (WebAPI description of pocztex2021KurierType).
-		if ( 'COURIER' !== $channel && $posting > 0 ) {
-			$data['punktNadania']    = array( 'id' => $posting );
+		// A parcel locker does not have to be named: EN accepts shipmentChannel=APM alone (checked on INT).
+		if ( 'COURIER' !== $channel ) {
 			$data['shipmentChannel'] = $channel;
+
+			if ( $posting > 0 ) {
+				$data['punktNadania'] = array( 'id' => $posting );
+			}
 		}
 
 		return array(
