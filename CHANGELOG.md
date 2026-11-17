@@ -5,6 +5,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.2.6] - 2026-11-17
+
 ### Added
 - Shipment panel: "Fragile", "Additional insurance (PLN)" and "Declared value (PLN)" can be set for each Pocztex shipment before the label is printed (defaults from the settings).
 
