@@ -30,7 +30,8 @@ final class DraftFactory {
 	 *
 	 * @param \WC_Order            $order     Order.
 	 * @param array<string, mixed> $overrides Changes from the shop manager: service, parcels (int), weights (int[]),
-	 *                                        format, mobile, phone (landline), pickup_pni, office_id.
+	 *                                        format, mobile, phone (landline), pickup_pni, office_id,
+	 *                                        fragile (yes|no), insurance (PLN), value (declared value, PLN).
 	 * @throws ShipmentException When the order has no Poczta Polska service.
 	 */
 	public static function from_order( \WC_Order $order, array $overrides = array() ): ShipmentDraft {
@@ -58,9 +59,10 @@ final class DraftFactory {
 			self::replace_order_number( Settings::get( 'pocztex_description' ), $order ),
 			self::customer_number( $guid ),
 			array(
-				'fragile'         => 'yes' === Settings::get( 'pocztex_fragile' ),
+				'fragile'         => isset( $overrides['fragile'] ) ? 'yes' === $overrides['fragile'] : 'yes' === Settings::get( 'pocztex_fragile' ),
 				'content'         => Settings::get( 'pocztex_content' ),
-				'insurance'       => (int) Settings::get( 'pocztex_insurance' ),
+				'insurance'       => isset( $overrides['insurance'] ) ? max( 0, (int) $overrides['insurance'] ) : (int) Settings::get( 'pocztex_insurance' ),
+				'value'           => isset( $overrides['value'] ) ? max( 0, (int) round( (float) $overrides['value'] * 100 ) ) : 0,
 				'category'        => Settings::get( 'ecommerce_category' ),
 				'cod_account'     => Settings::get( 'cod_account' ),
 				'cod_method'      => Settings::get( 'cod_method' ),
@@ -249,7 +251,9 @@ final class DraftFactory {
 	 * @param string              $override Format chosen by the shop manager.
 	 */
 	private static function format( Service $service, ?AbstractMethod $method, string $override ): string {
-		if ( '' !== $override && $service->allows_format( $override ) ) {
+		// A format chosen by the shop manager is kept even when the service does not allow it:
+		// ShipmentBuilder::problems() then names the problem instead of silently changing the format.
+		if ( '' !== $override ) {
 			return $override;
 		}
 

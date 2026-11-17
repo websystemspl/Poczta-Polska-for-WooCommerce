@@ -100,8 +100,12 @@ final class OrderShipmentsBox {
 				'services'    => array_map( static fn( $service ): string => self::service_label( $service->id ), ServiceRegistry::all() ),
 				'point_types' => array_filter( array_map( static fn( $service ): string => (string) $service->point_type, ServiceRegistry::all() ) ),
 				'service'     => $form['service'],
-				'formats'     => $preview['formats'],
+				'formats'     => array_map( static fn( $service ): array => array_values( $service->formats ), ServiceRegistry::all() ),
 				'format'      => $form['format'],
+				'fragile'     => $form['fragile'],
+				'insurance'   => $form['insurance'],
+				'value'       => $form['value'],
+				'channel'     => Settings::get( 'posting_channel' ),
 				'parcels'     => $form['parcels'],
 				'weight'      => $form['weight'],
 				'mobile'      => $form['mobile'],
@@ -174,6 +178,9 @@ final class OrderShipmentsBox {
 			'phone'      => isset( $_POST['phone'] ) ? sanitize_text_field( wp_unslash( $_POST['phone'] ) ) : '',
 			'pickup_pni' => isset( $_POST['pickup_pni'] ) ? absint( wp_unslash( $_POST['pickup_pni'] ) ) : 0,
 			'office_id'  => isset( $_POST['office_id'] ) ? absint( wp_unslash( $_POST['office_id'] ) ) : 0,
+			'fragile'    => isset( $_POST['fragile'] ) && 'yes' === sanitize_key( wp_unslash( $_POST['fragile'] ) ) ? 'yes' : 'no',
+			'insurance'  => isset( $_POST['insurance'] ) ? absint( wp_unslash( $_POST['insurance'] ) ) : 0,
+			'value'      => isset( $_POST['value'] ) ? (string) absint( wp_unslash( $_POST['value'] ) ) : '0',
 		);
 		$weight    = isset( $_POST['weight'] ) ? absint( wp_unslash( $_POST['weight'] ) ) : 0;
 
@@ -182,7 +189,7 @@ final class OrderShipmentsBox {
 			$overrides['weights'] = array_fill( 0, $parcels, max( 1, intdiv( $weight, $parcels ) ) );
 		}
 
-		$overrides = array_filter( $overrides, static fn( $value ): bool => '' !== $value && 0 !== $value );
+		$overrides = array_filter( $overrides, static fn( $value, string $key ): bool => in_array( $key, array( 'fragile', 'insurance', 'value' ), true ) || ( '' !== $value && 0 !== $value ), ARRAY_FILTER_USE_BOTH );
 		$service   = new ShipmentService();
 		$shipment  = null;
 		$point     = null;
@@ -446,7 +453,7 @@ final class OrderShipmentsBox {
 	 *
 	 * @param Shipment[]                                                                                   $shipments Shipments of the order, newest first.
 	 * @param array{service: string, format: string, weight: int, mobile: string, phone: string, pni: int} $preview   Values from the order.
-	 * @return array{service: string, format: string, parcels: int, weight: int, mobile: string, phone: string, pni: int, office_id: int}
+	 * @return array{service: string, format: string, parcels: int, weight: int, mobile: string, phone: string, pni: int, office_id: int, fragile: bool, insurance: int, value: int}
 	 */
 	private static function form_values( array $shipments, array $preview ): array {
 		$values = array(
@@ -458,6 +465,9 @@ final class OrderShipmentsBox {
 			'phone'     => $preview['phone'],
 			'pni'       => $preview['pni'],
 			'office_id' => (int) Settings::get_for_env( 'posting_office_id' ),
+			'fragile'   => 'yes' === Settings::get( 'pocztex_fragile' ),
+			'insurance' => (int) Settings::get( 'pocztex_insurance' ),
+			'value'     => 0,
 		);
 
 		foreach ( $shipments as $shipment ) {
@@ -468,6 +478,7 @@ final class OrderShipmentsBox {
 			$draft   = isset( $shipment->data['draft'] ) && is_array( $shipment->data['draft'] ) ? $shipment->data['draft'] : array();
 			$weights = isset( $draft['weights'] ) && is_array( $draft['weights'] ) ? array_map( 'intval', $draft['weights'] ) : array();
 			$contact = isset( $draft['contact'] ) && is_array( $draft['contact'] ) ? $draft['contact'] : array();
+			$options = isset( $draft['options'] ) && is_array( $draft['options'] ) ? $draft['options'] : array();
 
 			return array(
 				'service'   => (string) ( $draft['service'] ?? $values['service'] ),
@@ -478,6 +489,9 @@ final class OrderShipmentsBox {
 				'phone'     => (string) ( $contact['phone'] ?? $values['phone'] ),
 				'pni'       => (int) ( $draft['pickup_pni'] ?? 0 ) > 0 ? (int) $draft['pickup_pni'] : $values['pni'],
 				'office_id' => $shipment->office_id > 0 ? $shipment->office_id : $values['office_id'],
+				'fragile'   => array_key_exists( 'fragile', $options ) ? (bool) $options['fragile'] : $values['fragile'],
+				'insurance' => array_key_exists( 'insurance', $options ) ? (int) $options['insurance'] : $values['insurance'],
+				'value'     => (int) round( (int) ( $options['value'] ?? 0 ) / 100 ),
 			);
 		}
 

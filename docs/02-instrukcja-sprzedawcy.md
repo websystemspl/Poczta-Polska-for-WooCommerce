@@ -41,12 +41,15 @@ W edycji zamówienia jest panel **Przesyłka Poczta Polska**. Pola są wypełnio
 | Pole | Znaczenie |
 |---|---|
 | Usługa | Pocztex Kurier, PUNKT, AUTOMAT albo przesyłka eCommerce. Domyślnie usługa z zamówienia. |
-| Format | S-2XL dla Pocztexu, gabaryt A albo B dla eCommerce. |
+| Format | Lista zawiera tylko formaty wybranej usługi (automat: S-L, punkt: S-XL, kurier: S-2XL, eCommerce: gabaryt A albo B). Niedozwolony format jest zgłaszany jako błąd przed utworzeniem przesyłki. |
 | Paczki | Liczba kartonów jednej przesyłki Pocztex (przesyłka wielopaczkowa). |
 | Łączna waga (g) | Z wag produktów albo domyślna waga z ustawień; przy kilku paczkach dzielona po równo. |
 | Telefon komórkowy | Wymagany przy odbiorze w punkcie i automacie (EN wysyła na niego powiadomienia). Polski numer, 9 cyfr. |
 | Telefon stacjonarny | Opcjonalny, wysyłany obok komórki. |
-| Urząd nadania | Urząd, do którego bufora trafi przesyłka. Domyślnie z ustawień. |
+| Urząd nadania / Urząd bufora | Urząd, do którego bufora trafi przesyłka. Domyślnie z ustawień. Przy nadawaniu w automacie albo odbiorze przez kuriera pole nazywa się „Urząd bufora”, bo miejsce nadania wynika z ustawień (sposób nadania). |
+| Dodatkowe ubezpieczenie (zł) | Tylko Pocztex. 0 = tylko ochrona w cenie usługi (do 1000 zł). Domyślnie z ustawień. |
+| Zadeklarowana wartość (zł) | Tylko Pocztex. Usługa „przesyłka z określoną wartością”; 0 = bez deklaracji. |
+| Ostrożnie | Tylko Pocztex. Domyślnie z ustawień; przy automatach nie jest wysyłane, bo EN je tam odrzuca. Trafia na etykietę każdej paczki przy wielopaczce. |
 | Punkt odbioru | Tylko dla PUNKT i AUTOMAT. **Wybierz na mapie** otwiera mapę. |
 
 ![Panel „Przesyłka Poczta Polska” w edycji zamówienia](img/zamowienie-panel-przesylki.png)

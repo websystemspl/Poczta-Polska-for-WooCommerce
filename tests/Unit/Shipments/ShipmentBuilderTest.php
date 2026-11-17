@@ -136,6 +136,7 @@ final class ShipmentBuilderTest extends TestCase {
 		$this->assertSame( array( 'id' => 536973 ), $shipment['data']['punktOdbioru'] );
 		$this->assertSame( 'subPocztex2021KurierType', $shipment['data']['subPrzesylka'][0]['type'] );
 		$this->assertSame( 300, $shipment['data']['subPrzesylka'][0]['data']['masa'] );
+		$this->assertSame( $shipment['data']['opis'], $shipment['data']['subPrzesylka'][0]['data']['opis'], 'Every parcel label shows the description.' );
 		$this->assertSame( 700, $draft->total_weight() );
 		$this->assertSame( array(), ShipmentBuilder::problems( $draft ) );
 	}
@@ -173,6 +174,13 @@ final class ShipmentBuilderTest extends TestCase {
 		$data                       = ShipmentBuilder::build( self::draft( ServiceRegistry::POCZTEX_COURIER, array( 'options' => $options ) ) )['data'];
 
 		$this->assertSame( array( 'id' => 213458 ), $data['punktNadania'] );
+		$this->assertSame( 'APM', $data['shipmentChannel'] );
+
+		// A parcel locker does not have to be named (checked on INT 17.11): only the channel is sent.
+		$options['posting_pni'] = 0;
+		$data                   = ShipmentBuilder::build( self::draft( ServiceRegistry::POCZTEX_COURIER, array( 'options' => $options ) ) )['data'];
+
+		$this->assertArrayNotHasKey( 'punktNadania', $data );
 		$this->assertSame( 'APM', $data['shipmentChannel'] );
 	}
 
@@ -248,5 +256,25 @@ final class ShipmentBuilderTest extends TestCase {
 
 		$this->assertSame( 250, mb_strlen( $data['opis'] ) );
 		$this->assertSame( 55, mb_strlen( $data['pobranie']['tytulem'] ) );
+	}
+
+	public function test_fragile_and_declared_value_go_to_every_parcel(): void {
+		$options            = self::draft( ServiceRegistry::POCZTEX_COURIER )->options;
+		$options['fragile'] = true;
+		$options['value']   = 25000;
+		$data               = ShipmentBuilder::build(
+			self::draft(
+				ServiceRegistry::POCZTEX_COURIER,
+				array(
+					'options'   => $options,
+					'sub_guids' => array( 'AAAABBBBCCCCDDDDEEEEFFFF00001111' ),
+					'weights'   => array( 400, 300 ),
+				)
+			)
+		)['data'];
+
+		$this->assertTrue( $data['ostroznie'] );
+		$this->assertTrue( $data['subPrzesylka'][0]['data']['ostroznie'] );
+		$this->assertSame( 25000, $data['wartosc'] );
 	}
 }

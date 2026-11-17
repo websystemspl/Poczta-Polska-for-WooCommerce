@@ -59,8 +59,8 @@ msgstr "Testuj połączenie produkcyjne"
 
 #: src/Admin/BuffersPage.php:192
 #: src/Admin/ConnectionTest.php:69
-#: src/Admin/OrderShipmentsBox.php:166
-#: src/Admin/OrderShipmentsBox.php:304
+#: src/Admin/OrderShipmentsBox.php:170
+#: src/Admin/OrderShipmentsBox.php:311
 #: src/Admin/SettingsPage.php:198
 #: src/Admin/SettingsPage.php:245
 #: src/Points/OrderPointDisplay.php:206
@@ -268,7 +268,7 @@ msgid "Refresh the lists"
 msgstr "Odśwież listy"
 
 #: views/admin/field.php:43
-#: views/admin/order-shipments.php:165
+#: views/admin/order-shipments.php:197
 msgid "Choose on the map"
 msgstr "Wybierz na mapie"
 
@@ -433,7 +433,7 @@ msgid "Pocztex parcel locker"
 msgstr "Automat Pocztex"
 
 #: src/Points/OrderPoint.php:116
-#: views/admin/order-shipments.php:153
+#: views/admin/order-shipments.php:185
 msgid "Pickup point"
 msgstr "Punkt odbioru"
 
@@ -451,8 +451,8 @@ msgid "PNI: %d"
 msgstr "PNI: %d"
 
 #: views/admin/order-pickup-point.php:23
-#: views/admin/order-shipments.php:155
-#: views/admin/order-shipments.php:161
+#: views/admin/order-shipments.php:187
+#: views/admin/order-shipments.php:193
 msgid "Not chosen."
 msgstr "Nie wybrano."
 
@@ -601,7 +601,7 @@ msgstr "Miejsce nadania Pocztex"
 msgid "Pocztex"
 msgstr "Pocztex"
 
-#: src/Admin/OrderShipmentsBox.php:339
+#: src/Admin/OrderShipmentsBox.php:347
 #: src/SettingsSchema.php:103
 #: src/Shipping/Methods/EcommerceMethod.php:27
 msgid "eCommerce parcel"
@@ -660,10 +660,6 @@ msgstr "Nadaję w automacie Pocztex"
 #: src/SettingsSchema.php:181
 msgid "Parcel locker for posting (PNI)"
 msgstr "Automat do nadawania (PNI)"
-
-#: src/SettingsSchema.php:182
-msgid "Required when you post parcels in a parcel locker."
-msgstr "Wymagany, gdy nadajesz paczki w automacie."
 
 #: src/SettingsSchema.php:185
 msgid "The parcel locker ID (PNI) must contain digits only."
@@ -726,7 +722,7 @@ msgid "Enter a valid email address of up to 50 characters."
 msgstr "Wpisz poprawny adres e-mail (do 50 znaków)."
 
 #: src/SettingsSchema.php:243
-#: views/admin/order-shipments.php:117
+#: views/admin/order-shipments.php:121
 msgid "Format"
 msgstr "Format"
 
@@ -763,6 +759,7 @@ msgid "Enter a weight from 1 to 50000 g."
 msgstr "Wpisz wagę od 1 do 50000 g."
 
 #: src/SettingsSchema.php:269
+#: views/admin/order-shipments.php:179
 msgid "Fragile"
 msgstr "Ostrożnie"
 
@@ -785,10 +782,6 @@ msgstr "Towar"
 #: src/SettingsSchema.php:279
 msgid "Insurance amount (PLN)"
 msgstr "Kwota ubezpieczenia (zł)"
-
-#: src/SettingsSchema.php:280
-msgid "0 means no insurance."
-msgstr "0 oznacza brak ubezpieczenia."
 
 #: src/SettingsSchema.php:283
 msgid "Enter the insurance amount in whole złoty."
@@ -957,7 +950,7 @@ msgstr "Domyślny z ustawień wtyczki"
 msgid "Registered business letter (product 845) up to 2 kg. Cash on delivery is not available."
 msgstr "Przesyłka firmowa polecona (produkt 845) do 2 kg. Bez pobrania."
 
-#: src/Admin/OrderShipmentsBox.php:336
+#: src/Admin/OrderShipmentsBox.php:344
 #: src/Shipping/Methods/PocztexCourierMethod.php:27
 msgid "Pocztex Courier"
 msgstr "Pocztex Kurier"
@@ -966,7 +959,7 @@ msgstr "Pocztex Kurier"
 msgid "Pocztex door-to-door delivery by courier."
 msgstr "Pocztex z doręczeniem przez kuriera pod drzwi."
 
-#: src/Admin/OrderShipmentsBox.php:338
+#: src/Admin/OrderShipmentsBox.php:346
 #: src/Shipping/Methods/PocztexLockerMethod.php:27
 msgid "Pocztex Parcel Locker"
 msgstr "Pocztex AUTOMAT"
@@ -975,7 +968,7 @@ msgstr "Pocztex AUTOMAT"
 msgid "Pocztex collected from a Pocztex parcel locker chosen on the Poczta Polska map. Formats S-L."
 msgstr "Pocztex z odbiorem w automacie wybranym na mapie Poczty Polskiej. Formaty S-L."
 
-#: src/Admin/OrderShipmentsBox.php:337
+#: src/Admin/OrderShipmentsBox.php:345
 #: src/Shipping/Methods/PocztexPointMethod.php:27
 msgid "Pocztex Pickup Point"
 msgstr "Pocztex PUNKT"
@@ -1044,7 +1037,7 @@ msgid "The courier was ordered for %1$s, %2$s. Elektroniczny Nadawca sends the c
 msgstr "Kurier zamówiony na %1$s, %2$s. Elektroniczny Nadawca wyśle potwierdzenie e-mailem."
 
 #: src/Admin/BuffersPage.php:318
-#: src/Admin/OrderShipmentsBox.php:225
+#: src/Admin/OrderShipmentsBox.php:232
 msgid "Unknown operation."
 msgstr "Nieznana operacja."
 
@@ -1093,43 +1086,43 @@ msgstr[2] "Usunięto %d przesyłek."
 msgid "Poczta Polska shipment"
 msgstr "Przesyłka Poczta Polska"
 
-#: src/Admin/OrderShipmentsBox.php:143
+#: src/Admin/OrderShipmentsBox.php:147
 msgid "Please wait…"
 msgstr "Proszę czekać…"
 
-#: src/Admin/OrderShipmentsBox.php:144
+#: src/Admin/OrderShipmentsBox.php:148
 msgid "Delete the shipment in Elektroniczny Nadawca?"
 msgstr "Usunąć przesyłkę w Elektronicznym Nadawcy?"
 
-#: src/Admin/OrderShipmentsBox.php:145
+#: src/Admin/OrderShipmentsBox.php:149
 msgid "The operation failed."
 msgstr "Operacja się nie powiodła."
 
-#: src/Admin/OrderShipmentsBox.php:203
+#: src/Admin/OrderShipmentsBox.php:210
 msgid "The shipment was not found."
 msgstr "Nie znaleziono przesyłki."
 
-#: src/Admin/OrderShipmentsBox.php:318
+#: src/Admin/OrderShipmentsBox.php:325
 msgid "Labels"
 msgstr "Etykiety"
 
-#: src/Admin/OrderShipmentsBox.php:352
+#: src/Admin/OrderShipmentsBox.php:360
 msgid "Unconfirmed: check in Elektroniczny Nadawca"
 msgstr "Niepotwierdzona: sprawdź w Elektronicznym Nadawcy"
 
-#: src/Admin/OrderShipmentsBox.php:353
+#: src/Admin/OrderShipmentsBox.php:361
 msgid "In buffer, label printed"
 msgstr "W buforze, etykieta wydrukowana"
 
-#: src/Admin/OrderShipmentsBox.php:353
+#: src/Admin/OrderShipmentsBox.php:361
 msgid "In buffer"
 msgstr "W buforze"
 
-#: src/Admin/OrderShipmentsBox.php:354
+#: src/Admin/OrderShipmentsBox.php:362
 msgid "Sent to the post office"
 msgstr "Wysłana do urzędu"
 
-#: src/Admin/OrderShipmentsBox.php:355
+#: src/Admin/OrderShipmentsBox.php:363
 msgid "Rejected"
 msgstr "Odrzucona"
 
@@ -1179,7 +1172,7 @@ msgstr "Wybierz kartę umowy i urząd nadania w ustawieniach Poczty Polskiej (za
 msgid "The buffer was not found among the buffers created by the plugin."
 msgstr "Nie znaleziono tego bufora wśród buforów utworzonych przez wtyczkę."
 
-#: src/Shipments/DraftFactory.php:41
+#: src/Shipments/DraftFactory.php:42
 msgid "The order has no Poczta Polska shipping method. Choose the service for the shipment."
 msgstr "Zamówienie nie ma metody wysyłki Poczty Polskiej. Wybierz usługę dla przesyłki."
 
@@ -1337,19 +1330,19 @@ msgid "Recipient"
 msgstr "Adresat"
 
 #: views/admin/buffers-page.php:92
-#: views/admin/order-shipments.php:43
-#: views/admin/order-shipments.php:109
+#: views/admin/order-shipments.php:47
+#: views/admin/order-shipments.php:113
 msgid "Service"
 msgstr "Usługa"
 
 #: views/admin/buffers-page.php:93
-#: views/admin/order-shipments.php:42
+#: views/admin/order-shipments.php:46
 msgid "Tracking number"
 msgstr "Numer nadania"
 
 #: views/admin/buffers-page.php:94
 #: views/admin/buffers-page.php:166
-#: views/admin/order-shipments.php:44
+#: views/admin/order-shipments.php:48
 msgid "Status"
 msgstr "Status"
 
@@ -1421,59 +1414,59 @@ msgstr "Zamówić kuriera?"
 msgid "Order the courier"
 msgstr "Zamów kuriera"
 
-#: views/admin/order-shipments.php:45
+#: views/admin/order-shipments.php:49
 msgid "Actions"
 msgstr "Akcje"
 
 #. translators: 1: buffer ID, 2: environment (test or production).
-#: views/admin/order-shipments.php:66
+#: views/admin/order-shipments.php:70
 #, php-format
 msgid "Buffer %1$d (%2$s)"
 msgstr "Bufor %1$d (%2$s)"
 
-#: views/admin/order-shipments.php:76
+#: views/admin/order-shipments.php:80
 msgid "Label"
 msgstr "Etykieta"
 
-#: views/admin/order-shipments.php:79
+#: views/admin/order-shipments.php:83
 msgid "Check in EN"
 msgstr "Sprawdź w EN"
 
-#: views/admin/order-shipments.php:82
+#: views/admin/order-shipments.php:86
 msgid "Save changes"
 msgstr "Zapisz zmiany"
 
-#: views/admin/order-shipments.php:85
+#: views/admin/order-shipments.php:89
 msgid "Delete"
 msgstr "Usuń"
 
-#: views/admin/order-shipments.php:96
+#: views/admin/order-shipments.php:100
 msgid "Fix this before creating the shipment:"
 msgstr "Popraw przed utworzeniem przesyłki:"
 
-#: views/admin/order-shipments.php:106
+#: views/admin/order-shipments.php:110
 msgid "Shipment details"
 msgstr "Dane przesyłki"
 
-#: views/admin/order-shipments.php:125
+#: views/admin/order-shipments.php:130
 msgid "Parcels"
 msgstr "Paczki"
 
-#: views/admin/order-shipments.php:129
+#: views/admin/order-shipments.php:134
 msgid "Total weight (g)"
 msgstr "Łączna waga (g)"
 
-#: views/admin/order-shipments.php:133
+#: views/admin/order-shipments.php:138
 msgid "Recipient mobile"
 msgstr "Telefon komórkowy"
 
 #. translators: %s: cash on delivery amount.
-#: views/admin/order-shipments.php:171
+#: views/admin/order-shipments.php:203
 #, php-format
 msgid "Cash on delivery: %s"
 msgstr "Pobranie: %s"
 
-#: views/admin/order-shipments.php:176
+#: views/admin/order-shipments.php:208
 msgid "Create shipment in Elektroniczny Nadawca"
 msgstr "Utwórz przesyłkę w Elektronicznym Nadawcy"
 
@@ -1533,35 +1526,35 @@ msgstr "Hasło jest ważne do %s."
 msgid "Shipments are created in the selected environment. The connection test uses the saved login and password, so save your changes first."
 msgstr "Przesyłki są tworzone w wybranym środowisku. Test połączenia używa zapisanego loginu i hasła, więc najpierw zapisz zmiany."
 
-#: views/admin/order-shipments.php:54
+#: views/admin/order-shipments.php:58
 msgid "The other parcels got new numbers: they are on the new label and appear here after the buffer is sent."
 msgstr "Pozostałe paczki dostały nowe numery: są na nowej etykiecie i pojawią się tutaj po wysłaniu bufora."
 
 #. translators: %d: point ID (PNI). Keep %d, the script replaces it.
-#: src/Admin/OrderShipmentsBox.php:147
+#: src/Admin/OrderShipmentsBox.php:151
 #, php-format
 msgid "Point PNI %d chosen, save the shipment to apply it."
 msgstr "Wybrano punkt PNI %d, zapisz przesyłkę, aby go użyć."
 
-#: src/Admin/OrderShipmentsBox.php:250
+#: src/Admin/OrderShipmentsBox.php:257
 msgid "Enter a Polish mobile number with 9 digits."
 msgstr "Podaj polski numer komórkowy, 9 cyfr."
 
-#: src/Admin/OrderShipmentsBox.php:254
+#: src/Admin/OrderShipmentsBox.php:261
 msgid "Enter the phone number with digits only (5 to 19, optionally with +)."
 msgstr "Podaj numer telefonu samymi cyframi (od 5 do 19, opcjonalnie z +)."
 
-#: views/admin/order-shipments.php:137
+#: views/admin/order-shipments.php:142
 msgid "Recipient phone (landline)"
 msgstr "Telefon stacjonarny"
 
 #. translators: 1: point name and address, 2: point ID (PNI).
-#: views/admin/order-shipments.php:160
+#: views/admin/order-shipments.php:192
 #, php-format
 msgid "%1$s (PNI %2$d)"
 msgstr "%1$s (PNI %2$d)"
 
-#: views/admin/order-shipments.php:178
+#: views/admin/order-shipments.php:210
 msgid "Before the label is printed you can change the service, format, parcels, weight, phone numbers or pickup point and click \"Save changes\": the shipment gets a new tracking number. A new pickup point is also saved in the order."
 msgstr "Przed wydrukiem etykiety możesz zmienić usługę, format, liczbę paczek, wagę, telefony lub punkt odbioru i kliknąć „Zapisz zmiany”: przesyłka dostanie nowy numer nadania. Nowy punkt odbioru zapisze się też w zamówieniu."
 
@@ -1569,16 +1562,16 @@ msgstr "Przed wydrukiem etykiety możesz zmienić usługę, format, liczbę pacz
 msgid "The store keeps the tracking numbers of your parcels with the order. Recipient data stays in the order; the plugin keeps only phone numbers that the store corrected for a shipment, and removes them together with the order data."
 msgstr "Sklep przechowuje numery nadania Twoich przesyłek razem z zamówieniem. Dane odbiorcy zostają w zamówieniu; wtyczka zapisuje tylko numery telefonów poprawione przez sklep dla przesyłki i usuwa je razem z danymi zamówienia."
 
-#: src/Admin/OrderShipmentsBox.php:270
+#: src/Admin/OrderShipmentsBox.php:277
 msgid "Choose a posting office from the list."
 msgstr "Wybierz urząd nadania z listy."
 
 #: views/admin/buffers-page.php:164
-#: views/admin/order-shipments.php:142
+#: views/admin/order-shipments.php:147
 msgid "Posting office"
 msgstr "Urząd nadania"
 
-#: views/admin/order-shipments.php:148
+#: views/admin/order-shipments.php:160
 msgid "The shipment goes to the buffer of this office and is posted there."
 msgstr "Przesyłka trafi do bufora tego urzędu i tam zostanie nadana."
 
@@ -1591,7 +1584,7 @@ msgid "The envelope statuses were refreshed."
 msgstr "Statusy zbiorów zostały odświeżone."
 
 #. translators: 1: envelope ID, 2: envelope status.
-#: src/Admin/OrderShipmentsBox.php:372
+#: src/Admin/OrderShipmentsBox.php:380
 #, php-format
 msgid "Envelope %1$d: %2$s"
 msgstr "Zbiór %1$d: %2$s"
@@ -1677,3 +1670,43 @@ msgstr "Sprawdź bufory w Elektronicznym Nadawcy"
 #: views/admin/buffers-page.php:45
 msgid "Removes from the list the buffers deleted in Elektroniczny Nadawca outside the plugin."
 msgstr "Usuwa z listy bufory skasowane w Elektronicznym Nadawcy poza wtyczką."
+
+#: src/SettingsSchema.php:182
+msgid "Optional. Elektroniczny Nadawca accepts posting in a parcel locker without naming it; enter the PNI only if your agreement names a specific locker."
+msgstr "Opcjonalnie. Elektroniczny Nadawca przyjmuje nadanie w automacie bez wskazania konkretnego automatu; wpisz PNI tylko wtedy, gdy umowa wskazuje konkretny automat."
+
+#: src/SettingsSchema.php:280
+msgid "0 means no extra insurance: every Pocztex parcel is covered up to PLN 1,000 in the price of the service. Enter an amount to buy additional insurance. Can be changed for each shipment."
+msgstr "0 oznacza brak dodatkowego ubezpieczenia: każda paczka Pocztex ma w cenie usługi ochronę do 1000 zł. Wpisz kwotę, aby dokupić ubezpieczenie. Można zmienić dla pojedynczej przesyłki."
+
+#: views/admin/order-shipments.php:147
+msgid "Office of the buffer"
+msgstr "Urząd bufora"
+
+#: views/admin/order-shipments.php:156
+msgid "The shipment goes to the buffer of this office; it is posted in a Pocztex parcel locker (plugin settings)."
+msgstr "Przesyłka trafi do bufora tego urzędu; nadanie w automacie Pocztex (ustawienia wtyczki)."
+
+#: views/admin/order-shipments.php:158
+msgid "The shipment goes to the buffer of this office; a courier collects it (plugin settings)."
+msgstr "Przesyłka trafi do bufora tego urzędu; odbiera ją kurier (ustawienia wtyczki)."
+
+#: views/admin/order-shipments.php:167
+msgid "Additional insurance (PLN)"
+msgstr "Dodatkowe ubezpieczenie (zł)"
+
+#: views/admin/order-shipments.php:169
+msgid "0: only the cover included in the service (up to PLN 1,000)."
+msgstr "0: tylko ochrona w cenie usługi (do 1000 zł)."
+
+#: views/admin/order-shipments.php:172
+msgid "Declared value (PLN)"
+msgstr "Zadeklarowana wartość (zł)"
+
+#: views/admin/order-shipments.php:174
+msgid "0: no declared value."
+msgstr "0: bez deklaracji wartości."
+
+#: views/admin/order-shipments.php:181
+msgid "Not sent for parcel lockers: Elektroniczny Nadawca rejects it there."
+msgstr "Nie jest wysyłane przy automatach: Elektroniczny Nadawca je tam odrzuca."
