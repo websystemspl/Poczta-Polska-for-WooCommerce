@@ -5,6 +5,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-18
+
 ### Added
 - Shipping methods "Pocztex Today (city)" and "Pocztex Today (country)" (Elektroniczny Nadawca type `pocztex2021NaDzisType`): same-day delivery; the city variant needs the delivery distance (1-40 km), with a default in the method settings and a field in the shipment panel; one parcel per shipment.
 - Shipment panel: Pocztex envelope, non-standard parcel (oversize), delivery confirmation by SMS or email, delivery hour (by 8:00, 9:00, 12:00 or after 17:00).
@@ -127,5 +129,6 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - WooCommerce logger wrapper (source `poczta-polska`) that masks sensitive data.
 - Activation, deactivation and uninstall routines.
 
-[Unreleased]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.2.7...v0.3.0
 [0.2.0]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/releases/tag/v0.2.0
