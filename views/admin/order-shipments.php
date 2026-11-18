@@ -15,7 +15,16 @@
  *     format: string,
  *     fragile: bool,
  *     insurance: int,
+ *     insurances: list<int>,
  *     value: int,
+ *     envelope: bool,
+ *     oversize: bool,
+ *     confirmation: string,
+ *     hour: string,
+ *     distance: int,
+ *     courier_services: list<string>,
+ *     pocztex_services: list<string>,
+ *     city_services: list<string>,
  *     channel: string,
  *     parcels: int,
  *     weight: int,
@@ -36,7 +45,19 @@
 
 defined( 'ABSPATH' ) || exit;
 ?>
-<div class="ppwc-shipments" data-order-id="<?php echo esc_attr( (string) $args['order_id'] ); ?>" data-point-types="<?php echo esc_attr( (string) wp_json_encode( $args['point_types'] ) ); ?>" data-formats="<?php echo esc_attr( (string) wp_json_encode( $args['formats'] ) ); ?>" data-cod-amount="<?php echo esc_attr( (string) $args['cod_amount'] ); ?>" data-address="<?php echo esc_attr( $args['address'] ); ?>">
+<div class="ppwc-shipments" data-order-id="<?php echo esc_attr( (string) $args['order_id'] ); ?>" data-point-types="<?php echo esc_attr( (string) wp_json_encode( $args['point_types'] ) ); ?>" data-formats="<?php echo esc_attr( (string) wp_json_encode( $args['formats'] ) ); ?>" data-groups="
+<?php
+echo esc_attr(
+	(string) wp_json_encode(
+		array(
+			'pocztex' => $args['pocztex_services'],
+			'courier' => $args['courier_services'],
+			'city'    => $args['city_services'],
+		)
+	)
+);
+?>
+" data-cod-amount="<?php echo esc_attr( (string) $args['cod_amount'] ); ?>" data-address="<?php echo esc_attr( $args['address'] ); ?>">
 	<div class="ppwc-shipments__message" role="status" aria-live="polite"></div>
 
 	<?php if ( array() !== $args['shipments'] ) : ?>
@@ -163,22 +184,68 @@ defined( 'ABSPATH' ) || exit;
 					</span>
 				</p>
 			<?php endif; ?>
-			<p class="ppwc-shipments__field ppwc-shipments__pocztex-only"<?php echo 'ppwc_ecommerce' !== $args['service'] ? '' : ' hidden'; ?>>
-				<label for="ppwc-insurance-<?php echo esc_attr( (string) $args['order_id'] ); ?>"><?php esc_html_e( 'Insurance (PLN)', 'poczta-polska-for-woocommerce' ); ?></label>
-				<input type="number" id="ppwc-insurance-<?php echo esc_attr( (string) $args['order_id'] ); ?>" name="ppwc_insurance" min="0" max="100000" step="1" value="<?php echo esc_attr( (string) $args['insurance'] ); ?>" aria-describedby="ppwc-insurance-help-<?php echo esc_attr( (string) $args['order_id'] ); ?>" />
-				<span class="description" id="ppwc-insurance-help-<?php echo esc_attr( (string) $args['order_id'] ); ?>"><?php esc_html_e( 'Additional insurance; 0: only the cover included (up to PLN 1,000).', 'poczta-polska-for-woocommerce' ); ?></span>
+			<?php
+			$ppwc_pocztex = in_array( $args['service'], $args['pocztex_services'], true );
+			$ppwc_courier = in_array( $args['service'], $args['courier_services'], true );
+			$ppwc_city    = in_array( $args['service'], $args['city_services'], true );
+			$ppwc_id      = (string) $args['order_id'];
+			?>
+			<p class="ppwc-shipments__field" data-group="pocztex"<?php echo $ppwc_pocztex ? '' : ' hidden'; ?>>
+				<label for="ppwc-insurance-<?php echo esc_attr( $ppwc_id ); ?>"><?php esc_html_e( 'Insurance', 'poczta-polska-for-woocommerce' ); ?></label>
+				<select id="ppwc-insurance-<?php echo esc_attr( $ppwc_id ); ?>" name="ppwc_insurance" aria-describedby="ppwc-insurance-help-<?php echo esc_attr( $ppwc_id ); ?>">
+					<option value="0" <?php selected( $args['insurance'], 0 ); ?>><?php esc_html_e( 'None', 'poczta-polska-for-woocommerce' ); ?></option>
+					<?php foreach ( $args['insurances'] as $ppwc_amount ) : ?>
+						<option value="<?php echo esc_attr( (string) $ppwc_amount ); ?>" <?php selected( $args['insurance'], $ppwc_amount ); ?>><?php echo esc_html( \PocztaPolska\WooCommerce\Admin\SettingsPage::format_pln( $ppwc_amount ) ); ?></option>
+					<?php endforeach; ?>
+				</select>
+				<span class="description" id="ppwc-insurance-help-<?php echo esc_attr( $ppwc_id ); ?>"><?php esc_html_e( 'Cover up to PLN 1,000 is included in the service.', 'poczta-polska-for-woocommerce' ); ?></span>
 			</p>
-			<p class="ppwc-shipments__field ppwc-shipments__pocztex-only"<?php echo 'ppwc_ecommerce' !== $args['service'] ? '' : ' hidden'; ?>>
-				<label for="ppwc-value-<?php echo esc_attr( (string) $args['order_id'] ); ?>"><?php esc_html_e( 'Value (PLN)', 'poczta-polska-for-woocommerce' ); ?></label>
-				<input type="number" id="ppwc-value-<?php echo esc_attr( (string) $args['order_id'] ); ?>" name="ppwc_value" min="0" max="1000000" step="1" value="<?php echo esc_attr( (string) $args['value'] ); ?>" aria-describedby="ppwc-value-help-<?php echo esc_attr( (string) $args['order_id'] ); ?>" />
-				<span class="description" id="ppwc-value-help-<?php echo esc_attr( (string) $args['order_id'] ); ?>"><?php esc_html_e( 'Declared value of the parcel; 0: none.', 'poczta-polska-for-woocommerce' ); ?></span>
+			<p class="ppwc-shipments__field" data-group="pocztex"<?php echo $ppwc_pocztex ? '' : ' hidden'; ?>>
+				<label for="ppwc-value-<?php echo esc_attr( $ppwc_id ); ?>"><?php esc_html_e( 'Value (PLN)', 'poczta-polska-for-woocommerce' ); ?></label>
+				<input type="number" id="ppwc-value-<?php echo esc_attr( $ppwc_id ); ?>" name="ppwc_value" min="0" max="1000000" step="1" value="<?php echo esc_attr( (string) $args['value'] ); ?>" aria-describedby="ppwc-value-help-<?php echo esc_attr( $ppwc_id ); ?>" />
+				<span class="description" id="ppwc-value-help-<?php echo esc_attr( $ppwc_id ); ?>"><?php esc_html_e( 'Declared value of the parcel; 0: none.', 'poczta-polska-for-woocommerce' ); ?></span>
 			</p>
-			<p class="ppwc-shipments__field ppwc-shipments__field--checkbox ppwc-shipments__pocztex-only"<?php echo 'ppwc_ecommerce' !== $args['service'] ? '' : ' hidden'; ?>>
-				<label for="ppwc-fragile-<?php echo esc_attr( (string) $args['order_id'] ); ?>">
-					<input type="checkbox" id="ppwc-fragile-<?php echo esc_attr( (string) $args['order_id'] ); ?>" name="ppwc_fragile" value="yes" <?php checked( $args['fragile'] ); ?> />
+			<p class="ppwc-shipments__field" data-group="courier"<?php echo $ppwc_courier ? '' : ' hidden'; ?>>
+				<label for="ppwc-hour-<?php echo esc_attr( $ppwc_id ); ?>"><?php esc_html_e( 'Delivery hour', 'poczta-polska-for-woocommerce' ); ?></label>
+				<select id="ppwc-hour-<?php echo esc_attr( $ppwc_id ); ?>" name="ppwc_hour">
+					<?php foreach ( \PocztaPolska\WooCommerce\Admin\OrderShipmentsBox::hour_labels() as $ppwc_hour => $ppwc_hour_label ) : ?>
+						<option value="<?php echo esc_attr( $ppwc_hour ); ?>" <?php selected( $args['hour'], $ppwc_hour ); ?>><?php echo esc_html( $ppwc_hour_label ); ?></option>
+					<?php endforeach; ?>
+				</select>
+			</p>
+			<p class="ppwc-shipments__field" data-group="pocztex"<?php echo $ppwc_pocztex ? '' : ' hidden'; ?>>
+				<label for="ppwc-confirmation-<?php echo esc_attr( $ppwc_id ); ?>"><?php esc_html_e( 'Delivery confirmation', 'poczta-polska-for-woocommerce' ); ?></label>
+				<select id="ppwc-confirmation-<?php echo esc_attr( $ppwc_id ); ?>" name="ppwc_confirmation">
+					<option value="" <?php selected( $args['confirmation'], '' ); ?>><?php esc_html_e( 'None', 'poczta-polska-for-woocommerce' ); ?></option>
+					<option value="SMS" <?php selected( $args['confirmation'], 'SMS' ); ?>><?php esc_html_e( 'SMS to the recipient mobile', 'poczta-polska-for-woocommerce' ); ?></option>
+					<option value="EMAIL" <?php selected( $args['confirmation'], 'EMAIL' ); ?>><?php esc_html_e( 'Email to the recipient', 'poczta-polska-for-woocommerce' ); ?></option>
+				</select>
+			</p>
+			<p class="ppwc-shipments__field" data-group="city"<?php echo $ppwc_city ? '' : ' hidden'; ?>>
+				<label for="ppwc-distance-<?php echo esc_attr( $ppwc_id ); ?>"><?php esc_html_e( 'Distance (km)', 'poczta-polska-for-woocommerce' ); ?></label>
+				<input type="number" id="ppwc-distance-<?php echo esc_attr( $ppwc_id ); ?>" name="ppwc_distance" min="1" max="40" step="1" value="<?php echo esc_attr( $args['distance'] > 0 ? (string) $args['distance'] : '' ); ?>" aria-describedby="ppwc-distance-help-<?php echo esc_attr( $ppwc_id ); ?>" />
+				<span class="description" id="ppwc-distance-help-<?php echo esc_attr( $ppwc_id ); ?>"><?php esc_html_e( 'Required for same-day delivery within the city, up to 40 km.', 'poczta-polska-for-woocommerce' ); ?></span>
+			</p>
+			<p class="ppwc-shipments__field ppwc-shipments__field--checkbox" data-group="pocztex"<?php echo $ppwc_pocztex ? '' : ' hidden'; ?>>
+				<label for="ppwc-fragile-<?php echo esc_attr( $ppwc_id ); ?>">
+					<input type="checkbox" id="ppwc-fragile-<?php echo esc_attr( $ppwc_id ); ?>" name="ppwc_fragile" value="yes" <?php checked( $args['fragile'] ); ?> />
 					<?php esc_html_e( 'Fragile', 'poczta-polska-for-woocommerce' ); ?>
 				</label>
 				<span class="description"><?php esc_html_e( 'Not available in parcel lockers.', 'poczta-polska-for-woocommerce' ); ?></span>
+			</p>
+			<p class="ppwc-shipments__field ppwc-shipments__field--checkbox" data-group="pocztex"<?php echo $ppwc_pocztex ? '' : ' hidden'; ?>>
+				<label for="ppwc-oversize-<?php echo esc_attr( $ppwc_id ); ?>">
+					<input type="checkbox" id="ppwc-oversize-<?php echo esc_attr( $ppwc_id ); ?>" name="ppwc_oversize" value="yes" <?php checked( $args['oversize'] ); ?> />
+					<?php esc_html_e( 'Non-standard parcel', 'poczta-polska-for-woocommerce' ); ?>
+				</label>
+				<span class="description"><?php esc_html_e( 'Exceeds the standard dimensions (oversize).', 'poczta-polska-for-woocommerce' ); ?></span>
+			</p>
+			<p class="ppwc-shipments__field ppwc-shipments__field--checkbox" data-group="courier"<?php echo $ppwc_courier ? '' : ' hidden'; ?>>
+				<label for="ppwc-envelope-<?php echo esc_attr( $ppwc_id ); ?>">
+					<input type="checkbox" id="ppwc-envelope-<?php echo esc_attr( $ppwc_id ); ?>" name="ppwc_envelope" value="yes" <?php checked( $args['envelope'] ); ?> />
+					<?php esc_html_e( 'Pocztex envelope', 'poczta-polska-for-woocommerce' ); ?>
+				</label>
+				<span class="description"><?php esc_html_e( 'One parcel in format S up to 1 kg.', 'poczta-polska-for-woocommerce' ); ?></span>
 			</p>
 		</div>
 		<p class="ppwc-shipments__point"<?php echo '' === ( $args['point_types'][ $args['service'] ] ?? '' ) ? ' hidden' : ''; ?>>

@@ -29,6 +29,10 @@ final class ServiceRegistry {
 
 	public const ECOMMERCE = 'ppwc_ecommerce';
 
+	public const POCZTEX_TODAY_CITY = 'ppwc_pocztex_today_city';
+
+	public const POCZTEX_TODAY_COUNTRY = 'ppwc_pocztex_today_country';
+
 	/**
 	 * Maximum weight of a letter service (OPZ II.1.3.e).
 	 */
@@ -93,10 +97,13 @@ final class ServiceRegistry {
 	 */
 	private static function defaults(): array {
 		return array(
-			new Service( self::POCZTEX_COURIER, 'pocztex2021KurierType', '855', null, true, 50000, array( 'S', 'M', 'L', 'XL', '2XL' ), false ),
-			new Service( self::POCZTEX_POINT, 'pocztex2021KurierType', '855', PickupPoint::TYPE_POINT, true, 20000, array( 'S', 'M', 'L', 'XL' ), false ),
-			new Service( self::POCZTEX_LOCKER, 'pocztex2021KurierType', '855', PickupPoint::TYPE_LOCKER, true, 20000, array( 'S', 'M', 'L' ), false ),
+			new Service( self::POCZTEX_COURIER, Service::EN_TYPE_COURIER, '855', null, true, 50000, array( 'S', 'M', 'L', 'XL', '2XL' ), false ),
+			new Service( self::POCZTEX_POINT, Service::EN_TYPE_COURIER, '855', PickupPoint::TYPE_POINT, true, 20000, array( 'S', 'M', 'L', 'XL' ), false ),
+			new Service( self::POCZTEX_LOCKER, Service::EN_TYPE_COURIER, '855', PickupPoint::TYPE_LOCKER, true, 20000, array( 'S', 'M', 'L' ), false ),
 			new Service( self::ECOMMERCE, 'przesylkaFirmowaPoleconaType', '845', null, false, self::LETTER_MAX_WEIGHT, array( 'GABARYT_A', 'GABARYT_B' ), true ),
+			// Pocztex "Na dziś": same-day delivery, within the city (distance up to 40 km) or in the country (INT 2026-11-18).
+			new Service( self::POCZTEX_TODAY_CITY, Service::EN_TYPE_TODAY, '855', null, true, 50000, array( 'S', 'M', 'L', 'XL', '2XL' ), false, Service::AREA_CITY ),
+			new Service( self::POCZTEX_TODAY_COUNTRY, Service::EN_TYPE_TODAY, '855', null, true, 50000, array( 'S', 'M', 'L', 'XL', '2XL' ), false, Service::AREA_COUNTRY ),
 		);
 	}
 }

@@ -85,6 +85,15 @@ interface ClientInterface {
 	public function guids( int $count ): array;
 
 	/**
+	 * Returns the insurance amounts EN accepts, in grosze, keyed by the shipment type name
+	 * (getUbezpieczeniaInfo), e.g. "Pocztex 2.0 Kurier".
+	 *
+	 * @return array<string, list<int>>
+	 * @throws EnException When the call fails.
+	 */
+	public function insurance_levels(): array;
+
+	/**
 	 * Returns the sender profiles of the EN user.
 	 *
 	 * @return list<SenderProfile>

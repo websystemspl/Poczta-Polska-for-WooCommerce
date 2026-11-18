@@ -16,6 +16,19 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Service {
 
+	public const EN_TYPE_COURIER = 'pocztex2021KurierType';
+
+	public const EN_TYPE_TODAY = 'pocztex2021NaDzisType';
+
+	public const AREA_CITY = 'MIASTO';
+
+	public const AREA_COUNTRY = 'KRAJ';
+
+	/**
+	 * Longest distance (km) EN accepts for "Na dziś" within the city.
+	 */
+	public const TODAY_CITY_MAX_DISTANCE = 40;
+
 	/**
 	 * Constructor.
 	 *
@@ -27,6 +40,7 @@ final class Service {
 	 * @param int         $max_weight      Maximum weight in grams.
 	 * @param string[]    $formats         Allowed parcel formats (Pocztex) or sizes (letters).
 	 * @param bool        $requires_weight Whether every product must have a weight (letters are priced by weight limits).
+	 * @param string|null $area            Delivery area of Pocztex "Na dziś" (MIASTO or KRAJ), null for other services.
 	 */
 	public function __construct(
 		public readonly string $id,
@@ -37,7 +51,23 @@ final class Service {
 		public readonly int $max_weight,
 		public readonly array $formats,
 		public readonly bool $requires_weight,
+		public readonly ?string $area = null,
 	) {
+	}
+
+	/**
+	 * Whether this is a Pocztex 2.0 parcel service (courier type or "Na dziś"), as opposed to a letter.
+	 */
+	public function is_pocztex(): bool {
+		return ! $this->requires_weight;
+	}
+
+	/**
+	 * Whether the EN type is pocztex2021KurierType, which alone carries the pickup and posting
+	 * points, the Pocztex envelope and the delivery hour.
+	 */
+	public function is_courier_type(): bool {
+		return self::EN_TYPE_COURIER === $this->en_type;
 	}
 
 	/**

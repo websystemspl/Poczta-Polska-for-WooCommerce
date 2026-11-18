@@ -393,6 +393,17 @@ final class SettingsPage {
 	}
 
 	/**
+	 * Amount in PLN for lists, with the thousands separator of the store (the Polish WordPress
+	 * translation leaves number_format_i18n() without one).
+	 *
+	 * @param int $amount Amount in PLN.
+	 */
+	public static function format_pln( int $amount ): string {
+		/* translators: %s: amount with thousands separator. */
+		return sprintf( __( 'PLN %s', 'poczta-polska-for-woocommerce' ), number_format( $amount, 0, '', wc_get_price_thousand_separator() ) );
+	}
+
+	/**
 	 * Returns the choices of fields whose options come from Elektroniczny Nadawca.
 	 *
 	 * @param string $key   Setting key without the environment suffix.
@@ -421,6 +432,14 @@ final class SettingsPage {
 				$options[ (string) $id ] = sprintf( __( '%1$s (%2$d)', 'poczta-polska-for-woocommerce' ), $office['print_name'], $id );
 			}
 			$error = Dictionary::error( 'offices' );
+		} elseif ( 'pocztex_insurance' === $key ) {
+			$options = array( '0' => __( 'None (only the cover included in the service)', 'poczta-polska-for-woocommerce' ) );
+
+			foreach ( Dictionary::pocztex_insurance_levels() as $amount ) {
+				$options[ (string) $amount ] = self::format_pln( $amount );
+			}
+
+			$error = Dictionary::error( 'insurance' );
 		} else {
 			return $options;
 		}

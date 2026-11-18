@@ -30,7 +30,7 @@ final class ServiceRegistryTest extends TestCase {
 
 	public function test_built_in_services(): void {
 		$this->assertSame(
-			array( ServiceRegistry::POCZTEX_COURIER, ServiceRegistry::POCZTEX_POINT, ServiceRegistry::POCZTEX_LOCKER, ServiceRegistry::ECOMMERCE ),
+			array( ServiceRegistry::POCZTEX_COURIER, ServiceRegistry::POCZTEX_POINT, ServiceRegistry::POCZTEX_LOCKER, ServiceRegistry::ECOMMERCE, ServiceRegistry::POCZTEX_TODAY_CITY, ServiceRegistry::POCZTEX_TODAY_COUNTRY ),
 			array_keys( ServiceRegistry::all() )
 		);
 	}
@@ -77,5 +77,19 @@ final class ServiceRegistryTest extends TestCase {
 
 	public function test_unknown_service(): void {
 		$this->assertNull( ServiceRegistry::get( 'flat_rate' ) );
+	}
+
+	public function test_today_services_have_an_area_and_no_point(): void {
+		$city    = ServiceRegistry::get( ServiceRegistry::POCZTEX_TODAY_CITY );
+		$country = ServiceRegistry::get( ServiceRegistry::POCZTEX_TODAY_COUNTRY );
+
+		$this->assertSame( 'pocztex2021NaDzisType', $city?->en_type );
+		$this->assertSame( 'MIASTO', $city?->area );
+		$this->assertSame( 'KRAJ', $country?->area );
+		$this->assertFalse( $city?->is_courier_type() );
+		$this->assertTrue( $city?->is_pocztex() );
+		$this->assertFalse( $city?->needs_pickup_point() );
+		$this->assertNull( ServiceRegistry::get( ServiceRegistry::POCZTEX_COURIER )?->area );
+		$this->assertTrue( ServiceRegistry::get( ServiceRegistry::POCZTEX_COURIER )?->is_courier_type() );
 	}
 }

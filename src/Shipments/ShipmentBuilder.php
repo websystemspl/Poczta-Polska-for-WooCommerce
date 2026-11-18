@@ -10,6 +10,7 @@ declare( strict_types=1 );
 namespace PocztaPolska\WooCommerce\Shipments;
 
 use PocztaPolska\WooCommerce\En\Dto\PickupPoint;
+use PocztaPolska\WooCommerce\Shipping\Service;
 use PocztaPolska\WooCommerce\Support\Validator;
 
 defined( 'ABSPATH' ) || exit;
@@ -44,6 +45,11 @@ final class ShipmentBuilder {
 	/**
 	 * Characters of the COD transfer title.
 	 */
+	/**
+	 * Heaviest parcel allowed in the Pocztex envelope (WebAPI: format S up to 1 kg).
+	 */
+	private const ENVELOPE_MAX_WEIGHT = 1000;
+
 	private const COD_TITLE_LENGTH = 55;
 
 	/**
@@ -115,6 +121,31 @@ final class ShipmentBuilder {
 			$problems[] = sprintf( __( 'The format %s is not available for this service.', 'poczta-polska-for-woocommerce' ), $draft->format );
 		}
 
+		if ( ! empty( $draft->options['envelope'] ) && ( 'S' !== $draft->format || $draft->total_weight() > self::ENVELOPE_MAX_WEIGHT || count( $draft->weights ) > 1 ) ) {
+			$problems[] = __( 'The Pocztex envelope is available only for one parcel in format S up to 1 kg.', 'poczta-polska-for-woocommerce' );
+		}
+
+		if ( 'SMS' === ( $draft->options['confirmation'] ?? '' ) && '' === ( $recipient['mobile'] ?? '' ) ) {
+			$problems[] = __( 'The SMS delivery confirmation needs the recipient mobile number.', 'poczta-polska-for-woocommerce' );
+		}
+
+		if ( 'EMAIL' === ( $draft->options['confirmation'] ?? '' ) && '' === ( $recipient['email'] ?? '' ) ) {
+			$problems[] = __( 'The email delivery confirmation needs the recipient email address.', 'poczta-polska-for-woocommerce' );
+		}
+
+		if ( null !== $service->area && count( $draft->weights ) > 1 ) {
+			$problems[] = __( 'Pocztex Today takes one parcel per shipment.', 'poczta-polska-for-woocommerce' );
+		}
+
+		if ( Service::AREA_CITY === $service->area ) {
+			$distance = (int) ( $draft->options['distance'] ?? 0 );
+
+			if ( $distance < 1 || $distance > Service::TODAY_CITY_MAX_DISTANCE ) {
+				/* translators: %d: maximum distance in km. */
+				$problems[] = sprintf( __( 'Pocztex Today within the city needs the delivery distance from 1 to %d km.', 'poczta-polska-for-woocommerce' ), Service::TODAY_CITY_MAX_DISTANCE );
+			}
+		}
+
 		if ( $draft->cod_amount > 0 && ! $service->supports_cod ) {
 			$problems[] = __( 'Cash on delivery is not available for this service.', 'poczta-polska-for-woocommerce' );
 		}
@@ -177,12 +208,26 @@ final class ShipmentBuilder {
 		$data['format']                = $draft->format;
 		$data['numerPrzesylkiKlienta'] = $draft->customer_number;
 
+		// Insurance amount in PLN from the settings, sent in grosze (getUbezpieczeniaInfo lists grosze).
 		$insurance = (int) ( $draft->options['insurance'] ?? 0 );
 
 		if ( $insurance > 0 ) {
 			$data['ubezpieczenie'] = array(
 				'rodzaj' => 'STANDARD',
-				'kwota'  => $insurance,
+				'kwota'  => $insurance * 100,
+			);
+		}
+
+		if ( ! empty( $draft->options['oversize'] ) ) {
+			$data['ponadgabaryt'] = true;
+		}
+
+		$confirmation = (string) ( $draft->options['confirmation'] ?? '' );
+
+		if ( in_array( $confirmation, DraftFactory::CONFIRMATIONS, true ) ) {
+			$data['potwierdzenieDoreczenia'] = array(
+				'sposob'  => $confirmation,
+				'kontakt' => 'SMS' === $confirmation ? (string) ( $draft->recipient['mobile'] ?? '' ) : (string) ( $draft->recipient['email'] ?? '' ),
 			);
 		}
 
@@ -220,8 +265,33 @@ final class ShipmentBuilder {
 			$data['subPrzesylka'] = $subs;
 		}
 
+		// "Na dziś" (pocztex2021NaDzisType): delivery area; the distance only within the city (EN 84207, 84211).
+		if ( null !== $service->area ) {
+			$data['obszar'] = $service->area;
+
+			if ( Service::AREA_CITY === $service->area ) {
+				$data['odleglosc'] = (int) ( $draft->options['distance'] ?? 0 );
+			}
+
+			return array(
+				'type' => $service->en_type,
+				'data' => $data,
+			);
+		}
+
+		// The elements below exist in pocztex2021KurierType only.
 		if ( $draft->pickup_pni > 0 ) {
 			$data['punktOdbioru'] = array( 'id' => $draft->pickup_pni );
+		}
+
+		if ( ! empty( $draft->options['envelope'] ) ) {
+			$data['kopertaPocztex'] = true;
+		}
+
+		$hour = (string) ( $draft->options['hour'] ?? '' );
+
+		if ( in_array( $hour, DraftFactory::HOURS, true ) ) {
+			$data['godzinaDoreczenia'] = $hour;
 		}
 
 		$channel = (string) ( $draft->options['posting_channel'] ?? 'COURIER' );

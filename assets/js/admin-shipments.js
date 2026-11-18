@@ -64,9 +64,17 @@
 		} );
 		select.value = formats.includes( current ) ? current : formats[ formats.length - 1 ] || '';
 
-		// Insurance, declared value and "fragile" exist only for Pocztex.
-		box.querySelectorAll( '.ppwc-shipments__pocztex-only' ).forEach( function ( field ) {
-			field.hidden = 'ppwc_ecommerce' === service.value;
+		// Fields that exist only for some services: data-group names a list in data-groups of the box.
+		let groups = {};
+
+		try {
+			groups = JSON.parse( box.dataset.groups || '{}' );
+		} catch ( error ) {
+			groups = {};
+		}
+
+		box.querySelectorAll( '[data-group]' ).forEach( function ( field ) {
+			field.hidden = ! ( groups[ field.dataset.group ] || [] ).includes( service.value );
 		} );
 	}
 
@@ -145,6 +153,11 @@
 
 			return field ? field.value : '';
 		};
+		const checked = function ( name ) {
+			const field = box.querySelector( '[name="' + name + '"]' );
+
+			return field && field.checked ? 'yes' : 'no';
+		};
 
 		const body = new URLSearchParams( {
 			action: config.action,
@@ -160,9 +173,14 @@
 			phone: value( 'ppwc_phone' ),
 			pickup_pni: pointTypeOf( box ) ? value( 'ppwc_pickup_pni' ) : '',
 			office_id: value( 'ppwc_office_id' ),
-			fragile: box.querySelector( '[name="ppwc_fragile"]' ) && box.querySelector( '[name="ppwc_fragile"]' ).checked ? 'yes' : 'no',
+			fragile: checked( 'ppwc_fragile' ),
 			insurance: value( 'ppwc_insurance' ),
 			value: value( 'ppwc_value' ),
+			envelope: checked( 'ppwc_envelope' ),
+			oversize: checked( 'ppwc_oversize' ),
+			confirmation: value( 'ppwc_confirmation' ),
+			hour: value( 'ppwc_hour' ),
+			distance: value( 'ppwc_distance' ),
 		} );
 
 		box.querySelectorAll( 'button' ).forEach( function ( element ) {

@@ -5,6 +5,15 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Added
+- Shipping methods "Pocztex Today (city)" and "Pocztex Today (country)" (Elektroniczny Nadawca type `pocztex2021NaDzisType`): same-day delivery; the city variant needs the delivery distance (1-40 km), with a default in the method settings and a field in the shipment panel; one parcel per shipment.
+- Shipment panel: Pocztex envelope, non-standard parcel (oversize), delivery confirmation by SMS or email, delivery hour (by 8:00, 9:00, 12:00 or after 17:00).
+- Insurance amounts come from Elektroniczny Nadawca (`getUbezpieczeniaInfo`, cached 12 hours): a list in the settings and in the shipment panel, default the first amount.
+
+### Fixed
+- The insurance amount was sent in złoty while Elektroniczny Nadawca expects grosze; it is now converted.
+- A multi-parcel shipment rejected because of one of its further parcels showed an empty error; the message of that parcel is shown now.
+
 ## [0.2.7] - 2026-11-17
 
 ### Changed

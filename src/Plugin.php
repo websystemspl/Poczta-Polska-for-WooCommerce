@@ -97,6 +97,7 @@ final class Plugin {
 	 */
 	public function init(): void {
 		Schema::maybe_upgrade();
+		Lifecycle::maybe_upgrade();
 
 		if ( is_admin() ) {
 			( new RequirementsNotice( new Requirements() ) )->register();

@@ -76,7 +76,7 @@ Wartości domyślne dla nowych przesyłek; w każdej przesyłce można je zmieni
 | Domyślna waga (g) | Używana, gdy produkty nie mają wagi. Pocztex zawsze wymaga wagi. |
 | Ostrożnie | Usługa „ostrożnie”. Pomijana przy automatach, bo EN jej tam nie przyjmuje. |
 | Zawartość | Wymagana przez Pocztex, np. „Towar”. |
-| Kwota ubezpieczenia (zł) | 0 oznacza brak dodatkowego ubezpieczenia: każda paczka Pocztex ma w cenie ochronę do 1000 zł. Kwotę można zmienić dla pojedynczej przesyłki. |
+| Kwota ubezpieczenia (zł) | Lista kwot z cennika Elektronicznego Nadawcy (`getUbezpieczeniaInfo`, np. 1000, 5000, 10 000 zł), domyślnie pierwsza z nich. „Brak” nie wysyła ubezpieczenia; każda paczka Pocztex ma i tak w cenie ochronę do 1000 zł. Kwotę można zmienić dla pojedynczej przesyłki. |
 | Opis | Drukowany na etykiecie (pierwsze 40 znaków). `{order_number}` zostaje zastąpione numerem zamówienia. |
 | Gabaryt (eCommerce) | Gabaryt A albo B. |
 | Kategoria (eCommerce) | Ekonomiczna albo priorytetowa. |
@@ -107,6 +107,8 @@ Metody dodaje się w **WooCommerce → Ustawienia → Wysyłka**, w strefie wysy
 | Pocztex PUNKT | odbiór w placówce Poczty Polskiej albo u partnera (np. Żabka), wybór na mapie |
 | Pocztex AUTOMAT | odbiór z automatu paczkowego, wybór na mapie |
 | Przesyłka eCommerce | list polecony firmowy do 2000 g |
+| Pocztex Na dziś (miasto) | doręczenie kurierem tego samego dnia w mieście, do 40 km od miejsca nadania; w ustawieniach metody można podać domyślną odległość |
+| Pocztex Na dziś (kraj) | doręczenie kurierem tego samego dnia na terenie kraju |
 
 Każdą metodę można dodać kilka razy, np. dwa warianty kuriera z różnymi cenami. Ustawienia metody:
 
