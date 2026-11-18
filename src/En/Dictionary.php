@@ -157,12 +157,43 @@ final class Dictionary {
 	}
 
 	/**
+	 * Insurance amounts EN accepts for Pocztex 2.0 (in PLN, ascending). The INT list of
+	 * 2026-11-18 is the fallback when EN cannot be reached, so the forms still work.
+	 */
+	public const POCZTEX_INSURANCE_FALLBACK = array( 1000, 5000, 10000, 20000, 50000, 250000 );
+
+	private const POCZTEX_INSURANCE_TYPE = 'Pocztex 2.0 Kurier';
+
+	/**
+	 * Returns the insurance amounts for Pocztex 2.0 in PLN, ascending.
+	 *
+	 * @param string|null $environment Environment, the active one by default.
+	 * @return list<int>
+	 */
+	public static function pocztex_insurance_levels( ?string $environment = null ): array {
+		$levels = self::remember(
+			'insurance',
+			$environment,
+			static function ( ClientInterface $client ): array {
+				$grosze = $client->insurance_levels()[ self::POCZTEX_INSURANCE_TYPE ] ?? array();
+
+				return array_values( array_map( static fn( int $amount ): int => intdiv( $amount, 100 ), $grosze ) );
+			}
+		);
+
+		$clean = array_values( array_filter( array_map( 'intval', $levels ?? array() ), static fn( int $amount ): bool => $amount > 0 ) );
+		sort( $clean );
+
+		return array() !== $clean ? $clean : self::POCZTEX_INSURANCE_FALLBACK;
+	}
+
+	/**
 	 * Removes the cached dictionaries of an environment.
 	 *
 	 * @param string|null $environment Environment, the active one by default.
 	 */
 	public static function flush( ?string $environment = null ): void {
-		foreach ( array( 'cards', 'offices', 'profiles' ) as $name ) {
+		foreach ( array( 'cards', 'offices', 'profiles', 'insurance' ) as $name ) {
 			delete_transient( self::transient_name( $name, $environment ?? Settings::environment() ) );
 		}
 	}

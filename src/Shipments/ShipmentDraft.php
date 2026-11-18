@@ -32,7 +32,7 @@ final class ShipmentDraft {
 	 * @param int                  $pickup_pni      Pickup point, 0 for home delivery.
 	 * @param string               $description     Description printed on the label.
 	 * @param string               $customer_number Number of the shipment in the shop (numerPrzesylkiKlienta).
-	 * @param array<string,mixed>  $options         Settings: fragile, content, insurance (PLN), value (declared value in grosze), category, cod_account, cod_method, cod_title, posting_channel, posting_pni.
+	 * @param array<string,mixed>  $options         Settings: fragile, content, insurance (PLN), value (declared value in grosze), envelope, oversize, confirmation (SMS|EMAIL), hour, distance (km), category, cod_account, cod_method, cod_title, posting_channel, posting_pni.
 	 * @param array<string,string> $contact         Mobile and phone changed by the shop manager for this shipment (stored with it).
 	 */
 	public function __construct(

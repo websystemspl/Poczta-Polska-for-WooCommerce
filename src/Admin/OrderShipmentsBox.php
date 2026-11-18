@@ -94,32 +94,41 @@ final class OrderShipmentsBox {
 		Template::view(
 			'admin/order-shipments.php',
 			array(
-				'order_id'    => $order->get_id(),
-				'shipments'   => array_map( array( $this, 'shipment_view' ), $shipments ),
-				'can_create'  => array() === $active,
-				'services'    => array_map( static fn( $service ): string => self::service_label( $service->id ), ServiceRegistry::all() ),
-				'point_types' => array_filter( array_map( static fn( $service ): string => (string) $service->point_type, ServiceRegistry::all() ) ),
-				'service'     => $form['service'],
-				'formats'     => array_map( static fn( $service ): array => array_values( $service->formats ), ServiceRegistry::all() ),
-				'format'      => $form['format'],
-				'fragile'     => $form['fragile'],
-				'insurance'   => $form['insurance'],
-				'value'       => $form['value'],
-				'channel'     => Settings::get( 'posting_channel' ),
-				'parcels'     => $form['parcels'],
-				'weight'      => $form['weight'],
-				'mobile'      => $form['mobile'],
-				'phone'       => $form['phone'],
-				'offices'     => array_map( static fn( array $office ): string => $office['print_name'], Dictionary::posting_offices() ),
-				'office_id'   => $form['office_id'],
-				'pni'         => null !== $point ? $point->pni : 0,
-				'point'       => null !== $point ? $point->name . ', ' . $point->address_line() : '',
-				'point_type'  => null !== $point ? $point->type : '',
-				'problems'    => $preview['problems'],
-				'cod'         => $preview['cod'],
-				'cod_amount'  => 'cod' === $order->get_payment_method() ? (float) $order->get_total( 'edit' ) : 0.0,
-				'address'     => self::map_address( $order ),
-				'environment' => Settings::environment(),
+				'order_id'         => $order->get_id(),
+				'shipments'        => array_map( array( $this, 'shipment_view' ), $shipments ),
+				'can_create'       => array() === $active,
+				'services'         => array_map( static fn( $service ): string => self::service_label( $service->id ), ServiceRegistry::all() ),
+				'point_types'      => array_filter( array_map( static fn( $service ): string => (string) $service->point_type, ServiceRegistry::all() ) ),
+				'service'          => $form['service'],
+				'formats'          => array_map( static fn( $service ): array => array_values( $service->formats ), ServiceRegistry::all() ),
+				'format'           => $form['format'],
+				'fragile'          => $form['fragile'],
+				'insurance'        => $form['insurance'],
+				'insurances'       => Dictionary::pocztex_insurance_levels(),
+				'value'            => $form['value'],
+				'envelope'         => $form['envelope'],
+				'oversize'         => $form['oversize'],
+				'confirmation'     => $form['confirmation'],
+				'hour'             => $form['hour'],
+				'distance'         => $form['distance'],
+				'courier_services' => array_keys( array_filter( ServiceRegistry::all(), static fn( $service ): bool => $service->is_courier_type() && ! $service->needs_pickup_point() ) ),
+				'pocztex_services' => array_keys( array_filter( ServiceRegistry::all(), static fn( $service ): bool => $service->is_pocztex() ) ),
+				'city_services'    => array_keys( array_filter( ServiceRegistry::all(), static fn( $service ): bool => 'MIASTO' === $service->area ) ),
+				'channel'          => Settings::get( 'posting_channel' ),
+				'parcels'          => $form['parcels'],
+				'weight'           => $form['weight'],
+				'mobile'           => $form['mobile'],
+				'phone'            => $form['phone'],
+				'offices'          => array_map( static fn( array $office ): string => $office['print_name'], Dictionary::posting_offices() ),
+				'office_id'        => $form['office_id'],
+				'pni'              => null !== $point ? $point->pni : 0,
+				'point'            => null !== $point ? $point->name . ', ' . $point->address_line() : '',
+				'point_type'       => null !== $point ? $point->type : '',
+				'problems'         => $preview['problems'],
+				'cod'              => $preview['cod'],
+				'cod_amount'       => 'cod' === $order->get_payment_method() ? (float) $order->get_total( 'edit' ) : 0.0,
+				'address'          => self::map_address( $order ),
+				'environment'      => Settings::environment(),
 			)
 		);
 	}
@@ -171,16 +180,21 @@ final class OrderShipmentsBox {
 		}
 
 		$overrides = array(
-			'service'    => isset( $_POST['service'] ) ? sanitize_key( wp_unslash( $_POST['service'] ) ) : '',
-			'format'     => isset( $_POST['format'] ) ? sanitize_text_field( wp_unslash( $_POST['format'] ) ) : '',
-			'parcels'    => isset( $_POST['parcels'] ) ? absint( wp_unslash( $_POST['parcels'] ) ) : 1,
-			'mobile'     => isset( $_POST['mobile'] ) ? sanitize_text_field( wp_unslash( $_POST['mobile'] ) ) : '',
-			'phone'      => isset( $_POST['phone'] ) ? sanitize_text_field( wp_unslash( $_POST['phone'] ) ) : '',
-			'pickup_pni' => isset( $_POST['pickup_pni'] ) ? absint( wp_unslash( $_POST['pickup_pni'] ) ) : 0,
-			'office_id'  => isset( $_POST['office_id'] ) ? absint( wp_unslash( $_POST['office_id'] ) ) : 0,
-			'fragile'    => isset( $_POST['fragile'] ) && 'yes' === sanitize_key( wp_unslash( $_POST['fragile'] ) ) ? 'yes' : 'no',
-			'insurance'  => isset( $_POST['insurance'] ) ? absint( wp_unslash( $_POST['insurance'] ) ) : 0,
-			'value'      => isset( $_POST['value'] ) ? (string) absint( wp_unslash( $_POST['value'] ) ) : '0',
+			'service'      => isset( $_POST['service'] ) ? sanitize_key( wp_unslash( $_POST['service'] ) ) : '',
+			'format'       => isset( $_POST['format'] ) ? sanitize_text_field( wp_unslash( $_POST['format'] ) ) : '',
+			'parcels'      => isset( $_POST['parcels'] ) ? absint( wp_unslash( $_POST['parcels'] ) ) : 1,
+			'mobile'       => isset( $_POST['mobile'] ) ? sanitize_text_field( wp_unslash( $_POST['mobile'] ) ) : '',
+			'phone'        => isset( $_POST['phone'] ) ? sanitize_text_field( wp_unslash( $_POST['phone'] ) ) : '',
+			'pickup_pni'   => isset( $_POST['pickup_pni'] ) ? absint( wp_unslash( $_POST['pickup_pni'] ) ) : 0,
+			'office_id'    => isset( $_POST['office_id'] ) ? absint( wp_unslash( $_POST['office_id'] ) ) : 0,
+			'fragile'      => isset( $_POST['fragile'] ) && 'yes' === sanitize_key( wp_unslash( $_POST['fragile'] ) ) ? 'yes' : 'no',
+			'insurance'    => isset( $_POST['insurance'] ) ? absint( wp_unslash( $_POST['insurance'] ) ) : 0,
+			'value'        => isset( $_POST['value'] ) ? (string) absint( wp_unslash( $_POST['value'] ) ) : '0',
+			'envelope'     => isset( $_POST['envelope'] ) && 'yes' === sanitize_key( wp_unslash( $_POST['envelope'] ) ) ? 'yes' : 'no',
+			'oversize'     => isset( $_POST['oversize'] ) && 'yes' === sanitize_key( wp_unslash( $_POST['oversize'] ) ) ? 'yes' : 'no',
+			'confirmation' => isset( $_POST['confirmation'] ) ? strtoupper( sanitize_key( wp_unslash( $_POST['confirmation'] ) ) ) : '',
+			'hour'         => isset( $_POST['hour'] ) ? strtoupper( sanitize_key( wp_unslash( $_POST['hour'] ) ) ) : '',
+			'distance'     => isset( $_POST['distance'] ) ? absint( wp_unslash( $_POST['distance'] ) ) : 0,
 		);
 		$weight    = isset( $_POST['weight'] ) ? absint( wp_unslash( $_POST['weight'] ) ) : 0;
 
@@ -189,7 +203,7 @@ final class OrderShipmentsBox {
 			$overrides['weights'] = array_fill( 0, $parcels, max( 1, intdiv( $weight, $parcels ) ) );
 		}
 
-		$overrides = array_filter( $overrides, static fn( $value, string $key ): bool => in_array( $key, array( 'fragile', 'insurance', 'value' ), true ) || ( '' !== $value && 0 !== $value ), ARRAY_FILTER_USE_BOTH );
+		$overrides = array_filter( $overrides, static fn( $value, string $key ): bool => in_array( $key, array( 'fragile', 'insurance', 'value', 'envelope', 'oversize', 'confirmation', 'hour' ), true ) || ( '' !== $value && 0 !== $value ), ARRAY_FILTER_USE_BOTH );
 		$service   = new ShipmentService();
 		$shipment  = null;
 		$point     = null;
@@ -341,13 +355,30 @@ final class OrderShipmentsBox {
 	 */
 	public static function service_label( string $id ): string {
 		$labels = array(
-			ServiceRegistry::POCZTEX_COURIER => __( 'Pocztex Courier', 'poczta-polska-for-woocommerce' ),
-			ServiceRegistry::POCZTEX_POINT   => __( 'Pocztex Pickup Point', 'poczta-polska-for-woocommerce' ),
-			ServiceRegistry::POCZTEX_LOCKER  => __( 'Pocztex Parcel Locker', 'poczta-polska-for-woocommerce' ),
-			ServiceRegistry::ECOMMERCE       => __( 'eCommerce parcel', 'poczta-polska-for-woocommerce' ),
+			ServiceRegistry::POCZTEX_COURIER       => __( 'Pocztex Courier', 'poczta-polska-for-woocommerce' ),
+			ServiceRegistry::POCZTEX_POINT         => __( 'Pocztex Pickup Point', 'poczta-polska-for-woocommerce' ),
+			ServiceRegistry::POCZTEX_LOCKER        => __( 'Pocztex Parcel Locker', 'poczta-polska-for-woocommerce' ),
+			ServiceRegistry::ECOMMERCE             => __( 'eCommerce parcel', 'poczta-polska-for-woocommerce' ),
+			ServiceRegistry::POCZTEX_TODAY_CITY    => __( 'Pocztex Today (city)', 'poczta-polska-for-woocommerce' ),
+			ServiceRegistry::POCZTEX_TODAY_COUNTRY => __( 'Pocztex Today (country)', 'poczta-polska-for-woocommerce' ),
 		);
 
 		return $labels[ $id ] ?? $id;
+	}
+
+	/**
+	 * Labels of the delivery hour options.
+	 *
+	 * @return array<string, string>
+	 */
+	public static function hour_labels(): array {
+		return array(
+			''           => __( 'Standard', 'poczta-polska-for-woocommerce' ),
+			'DO_GODZ_8'  => __( 'By 8:00', 'poczta-polska-for-woocommerce' ),
+			'DO_GODZ_9'  => __( 'By 9:00', 'poczta-polska-for-woocommerce' ),
+			'DO_GODZ_12' => __( 'By 12:00', 'poczta-polska-for-woocommerce' ),
+			'PO_GODZ_17' => __( 'After 17:00', 'poczta-polska-for-woocommerce' ),
+		);
 	}
 
 	/**
@@ -404,7 +435,7 @@ final class OrderShipmentsBox {
 	 * Values for the create form and problems the shop manager should fix first.
 	 *
 	 * @param \WC_Order $order Order.
-	 * @return array{service: string, formats: list<string>, format: string, weight: int, mobile: string, phone: string, pni: int, problems: list<string>, cod: string}
+	 * @return array{service: string, formats: list<string>, format: string, weight: int, mobile: string, phone: string, pni: int, problems: list<string>, cod: string, distance: int}
 	 */
 	private function preview( \WC_Order $order ): array {
 		try {
@@ -420,6 +451,7 @@ final class OrderShipmentsBox {
 				'pni'      => (int) ( OrderPoint::get( $order )['pni'] ?? 0 ),
 				'problems' => array( html_entity_decode( $exception->getMessage(), ENT_QUOTES, 'UTF-8' ) ),
 				'cod'      => '',
+				'distance' => 0,
 			);
 		}
 
@@ -433,6 +465,7 @@ final class OrderShipmentsBox {
 			'pni'      => $draft->pickup_pni > 0 ? $draft->pickup_pni : (int) ( OrderPoint::get( $order )['pni'] ?? 0 ),
 			'problems' => ShipmentBuilder::problems( $draft ),
 			'cod'      => $draft->cod_amount > 0 ? html_entity_decode( wp_strip_all_tags( wc_price( $draft->cod_amount / 100 ) ), ENT_QUOTES, 'UTF-8' ) : '',
+			'distance' => (int) ( $draft->options['distance'] ?? 0 ),
 		);
 	}
 
@@ -451,23 +484,28 @@ final class OrderShipmentsBox {
 	 * Values of the form: from the newest shipment that can still be changed, so saving keeps the
 	 * earlier changes; otherwise from the order.
 	 *
-	 * @param Shipment[]                                                                                   $shipments Shipments of the order, newest first.
-	 * @param array{service: string, format: string, weight: int, mobile: string, phone: string, pni: int} $preview   Values from the order.
-	 * @return array{service: string, format: string, parcels: int, weight: int, mobile: string, phone: string, pni: int, office_id: int, fragile: bool, insurance: int, value: int}
+	 * @param Shipment[]                                                                                                  $shipments Shipments of the order, newest first.
+	 * @param array{service: string, format: string, weight: int, mobile: string, phone: string, pni: int, distance: int} $preview   Values from the order.
+	 * @return array{service: string, format: string, parcels: int, weight: int, mobile: string, phone: string, pni: int, office_id: int, fragile: bool, insurance: int, value: int, envelope: bool, oversize: bool, confirmation: string, hour: string, distance: int}
 	 */
 	private static function form_values( array $shipments, array $preview ): array {
 		$values = array(
-			'service'   => $preview['service'],
-			'format'    => $preview['format'],
-			'parcels'   => 1,
-			'weight'    => $preview['weight'],
-			'mobile'    => $preview['mobile'],
-			'phone'     => $preview['phone'],
-			'pni'       => $preview['pni'],
-			'office_id' => (int) Settings::get_for_env( 'posting_office_id' ),
-			'fragile'   => 'yes' === Settings::get( 'pocztex_fragile' ),
-			'insurance' => (int) Settings::get( 'pocztex_insurance' ),
-			'value'     => 0,
+			'service'      => $preview['service'],
+			'format'       => $preview['format'],
+			'parcels'      => 1,
+			'weight'       => $preview['weight'],
+			'mobile'       => $preview['mobile'],
+			'phone'        => $preview['phone'],
+			'pni'          => $preview['pni'],
+			'office_id'    => (int) Settings::get_for_env( 'posting_office_id' ),
+			'fragile'      => 'yes' === Settings::get( 'pocztex_fragile' ),
+			'insurance'    => (int) Settings::get( 'pocztex_insurance' ),
+			'value'        => 0,
+			'envelope'     => false,
+			'oversize'     => false,
+			'confirmation' => '',
+			'hour'         => '',
+			'distance'     => $preview['distance'],
 		);
 
 		foreach ( $shipments as $shipment ) {
@@ -481,17 +519,22 @@ final class OrderShipmentsBox {
 			$options = isset( $draft['options'] ) && is_array( $draft['options'] ) ? $draft['options'] : array();
 
 			return array(
-				'service'   => (string) ( $draft['service'] ?? $values['service'] ),
-				'format'    => (string) ( $draft['format'] ?? $values['format'] ),
-				'parcels'   => max( 1, count( $weights ) ),
-				'weight'    => array() !== $weights ? (int) array_sum( $weights ) : $values['weight'],
-				'mobile'    => (string) ( $contact['mobile'] ?? $values['mobile'] ),
-				'phone'     => (string) ( $contact['phone'] ?? $values['phone'] ),
-				'pni'       => (int) ( $draft['pickup_pni'] ?? 0 ) > 0 ? (int) $draft['pickup_pni'] : $values['pni'],
-				'office_id' => $shipment->office_id > 0 ? $shipment->office_id : $values['office_id'],
-				'fragile'   => array_key_exists( 'fragile', $options ) ? (bool) $options['fragile'] : $values['fragile'],
-				'insurance' => array_key_exists( 'insurance', $options ) ? (int) $options['insurance'] : $values['insurance'],
-				'value'     => (int) round( (int) ( $options['value'] ?? 0 ) / 100 ),
+				'service'      => (string) ( $draft['service'] ?? $values['service'] ),
+				'format'       => (string) ( $draft['format'] ?? $values['format'] ),
+				'parcels'      => max( 1, count( $weights ) ),
+				'weight'       => array() !== $weights ? (int) array_sum( $weights ) : $values['weight'],
+				'mobile'       => (string) ( $contact['mobile'] ?? $values['mobile'] ),
+				'phone'        => (string) ( $contact['phone'] ?? $values['phone'] ),
+				'pni'          => (int) ( $draft['pickup_pni'] ?? 0 ) > 0 ? (int) $draft['pickup_pni'] : $values['pni'],
+				'office_id'    => $shipment->office_id > 0 ? $shipment->office_id : $values['office_id'],
+				'fragile'      => array_key_exists( 'fragile', $options ) ? (bool) $options['fragile'] : $values['fragile'],
+				'insurance'    => array_key_exists( 'insurance', $options ) ? (int) $options['insurance'] : $values['insurance'],
+				'value'        => (int) round( (int) ( $options['value'] ?? 0 ) / 100 ),
+				'envelope'     => ! empty( $options['envelope'] ),
+				'oversize'     => ! empty( $options['oversize'] ),
+				'confirmation' => (string) ( $options['confirmation'] ?? '' ),
+				'hour'         => (string) ( $options['hour'] ?? '' ),
+				'distance'     => (int) ( $options['distance'] ?? $values['distance'] ),
 			);
 		}
 

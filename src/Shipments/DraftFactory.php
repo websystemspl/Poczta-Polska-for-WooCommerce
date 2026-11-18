@@ -26,12 +26,24 @@ defined( 'ABSPATH' ) || exit;
 final class DraftFactory {
 
 	/**
+	 * Ways EN confirms the delivery to the recipient (potwierdzenieEDoreczeniaType).
+	 */
+	public const CONFIRMATIONS = array( 'SMS', 'EMAIL' );
+
+	/**
+	 * Delivery hour options of Pocztex Kurier (godzinaDoreczeniaPocztex2021Enum).
+	 */
+	public const HOURS = array( 'DO_GODZ_8', 'DO_GODZ_9', 'DO_GODZ_12', 'PO_GODZ_17' );
+
+	/**
 	 * Creates a draft.
 	 *
 	 * @param \WC_Order            $order     Order.
 	 * @param array<string, mixed> $overrides Changes from the shop manager: service, parcels (int), weights (int[]),
 	 *                                        format, mobile, phone (landline), pickup_pni, office_id,
-	 *                                        fragile (yes|no), insurance (PLN), value (declared value, PLN).
+	 *                                        fragile (yes|no), insurance (PLN), value (declared value, PLN),
+	 *                                        envelope (yes|no), oversize (yes|no), confirmation (SMS|EMAIL),
+	 *                                        hour (DO_GODZ_8|DO_GODZ_9|DO_GODZ_12|PO_GODZ_17), distance (km).
 	 * @throws ShipmentException When the order has no Poczta Polska service.
 	 */
 	public static function from_order( \WC_Order $order, array $overrides = array() ): ShipmentDraft {
@@ -63,6 +75,11 @@ final class DraftFactory {
 				'content'         => Settings::get( 'pocztex_content' ),
 				'insurance'       => isset( $overrides['insurance'] ) ? max( 0, (int) $overrides['insurance'] ) : (int) Settings::get( 'pocztex_insurance' ),
 				'value'           => isset( $overrides['value'] ) ? max( 0, (int) round( (float) $overrides['value'] * 100 ) ) : 0,
+				'envelope'        => isset( $overrides['envelope'] ) && 'yes' === $overrides['envelope'],
+				'oversize'        => isset( $overrides['oversize'] ) && 'yes' === $overrides['oversize'],
+				'confirmation'    => in_array( $overrides['confirmation'] ?? '', self::CONFIRMATIONS, true ) ? (string) $overrides['confirmation'] : '',
+				'hour'            => in_array( $overrides['hour'] ?? '', self::HOURS, true ) ? (string) $overrides['hour'] : '',
+				'distance'        => max( 0, (int) ( $overrides['distance'] ?? ( null !== $method && $method->id === $service->id ? $method->get_option( 'distance', 0 ) : 0 ) ) ),
 				'category'        => Settings::get( 'ecommerce_category' ),
 				'cod_account'     => Settings::get( 'cod_account' ),
 				'cod_method'      => Settings::get( 'cod_method' ),

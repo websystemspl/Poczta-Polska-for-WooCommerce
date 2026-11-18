@@ -830,7 +830,14 @@ final class ShipmentService {
 			$result = $response[ $draft->guid ] ?? null;
 
 			if ( null === $result || ! $result->is_success() ) {
-				$message = null !== $result ? implode( ' ', $result->errors ) : ( '' !== $general ? $general : __( 'Elektroniczny Nadawca did not return a result for the shipment.', 'poczta-polska-for-woocommerce' ) );
+				$errors = null !== $result ? $result->errors : array();
+
+				// EN may reject a multi-parcel shipment because of one of its further parcels.
+				foreach ( $draft->sub_guids as $guid ) {
+					$errors = array_merge( $errors, isset( $response[ $guid ] ) ? $response[ $guid ]->errors : array() );
+				}
+
+				$message = array() !== $errors ? implode( ' ', array_unique( $errors ) ) : ( '' !== $general ? $general : __( 'Elektroniczny Nadawca did not return a result for the shipment.', 'poczta-polska-for-woocommerce' ) );
 
 				$this->fail( $item['id'], $message );
 				$results[ $item['order_id'] ] = $message;

@@ -49,6 +49,15 @@ final class ClientTest extends EnHttpTestCase {
 		$this->assertSame( '2027-11-02', $this->client()->password_expiry_date()->format( 'Y-m-d' ) );
 	}
 
+	public function test_insurance_levels_are_grouped_by_type_and_sorted(): void {
+		$this->respond( 'getUbezpieczeniaInfo', 'getUbezpieczeniaInfo.xml' );
+
+		$levels = $this->client()->insurance_levels();
+
+		$this->assertSame( array( 100000, 500000, 1000000, 2000000, 5000000, 25000000 ), $levels['Pocztex 2.0 Kurier'] );
+		$this->assertSame( array( 25000000 ), $levels['Global Expres'] );
+	}
+
 	public function test_cards(): void {
 		$this->respond( 'getKarty', 'getKarty.xml' );
 

@@ -227,6 +227,30 @@ final class Client implements ClientInterface {
 	/**
 	 * {@inheritDoc}
 	 */
+	public function insurance_levels(): array {
+		$response = $this->call( 'getUbezpieczeniaInfo', array() );
+		$levels   = array();
+
+		foreach ( self::objects( $response, 'poziomyUbezpieczenia' ) as $level ) {
+			$type   = self::string( $level, 'typPrzesylki' );
+			$amount = self::int( $level, 'kwota' );
+
+			if ( '' !== $type && $amount > 0 ) {
+				$levels[ $type ][] = $amount;
+			}
+		}
+
+		foreach ( $levels as &$amounts ) {
+			$amounts = array_values( array_unique( $amounts ) );
+			sort( $amounts );
+		}
+
+		return $levels;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public function profiles(): array {
 		$response = $this->call( 'getProfilList', array() );
 		$profiles = array();

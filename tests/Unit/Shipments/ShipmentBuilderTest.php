@@ -277,4 +277,78 @@ final class ShipmentBuilderTest extends TestCase {
 		$this->assertTrue( $data['subPrzesylka'][0]['data']['ostroznie'] );
 		$this->assertSame( 25000, $data['wartosc'] );
 	}
+
+	public function test_insurance_is_sent_in_grosze_with_the_extra_courier_services(): void {
+		$options                 = self::draft( ServiceRegistry::POCZTEX_COURIER )->options;
+		$options['insurance']    = 5000;
+		$options['envelope']     = true;
+		$options['oversize']     = true;
+		$options['hour']         = 'DO_GODZ_12';
+		$options['confirmation'] = 'SMS';
+		$draft                   = self::draft(
+			ServiceRegistry::POCZTEX_COURIER,
+			array(
+				'options' => $options,
+				'format'  => 'S',
+				'weights' => array( 800 ),
+			)
+		);
+		$data                    = ShipmentBuilder::build( $draft )['data'];
+
+		$this->assertSame(
+			array(
+				'rodzaj' => 'STANDARD',
+				'kwota'  => 500000,
+			),
+			$data['ubezpieczenie']
+		);
+		$this->assertTrue( $data['kopertaPocztex'] );
+		$this->assertTrue( $data['ponadgabaryt'] );
+		$this->assertSame( 'DO_GODZ_12', $data['godzinaDoreczenia'] );
+		$this->assertSame( 'SMS', $data['potwierdzenieDoreczenia']['sposob'] );
+		$this->assertSame( $draft->recipient['mobile'], $data['potwierdzenieDoreczenia']['kontakt'] );
+		$this->assertSame( array(), ShipmentBuilder::problems( $draft ) );
+	}
+
+	public function test_envelope_needs_one_small_light_parcel(): void {
+		$options             = self::draft( ServiceRegistry::POCZTEX_COURIER )->options;
+		$options['envelope'] = true;
+		$problems            = ShipmentBuilder::problems(
+			self::draft(
+				ServiceRegistry::POCZTEX_COURIER,
+				array(
+					'options' => $options,
+					'format'  => 'M',
+				)
+			)
+		);
+
+		$this->assertStringContainsString( 'envelope', implode( ' ', $problems ) );
+	}
+
+	public function test_today_services_send_the_area_and_the_city_distance(): void {
+		$options             = self::draft( ServiceRegistry::POCZTEX_TODAY_CITY )->options;
+		$options['distance'] = 15;
+		$options['envelope'] = true;
+		$options['hour']     = 'DO_GODZ_12';
+		$city                = ShipmentBuilder::build( self::draft( ServiceRegistry::POCZTEX_TODAY_CITY, array( 'options' => $options ) ) );
+		$country             = ShipmentBuilder::build( self::draft( ServiceRegistry::POCZTEX_TODAY_COUNTRY ) )['data'];
+
+		$this->assertSame( 'pocztex2021NaDzisType', $city['type'] );
+		$this->assertSame( 'MIASTO', $city['data']['obszar'] );
+		$this->assertSame( 15, $city['data']['odleglosc'] );
+		$this->assertArrayNotHasKey( 'kopertaPocztex', $city['data'], 'Courier-only elements are not sent for Na dziś.' );
+		$this->assertArrayNotHasKey( 'godzinaDoreczenia', $city['data'] );
+		$this->assertArrayNotHasKey( 'shipmentChannel', $city['data'] );
+		$this->assertSame( 'KRAJ', $country['obszar'] );
+		$this->assertArrayNotHasKey( 'odleglosc', $country, 'EN rejects a distance in the country (84207).' );
+	}
+
+	public function test_today_city_needs_a_distance_up_to_40_km(): void {
+		$options             = self::draft( ServiceRegistry::POCZTEX_TODAY_CITY )->options;
+		$options['distance'] = 45;
+
+		$this->assertStringContainsString( '40 km', implode( ' ', ShipmentBuilder::problems( self::draft( ServiceRegistry::POCZTEX_TODAY_CITY, array( 'options' => $options ) ) ) ) );
+		$this->assertSame( array(), ShipmentBuilder::problems( self::draft( ServiceRegistry::POCZTEX_TODAY_COUNTRY ) ) );
+	}
 }

@@ -24,10 +24,12 @@ final class Registrar {
 	 * @var array<string, class-string<AbstractMethod>>
 	 */
 	private const METHODS = array(
-		ServiceRegistry::POCZTEX_COURIER => PocztexCourierMethod::class,
-		ServiceRegistry::POCZTEX_POINT   => PocztexPointMethod::class,
-		ServiceRegistry::POCZTEX_LOCKER  => PocztexLockerMethod::class,
-		ServiceRegistry::ECOMMERCE       => EcommerceMethod::class,
+		ServiceRegistry::POCZTEX_COURIER       => PocztexCourierMethod::class,
+		ServiceRegistry::POCZTEX_POINT         => PocztexPointMethod::class,
+		ServiceRegistry::POCZTEX_LOCKER        => PocztexLockerMethod::class,
+		ServiceRegistry::ECOMMERCE             => EcommerceMethod::class,
+		ServiceRegistry::POCZTEX_TODAY_CITY    => PocztexTodayCityMethod::class,
+		ServiceRegistry::POCZTEX_TODAY_COUNTRY => PocztexTodayCountryMethod::class,
 	);
 
 	/**

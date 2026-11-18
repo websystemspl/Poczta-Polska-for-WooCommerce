@@ -17,6 +17,11 @@
 	margin: 0;
 }
 
+/* display: flex above would override the hidden attribute. */
+.ppwc-shipments__field[hidden] {
+	display: none;
+}
+
 .ppwc-shipments__field label {
 	font-weight: 600;
 	white-space: nowrap;

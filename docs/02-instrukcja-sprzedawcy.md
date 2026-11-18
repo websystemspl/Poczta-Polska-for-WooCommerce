@@ -40,16 +40,21 @@ W edycji zamówienia jest panel **Przesyłka Poczta Polska**. Pola są wypełnio
 
 | Pole | Znaczenie |
 |---|---|
-| Usługa | Pocztex Kurier, PUNKT, AUTOMAT albo przesyłka eCommerce. Domyślnie usługa z zamówienia. |
+| Usługa | Pocztex Kurier, PUNKT, AUTOMAT, Na dziś (miasto/kraj) albo przesyłka eCommerce. Domyślnie usługa z zamówienia. |
 | Format | Lista zawiera tylko formaty wybranej usługi (automat: S-L, punkt: S-XL, kurier: S-2XL, eCommerce: gabaryt A albo B). Niedozwolony format jest zgłaszany jako błąd przed utworzeniem przesyłki. |
-| Paczki | Liczba kartonów jednej przesyłki Pocztex (przesyłka wielopaczkowa). |
+| Paczki | Liczba kartonów jednej przesyłki Pocztex (przesyłka wielopaczkowa). Pocztex Na dziś przyjmuje jedną paczkę. |
 | Łączna waga (g) | Z wag produktów albo domyślna waga z ustawień; przy kilku paczkach dzielona po równo. |
 | Telefon komórkowy | Wymagany przy odbiorze w punkcie i automacie (EN wysyła na niego powiadomienia). Polski numer, 9 cyfr. |
 | Telefon stacjonarny | Opcjonalny, wysyłany obok komórki. |
 | Urząd nadania / Urząd bufora | Urząd, do którego bufora trafi przesyłka. Domyślnie z ustawień. Przy nadawaniu w automacie albo odbiorze przez kuriera pole nazywa się „Urząd bufora”, bo miejsce nadania wynika z ustawień (sposób nadania). |
-| Dodatkowe ubezpieczenie (zł) | Tylko Pocztex. 0 = tylko ochrona w cenie usługi (do 1000 zł). Domyślnie z ustawień. |
+| Ubezpieczenie | Tylko Pocztex. Kwoty z cennika EN; „Brak” = tylko ochrona w cenie usługi (do 1000 zł). Domyślnie z ustawień. |
 | Zadeklarowana wartość (zł) | Tylko Pocztex. Usługa „przesyłka z określoną wartością”; 0 = bez deklaracji. |
 | Ostrożnie | Tylko Pocztex. Domyślnie z ustawień; przy automatach nie jest wysyłane, bo EN je tam odrzuca. Trafia na etykietę każdej paczki przy wielopaczce. |
+| Przesyłka niestandardowa | Tylko Pocztex. Paczka przekracza wymiary standardowe (ponadgabaryt). |
+| Potwierdzenie doręczenia | Tylko Pocztex. SMS na komórkę adresata albo e-mail do adresata; wymaga odpowiednio numeru komórkowego albo adresu e-mail z zamówienia. |
+| Godzina doręczenia | Tylko Pocztex Kurier. Do 8:00, do 9:00, do 12:00 albo po 17:00 (usługa płatna według cennika PP). |
+| Koperta Pocztex | Tylko Pocztex Kurier. Jedna paczka w formacie S do 1 kg. |
+| Odległość (km) | Tylko Pocztex Na dziś (miasto). Odległość od miejsca nadania do adresata, 1–40 km; EN jej wymaga. Domyślnie z ustawień metody dostawy. |
 | Punkt odbioru | Tylko dla PUNKT i AUTOMAT. **Wybierz na mapie** otwiera mapę. |
 
 ![Panel „Przesyłka Poczta Polska” w edycji zamówienia](img/zamowienie-panel-przesylki.png)

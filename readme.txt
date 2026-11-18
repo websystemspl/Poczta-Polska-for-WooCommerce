@@ -21,6 +21,7 @@ The store talks to EN directly over the EN WebAPI. There is no intermediate serv
 = Shipping methods =
 
 * **Pocztex Kurier**: door-to-door courier delivery.
+* **Pocztex Na dziś (city / country)**: same-day courier delivery, within the city (up to 40 km) or in the country.
 * **Pocztex PUNKT**: delivery to a post office or a partner pickup point (for example Żabka), chosen on the Poczta Polska map.
 * **Pocztex AUTOMAT**: delivery to a parcel locker, chosen on the map.
 * **Przesyłka eCommerce**: registered letter up to 2000 g, without cash on delivery.
