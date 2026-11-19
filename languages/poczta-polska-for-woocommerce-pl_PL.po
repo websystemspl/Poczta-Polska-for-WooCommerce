@@ -565,10 +565,6 @@ msgstr "%1$s: %2$s Zachowano poprzednią wartość."
 msgid "Invalid value."
 msgstr "Nieprawidłowa wartość."
 
-#: src/Settings.php:201
-msgid "Choose the parcel locker where you post parcels. The previous posting method was kept."
-msgstr "Wybierz automat, w którym nadajesz paczki. Zachowano poprzedni sposób nadania."
-
 #: src/SettingsSchema.php:77
 msgid "Connection"
 msgstr "Połączenie"

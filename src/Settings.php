@@ -193,16 +193,6 @@ final class Settings {
 			}
 		}
 
-		// Posting in a parcel locker needs the locker.
-		if ( 'APM' === ( $clean['posting_channel'] ?? '' ) && '' === ( $clean['posting_locker_pni'] ?? '' ) ) {
-			add_settings_error(
-				self::OPTION,
-				'ppwc_posting_locker_missing',
-				__( 'Choose the parcel locker where you post parcels. The previous posting method was kept.', 'poczta-polska-for-woocommerce' )
-			);
-			$clean['posting_channel'] = self::all()['posting_channel'];
-		}
-
 		return array_intersect_key( $clean, self::defaults() );
 	}
 
