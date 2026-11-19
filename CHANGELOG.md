@@ -5,6 +5,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-11-19
+
 ### Fixed
 - Settings: the posting method "I post them in a Pocztex parcel locker" can be saved without choosing a parcel locker; the settings screen still refused it although shipments have not needed the locker since 0.2.6.
 
@@ -132,6 +134,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - WooCommerce logger wrapper (source `poczta-polska`) that masks sensitive data.
 - Activation, deactivation and uninstall routines.
 
-[Unreleased]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.2.7...v0.3.0
 [0.2.0]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/releases/tag/v0.2.0
