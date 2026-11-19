@@ -5,6 +5,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Fixed
+- Settings: the posting method "I post them in a Pocztex parcel locker" can be saved without choosing a parcel locker; the settings screen still refused it although shipments have not needed the locker since 0.2.6.
+
 ## [0.3.0] - 2026-11-18
 
 ### Added
