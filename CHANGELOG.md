@@ -5,6 +5,16 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-20
+
+### Added
+- Settings, "Shipment defaults": separate templates for Pocztex Kurier (also used for pickup points and parcel lockers) and Pocztex Today. Each sets the format, weight, content, description, insurance, declared value, "Fragile", non-standard parcel and delivery confirmation; Pocztex Kurier also the delivery hour and the Pocztex envelope. New shipments, including bulk actions, start from the template of their service and can still be changed in the shipment panel.
+- The Pocztex envelope from the template is used only for one parcel in format S up to 1 kg; other shipments are created without it.
+- Update from 0.3.x copies the existing Pocztex defaults to the Pocztex Today template.
+
+### Changed
+- Delivery hour: only "by 12:00" is offered. Poczta Polska keeps "by 8:00", "by 9:00" and "after 17:00" for old contracts only and is phasing them out.
+
 ## [0.3.1] - 2026-11-19
 
 ### Fixed
@@ -134,7 +144,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - WooCommerce logger wrapper (source `poczta-polska`) that masks sensitive data.
 - Activation, deactivation and uninstall routines.
 
-[Unreleased]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.3.1...HEAD
+[Unreleased]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.3.1...v0.4.0
 [0.3.1]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.2.7...v0.3.0
 [0.2.0]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/releases/tag/v0.2.0
