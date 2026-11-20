@@ -12,6 +12,7 @@ namespace PocztaPolska\WooCommerce\Shipments;
 use PocztaPolska\WooCommerce\Points\OrderPoint;
 use PocztaPolska\WooCommerce\Sender;
 use PocztaPolska\WooCommerce\Settings;
+use PocztaPolska\WooCommerce\SettingsSchema;
 use PocztaPolska\WooCommerce\Shipping\Methods\AbstractMethod;
 use PocztaPolska\WooCommerce\Shipping\PackageWeight;
 use PocztaPolska\WooCommerce\Shipping\Service;
@@ -31,9 +32,9 @@ final class DraftFactory {
 	public const CONFIRMATIONS = array( 'SMS', 'EMAIL' );
 
 	/**
-	 * Delivery hour options of Pocztex Kurier (godzinaDoreczeniaPocztex2021Enum).
+	 * Delivery hour options of Pocztex Kurier offered by the plugin (see SettingsSchema::POCZTEX_HOURS).
 	 */
-	public const HOURS = array( 'DO_GODZ_8', 'DO_GODZ_9', 'DO_GODZ_12', 'PO_GODZ_17' );
+	public const HOURS = SettingsSchema::POCZTEX_HOURS;
 
 	/**
 	 * Creates a draft.
@@ -43,7 +44,8 @@ final class DraftFactory {
 	 *                                        format, mobile, phone (landline), pickup_pni, office_id,
 	 *                                        fragile (yes|no), insurance (PLN), value (declared value, PLN),
 	 *                                        envelope (yes|no), oversize (yes|no), confirmation (SMS|EMAIL),
-	 *                                        hour (DO_GODZ_8|DO_GODZ_9|DO_GODZ_12|PO_GODZ_17), distance (km).
+	 *                                        hour (DO_GODZ_12), distance (km). Missing service options
+	 *                                        come from the shipment defaults of the service group.
 	 * @throws ShipmentException When the order has no Poczta Polska service.
 	 */
 	public static function from_order( \WC_Order $order, array $overrides = array() ): ShipmentDraft {
@@ -59,26 +61,29 @@ final class DraftFactory {
 		$guids   = array_map( array( self::class, 'guid' ), range( 1, max( 1, count( $weights ) ) ) );
 		$guid    = (string) array_shift( $guids );
 
+		$format = self::format( $service, $method, (string) ( $overrides['format'] ?? '' ) );
+		$door   = $service->is_courier_type() && ! $service->needs_pickup_point();
+
 		return new ShipmentDraft(
 			$service,
 			$guid,
 			$guids,
 			self::recipient( $order, $overrides ),
 			$weights,
-			self::format( $service, $method, (string) ( $overrides['format'] ?? '' ) ),
+			$format,
 			self::cod_amount( $order ),
 			$service->needs_pickup_point() ? (int) ( $overrides['pickup_pni'] ?? ( OrderPoint::get( $order )['pni'] ?? 0 ) ) : 0,
-			self::replace_order_number( Settings::get( 'pocztex_description' ), $order ),
+			self::replace_order_number( Settings::pocztex( $service, 'description' ), $order ),
 			self::customer_number( $guid ),
 			array(
-				'fragile'         => isset( $overrides['fragile'] ) ? 'yes' === $overrides['fragile'] : 'yes' === Settings::get( 'pocztex_fragile' ),
-				'content'         => Settings::get( 'pocztex_content' ),
-				'insurance'       => isset( $overrides['insurance'] ) ? max( 0, (int) $overrides['insurance'] ) : (int) Settings::get( 'pocztex_insurance' ),
-				'value'           => isset( $overrides['value'] ) ? max( 0, (int) round( (float) $overrides['value'] * 100 ) ) : 0,
-				'envelope'        => isset( $overrides['envelope'] ) && 'yes' === $overrides['envelope'],
-				'oversize'        => isset( $overrides['oversize'] ) && 'yes' === $overrides['oversize'],
-				'confirmation'    => in_array( $overrides['confirmation'] ?? '', self::CONFIRMATIONS, true ) ? (string) $overrides['confirmation'] : '',
-				'hour'            => in_array( $overrides['hour'] ?? '', self::HOURS, true ) ? (string) $overrides['hour'] : '',
+				'fragile'         => isset( $overrides['fragile'] ) ? 'yes' === $overrides['fragile'] : 'yes' === Settings::pocztex( $service, 'fragile' ),
+				'content'         => Settings::pocztex( $service, 'content' ),
+				'insurance'       => isset( $overrides['insurance'] ) ? max( 0, (int) $overrides['insurance'] ) : (int) Settings::pocztex( $service, 'insurance' ),
+				'value'           => max( 0, (int) round( (float) ( $overrides['value'] ?? Settings::pocztex( $service, 'value' ) ) * 100 ) ),
+				'envelope'        => isset( $overrides['envelope'] ) ? 'yes' === $overrides['envelope'] : $door && 'yes' === Settings::pocztex( $service, 'envelope' ) && self::fits_envelope( $format, $weights ),
+				'oversize'        => isset( $overrides['oversize'] ) ? 'yes' === $overrides['oversize'] : 'yes' === Settings::pocztex( $service, 'oversize' ),
+				'confirmation'    => self::allowed( (string) ( $overrides['confirmation'] ?? Settings::pocztex( $service, 'confirmation' ) ), self::CONFIRMATIONS ),
+				'hour'            => self::allowed( (string) ( $overrides['hour'] ?? ( $door ? Settings::pocztex( $service, 'hour' ) : '' ) ), self::HOURS ),
 				'distance'        => max( 0, (int) ( $overrides['distance'] ?? ( null !== $method && $method->id === $service->id ? $method->get_option( 'distance', 0 ) : 0 ) ) ),
 				'category'        => Settings::get( 'ecommerce_category' ),
 				'cod_account'     => Settings::get( 'cod_account' ),
@@ -241,7 +246,7 @@ final class DraftFactory {
 			return $weight->grams;
 		}
 
-		return max( 1, (int) Settings::get( 'pocztex_weight' ) );
+		return max( 1, (int) Settings::pocztex( $service, 'weight' ) );
 	}
 
 	/**
@@ -278,9 +283,30 @@ final class DraftFactory {
 			return $method->format();
 		}
 
-		$default = $service->requires_weight ? Settings::get( 'ecommerce_size' ) : Settings::get( 'pocztex_format' );
+		$default = $service->requires_weight ? Settings::get( 'ecommerce_size' ) : Settings::pocztex( $service, 'format' );
 
 		return $service->allows_format( $default ) ? $default : $service->formats[ array_key_last( $service->formats ) ];
+	}
+
+	/**
+	 * Returns the value when it is one of the allowed ones, otherwise "" (the service is not used).
+	 *
+	 * @param string       $value   Value.
+	 * @param list<string> $allowed Allowed values.
+	 */
+	private static function allowed( string $value, array $allowed ): string {
+		return in_array( $value, $allowed, true ) ? $value : '';
+	}
+
+	/**
+	 * Whether the Pocztex envelope from the defaults fits the shipment: one parcel in format S up to 1 kg
+	 * (the same rule ShipmentBuilder::problems() checks for an envelope chosen by hand).
+	 *
+	 * @param string    $format  Parcel format.
+	 * @param list<int> $weights Parcel weights in grams.
+	 */
+	public static function fits_envelope( string $format, array $weights ): bool {
+		return 'S' === $format && 1 === count( $weights ) && array_sum( $weights ) <= ShipmentBuilder::ENVELOPE_MAX_WEIGHT;
 	}
 
 	/**

@@ -1829,3 +1829,43 @@ msgstr "Jedna paczka w formacie S do 1 kg."
 #: src/Shipments/ShipmentBuilder.php:137
 msgid "Pocztex Today takes one parcel per shipment."
 msgstr "Pocztex Na dziś przyjmuje jedną paczkę na przesyłkę."
+
+#: src/SettingsSchema.php
+msgid "Pocztex Kurier"
+msgstr "Pocztex Kurier"
+
+#: src/SettingsSchema.php
+msgid "Pocztex Today"
+msgstr "Pocztex Na dziś"
+
+#: src/SettingsSchema.php
+msgid "XL (up to 60 x 60 x 70 cm)"
+msgstr "XL (do 60 x 60 x 70 cm)"
+
+#: src/SettingsSchema.php
+msgid "2XL"
+msgstr "2XL"
+
+#: src/SettingsSchema.php
+msgid "Declared value (PLN)"
+msgstr "Zadeklarowana wartość (zł)"
+
+#: src/SettingsSchema.php
+msgid "Declared value of every new parcel; 0: none."
+msgstr "Zadeklarowana wartość każdej nowej przesyłki; 0: bez deklaracji."
+
+#: src/SettingsSchema.php
+msgid "Enter a whole amount from 0 to 1000000 PLN."
+msgstr "Podaj pełną kwotę od 0 do 1000000 zł."
+
+#: src/SettingsSchema.php
+msgid "Sent to the mobile or email from the order."
+msgstr "Na telefon komórkowy albo e-mail z zamówienia."
+
+#: src/SettingsSchema.php
+msgid "Delivery to the door only, not to pickup points and parcel lockers."
+msgstr "Tylko doręczenie pod drzwi, nie do punktów i automatów."
+
+#: src/SettingsSchema.php
+msgid "Delivery to the door only. Used for shipments of one parcel in format S up to 1 kg, other shipments are created without it."
+msgstr "Tylko doręczenie pod drzwi. Stosowana przy przesyłkach z jedną paczką w formacie S do 1 kg; pozostałe przesyłki powstają bez koperty."

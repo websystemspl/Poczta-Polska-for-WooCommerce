@@ -48,11 +48,11 @@ W edycji zamówienia jest panel **Przesyłka Poczta Polska**. Pola są wypełnio
 | Telefon stacjonarny | Opcjonalny, wysyłany obok komórki. |
 | Urząd nadania / Urząd bufora | Urząd, do którego bufora trafi przesyłka. Domyślnie z ustawień. Przy nadawaniu w automacie albo odbiorze przez kuriera pole nazywa się „Urząd bufora”, bo miejsce nadania wynika z ustawień (sposób nadania). |
 | Ubezpieczenie | Tylko Pocztex. Kwoty z cennika EN; „Brak” = tylko ochrona w cenie usługi (do 1000 zł). Domyślnie z ustawień. |
-| Zadeklarowana wartość (zł) | Tylko Pocztex. Usługa „przesyłka z określoną wartością”; 0 = bez deklaracji. |
+| Zadeklarowana wartość (zł) | Tylko Pocztex. Usługa „przesyłka z określoną wartością”; 0 = bez deklaracji. Domyślnie z ustawień. |
 | Ostrożnie | Tylko Pocztex. Domyślnie z ustawień; przy automatach nie jest wysyłane, bo EN je tam odrzuca. Trafia na etykietę każdej paczki przy wielopaczce. |
 | Przesyłka niestandardowa | Tylko Pocztex. Paczka przekracza wymiary standardowe (ponadgabaryt). |
 | Potwierdzenie doręczenia | Tylko Pocztex. SMS na komórkę adresata albo e-mail do adresata; wymaga odpowiednio numeru komórkowego albo adresu e-mail z zamówienia. |
-| Godzina doręczenia | Tylko Pocztex Kurier. Do 8:00, do 9:00, do 12:00 albo po 17:00 (usługa płatna według cennika PP). |
+| Godzina doręczenia | Tylko Pocztex Kurier pod drzwi. Standardowo albo do 12:00 (usługa płatna według cennika PP). Domyślnie z ustawień. |
 | Koperta Pocztex | Tylko Pocztex Kurier. Jedna paczka w formacie S do 1 kg. |
 | Odległość (km) | Tylko Pocztex Na dziś (miasto). Odległość od miejsca nadania do adresata, 1–40 km; EN jej wymaga. Domyślnie z ustawień metody dostawy. |
 | Punkt odbioru | Tylko dla PUNKT i AUTOMAT. **Wybierz na mapie** otwiera mapę. |

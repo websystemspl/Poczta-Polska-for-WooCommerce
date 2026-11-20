@@ -48,7 +48,7 @@ final class ShipmentBuilder {
 	/**
 	 * Heaviest parcel allowed in the Pocztex envelope (WebAPI: format S up to 1 kg).
 	 */
-	private const ENVELOPE_MAX_WEIGHT = 1000;
+	public const ENVELOPE_MAX_WEIGHT = 1000;
 
 	private const COD_TITLE_LENGTH = 55;
 

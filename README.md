@@ -2,7 +2,7 @@
 
 Wtyczka łączy sklep WooCommerce z systemem **Elektroniczny Nadawca (EN)** Poczty Polskiej. Klient sklepu wybiera dostawę Pocztą Polską przy zamówieniu, a sprzedawca nadaje paczki prosto z panelu WordPressa, bez przepisywania danych do EN.
 
-Wersja 0.3.1, przed odbiorem przez Pocztę Polską. Zmiany: [CHANGELOG.md](CHANGELOG.md).
+Wersja 0.4.0, przed odbiorem przez Pocztę Polską. Zmiany: [CHANGELOG.md](CHANGELOG.md).
 
 ## Co robi wtyczka
 
@@ -33,7 +33,7 @@ Sklep łączy się z EN bezpośrednio, przez WebAPI. Po drodze nie ma żadnego s
 - **Logowanie do EN:** osobne dane dla wersji produkcyjnej i testowej, z przełącznikiem między nimi. Wtyczka pozwala sprawdzić połączenie, ostrzega przed wygaśnięciem hasła i pokazuje zrozumiały komunikat przy błędnym loginie.
 - **Umowy z Pocztą (karty):** wtyczka pobiera je z EN. Sprzedawca wybiera domyślną umowę i może przypisać inną do każdej metody dostawy.
 - **Domyślne ustawienia paczek:**
-  - Pocztex: rozmiar (od S do 2XL), waga, „ostrożnie”, zawartość, ubezpieczenie, opis,
+  - Pocztex Kurier (także PUNKT i AUTOMAT) oraz Pocztex Na dziś, każdy z osobnym szablonem: rozmiar (od S do 2XL), waga, zawartość, opis, ubezpieczenie, zadeklarowana wartość, „ostrożnie”, przesyłka niestandardowa, potwierdzenie doręczenia; dla Kuriera także doręczenie do 12:00 i koperta Pocztex,
   - eCommerce: gabaryt A albo B.
 - **Sposób nadania** Pocztexu:
   - kurier odbiera paczki od sprzedawcy,

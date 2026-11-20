@@ -68,6 +68,24 @@ final class SettingsSchema {
 	public const POCZTEX_FORMATS = array( 'S', 'M', 'L', 'XL', '2XL' );
 
 	/**
+	 * Settings key prefix of the Pocztex courier type services (Kurier, PUNKT, AUTOMAT).
+	 */
+	public const PREFIX_POCZTEX = 'pocztex_';
+
+	/**
+	 * Settings key prefix of Pocztex "Na dziś".
+	 */
+	public const PREFIX_POCZTEX_TODAY = 'pocztex_today_';
+
+	/**
+	 * Delivery hours offered for Pocztex Kurier. Poczta Polska keeps the other EN values
+	 * (by 8:00, by 9:00, after 17:00) for old contracts only and is phasing them out.
+	 *
+	 * @var list<string>
+	 */
+	public const POCZTEX_HOURS = array( 'DO_GODZ_12' );
+
+	/**
 	 * Returns the tabs (slug => label) in display order.
 	 *
 	 * @return array<string, string>
@@ -99,8 +117,9 @@ final class SettingsSchema {
 				'ppwc_sender' => __( 'Courier pickup address', 'poczta-polska-for-woocommerce' ),
 			),
 			self::TAB_SHIPMENTS => array(
-				'ppwc_pocztex'   => __( 'Pocztex', 'poczta-polska-for-woocommerce' ),
-				'ppwc_ecommerce' => __( 'eCommerce parcel', 'poczta-polska-for-woocommerce' ),
+				'ppwc_pocztex'       => __( 'Pocztex Kurier', 'poczta-polska-for-woocommerce' ),
+				'ppwc_pocztex_today' => __( 'Pocztex Today', 'poczta-polska-for-woocommerce' ),
+				'ppwc_ecommerce'     => __( 'eCommerce parcel', 'poczta-polska-for-woocommerce' ),
 			),
 			self::TAB_COD       => array(
 				'ppwc_cod' => __( 'Cash on delivery payout', 'poczta-polska-for-woocommerce' ),
@@ -234,55 +253,9 @@ final class SettingsSchema {
 				'error'    => __( 'Enter a valid email address of up to 50 characters.', 'poczta-polska-for-woocommerce' ),
 			),
 
-			// Shipment defaults.
-			array(
-				'key'     => 'pocztex_format',
-				'tab'     => self::TAB_SHIPMENTS,
-				'section' => 'ppwc_pocztex',
-				'type'    => 'select',
-				'label'   => __( 'Format', 'poczta-polska-for-woocommerce' ),
-				'options' => array(
-					'S'   => __( 'S (up to 9 x 40 x 65 cm)', 'poczta-polska-for-woocommerce' ),
-					'M'   => __( 'M (up to 20 x 40 x 65 cm)', 'poczta-polska-for-woocommerce' ),
-					'L'   => __( 'L (up to 42 x 40 x 65 cm)', 'poczta-polska-for-woocommerce' ),
-					'XL'  => __( 'XL (up to 60 x 60 x 70 cm, not for parcel lockers)', 'poczta-polska-for-woocommerce' ),
-					'2XL' => __( '2XL (courier only)', 'poczta-polska-for-woocommerce' ),
-				),
-				'default' => 'S',
-			),
-			array(
-				'key'         => 'pocztex_weight',
-				'tab'         => self::TAB_SHIPMENTS,
-				'section'     => 'ppwc_pocztex',
-				'type'        => 'number',
-				'label'       => __( 'Default weight (g)', 'poczta-polska-for-woocommerce' ),
-				'description' => __( 'Used when products in the order have no weight. Pocztex always requires a weight.', 'poczta-polska-for-woocommerce' ),
-				'default'     => '1000',
-				'validate'    => static fn( string $value ): ?string => ctype_digit( $value ) && (int) $value >= 1 && (int) $value <= 50000 ? (string) (int) $value : null,
-				'error'       => __( 'Enter a weight from 1 to 50000 g.', 'poczta-polska-for-woocommerce' ),
-			),
-			array(
-				'key'         => 'pocztex_fragile',
-				'tab'         => self::TAB_SHIPMENTS,
-				'section'     => 'ppwc_pocztex',
-				'type'        => 'checkbox',
-				'label'       => __( 'Fragile', 'poczta-polska-for-woocommerce' ),
-				'description' => __( 'Not available for parcel lockers, Elektroniczny Nadawca rejects it there.', 'poczta-polska-for-woocommerce' ),
-				'default'     => '',
-			),
-			self::text( 'pocztex_content', self::TAB_SHIPMENTS, 'ppwc_pocztex', __( 'Content', 'poczta-polska-for-woocommerce' ), 50, $length_error( 50 ), __( 'Required by Pocztex, e.g. "Goods".', 'poczta-polska-for-woocommerce' ), __( 'Goods', 'poczta-polska-for-woocommerce' ) ),
-			array(
-				'key'         => 'pocztex_insurance',
-				'tab'         => self::TAB_SHIPMENTS,
-				'section'     => 'ppwc_pocztex',
-				'type'        => 'select',
-				'label'       => __( 'Insurance amount (PLN)', 'poczta-polska-for-woocommerce' ),
-				'description' => __( 'Amounts from the Elektroniczny Nadawca price list. Every Pocztex parcel is covered up to PLN 1,000 in the price of the service; "None" sends no insurance. Can be changed for each shipment.', 'poczta-polska-for-woocommerce' ),
-				'default'     => '1000',
-				'validate'    => static fn( string $value ): ?string => ctype_digit( $value ) ? (string) (int) $value : null,
-				'error'       => __( 'Choose an insurance amount from the list.', 'poczta-polska-for-woocommerce' ),
-			),
-			self::text( 'pocztex_description', self::TAB_SHIPMENTS, 'ppwc_pocztex', __( 'Description', 'poczta-polska-for-woocommerce' ), 250, $length_error( 250 ), __( 'Printed on the label (first 40 characters). Use {order_number} for the order number.', 'poczta-polska-for-woocommerce' ), __( 'Order {order_number}', 'poczta-polska-for-woocommerce' ) ),
+			// Shipment defaults: one template for the courier type services, one for "Na dziś".
+			...self::pocztex_fields( 'pocztex_', 'ppwc_pocztex', true ),
+			...self::pocztex_fields( 'pocztex_today_', 'ppwc_pocztex_today', false ),
 			array(
 				'key'     => 'ecommerce_size',
 				'tab'     => self::TAB_SHIPMENTS,
@@ -426,6 +399,148 @@ final class SettingsSchema {
 		}
 
 		return $value;
+	}
+
+	/**
+	 * Builds the default fields of a Pocztex service group (a template for new shipments).
+	 *
+	 * @param string $prefix  Settings key prefix, see PREFIX_* constants.
+	 * @param string $section Section slug.
+	 * @param bool   $courier Whether the group is pocztex2021KurierType, the only type with the delivery hour and the envelope.
+	 * @return list<Field>
+	 */
+	private static function pocztex_fields( string $prefix, string $section, bool $courier ): array {
+		$tab    = self::TAB_SHIPMENTS;
+		$fields = array(
+			array(
+				'key'     => $prefix . 'format',
+				'tab'     => $tab,
+				'section' => $section,
+				'type'    => 'select',
+				'label'   => __( 'Format', 'poczta-polska-for-woocommerce' ),
+				'options' => array(
+					'S'   => __( 'S (up to 9 x 40 x 65 cm)', 'poczta-polska-for-woocommerce' ),
+					'M'   => __( 'M (up to 20 x 40 x 65 cm)', 'poczta-polska-for-woocommerce' ),
+					'L'   => __( 'L (up to 42 x 40 x 65 cm)', 'poczta-polska-for-woocommerce' ),
+					'XL'  => $courier ? __( 'XL (up to 60 x 60 x 70 cm, not for parcel lockers)', 'poczta-polska-for-woocommerce' ) : __( 'XL (up to 60 x 60 x 70 cm)', 'poczta-polska-for-woocommerce' ),
+					'2XL' => $courier ? __( '2XL (courier only)', 'poczta-polska-for-woocommerce' ) : __( '2XL', 'poczta-polska-for-woocommerce' ),
+				),
+				'default' => 'S',
+			),
+			array(
+				'key'         => $prefix . 'weight',
+				'tab'         => $tab,
+				'section'     => $section,
+				'type'        => 'number',
+				'label'       => __( 'Default weight (g)', 'poczta-polska-for-woocommerce' ),
+				'description' => __( 'Used when products in the order have no weight. Pocztex always requires a weight.', 'poczta-polska-for-woocommerce' ),
+				'default'     => '1000',
+				'validate'    => static fn( string $value ): ?string => ctype_digit( $value ) && (int) $value >= 1 && (int) $value <= 50000 ? (string) (int) $value : null,
+				'error'       => __( 'Enter a weight from 1 to 50000 g.', 'poczta-polska-for-woocommerce' ),
+			),
+			self::text( $prefix . 'content', $tab, $section, __( 'Content', 'poczta-polska-for-woocommerce' ), 50, self::length_error( 50 ), __( 'Required by Pocztex, e.g. "Goods".', 'poczta-polska-for-woocommerce' ), __( 'Goods', 'poczta-polska-for-woocommerce' ) ),
+			self::text( $prefix . 'description', $tab, $section, __( 'Description', 'poczta-polska-for-woocommerce' ), 250, self::length_error( 250 ), __( 'Printed on the label (first 40 characters). Use {order_number} for the order number.', 'poczta-polska-for-woocommerce' ), __( 'Order {order_number}', 'poczta-polska-for-woocommerce' ) ),
+			array(
+				'key'         => $prefix . 'insurance',
+				'tab'         => $tab,
+				'section'     => $section,
+				'type'        => 'select',
+				'label'       => __( 'Insurance amount (PLN)', 'poczta-polska-for-woocommerce' ),
+				'description' => __( 'Amounts from the Elektroniczny Nadawca price list. Every Pocztex parcel is covered up to PLN 1,000 in the price of the service; "None" sends no insurance. Can be changed for each shipment.', 'poczta-polska-for-woocommerce' ),
+				'default'     => '1000',
+				'validate'    => static fn( string $value ): ?string => ctype_digit( $value ) ? (string) (int) $value : null,
+				'error'       => __( 'Choose an insurance amount from the list.', 'poczta-polska-for-woocommerce' ),
+			),
+			array(
+				'key'         => $prefix . 'value',
+				'tab'         => $tab,
+				'section'     => $section,
+				'type'        => 'number',
+				'label'       => __( 'Declared value (PLN)', 'poczta-polska-for-woocommerce' ),
+				'description' => __( 'Declared value of every new parcel; 0: none.', 'poczta-polska-for-woocommerce' ),
+				'default'     => '0',
+				'validate'    => static fn( string $value ): ?string => '' === $value ? '0' : ( ctype_digit( $value ) && (int) $value <= 1000000 ? (string) (int) $value : null ),
+				'error'       => __( 'Enter a whole amount from 0 to 1000000 PLN.', 'poczta-polska-for-woocommerce' ),
+			),
+			array(
+				'key'         => $prefix . 'fragile',
+				'tab'         => $tab,
+				'section'     => $section,
+				'type'        => 'checkbox',
+				'label'       => __( 'Fragile', 'poczta-polska-for-woocommerce' ),
+				'description' => $courier ? __( 'Not available for parcel lockers, Elektroniczny Nadawca rejects it there.', 'poczta-polska-for-woocommerce' ) : '',
+				'default'     => '',
+			),
+			array(
+				'key'         => $prefix . 'oversize',
+				'tab'         => $tab,
+				'section'     => $section,
+				'type'        => 'checkbox',
+				'label'       => __( 'Non-standard parcel', 'poczta-polska-for-woocommerce' ),
+				'description' => __( 'Exceeds the standard dimensions (oversize).', 'poczta-polska-for-woocommerce' ),
+				'default'     => '',
+			),
+			array(
+				'key'         => $prefix . 'confirmation',
+				'tab'         => $tab,
+				'section'     => $section,
+				'type'        => 'select',
+				'label'       => __( 'Delivery confirmation', 'poczta-polska-for-woocommerce' ),
+				'description' => __( 'Sent to the mobile or email from the order.', 'poczta-polska-for-woocommerce' ),
+				'options'     => array(
+					''      => __( 'None', 'poczta-polska-for-woocommerce' ),
+					'SMS'   => __( 'SMS to the recipient mobile', 'poczta-polska-for-woocommerce' ),
+					'EMAIL' => __( 'Email to the recipient', 'poczta-polska-for-woocommerce' ),
+				),
+				'default'     => '',
+			),
+		);
+
+		if ( $courier ) {
+			$fields[] = array(
+				'key'         => $prefix . 'hour',
+				'tab'         => $tab,
+				'section'     => $section,
+				'type'        => 'select',
+				'label'       => __( 'Delivery hour', 'poczta-polska-for-woocommerce' ),
+				'description' => __( 'Delivery to the door only, not to pickup points and parcel lockers.', 'poczta-polska-for-woocommerce' ),
+				'options'     => self::hour_labels(),
+				'default'     => '',
+			);
+			$fields[] = array(
+				'key'         => $prefix . 'envelope',
+				'tab'         => $tab,
+				'section'     => $section,
+				'type'        => 'checkbox',
+				'label'       => __( 'Pocztex envelope', 'poczta-polska-for-woocommerce' ),
+				'description' => __( 'Delivery to the door only. Used for shipments of one parcel in format S up to 1 kg, other shipments are created without it.', 'poczta-polska-for-woocommerce' ),
+				'default'     => '',
+			);
+		}
+
+		return $fields;
+	}
+
+	/**
+	 * Labels of the delivery hour options ("" is the standard delivery).
+	 *
+	 * @return array<string, string>
+	 */
+	public static function hour_labels(): array {
+		return array(
+			''           => __( 'Standard', 'poczta-polska-for-woocommerce' ),
+			'DO_GODZ_12' => __( 'By 12:00', 'poczta-polska-for-woocommerce' ),
+		);
+	}
+
+	/**
+	 * Error shown when a text is too long.
+	 *
+	 * @param int $max Maximum number of characters.
+	 */
+	private static function length_error( int $max ): string {
+		/* translators: %d: maximum number of characters. */
+		return sprintf( __( 'The value is too long, the maximum is %d characters.', 'poczta-polska-for-woocommerce' ), $max );
 	}
 
 	/**

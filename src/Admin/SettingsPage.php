@@ -432,7 +432,7 @@ final class SettingsPage {
 				$options[ (string) $id ] = sprintf( __( '%1$s (%2$d)', 'poczta-polska-for-woocommerce' ), $office['print_name'], $id );
 			}
 			$error = Dictionary::error( 'offices' );
-		} elseif ( 'pocztex_insurance' === $key ) {
+		} elseif ( in_array( $key, array( SettingsSchema::PREFIX_POCZTEX . 'insurance', SettingsSchema::PREFIX_POCZTEX_TODAY . 'insurance' ), true ) ) {
 			$options = array( '0' => __( 'None (only the cover included in the service)', 'poczta-polska-for-woocommerce' ) );
 
 			foreach ( Dictionary::pocztex_insurance_levels() as $amount ) {

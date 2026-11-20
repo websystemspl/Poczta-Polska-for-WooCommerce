@@ -10,6 +10,7 @@ declare( strict_types=1 );
 namespace PocztaPolska\WooCommerce;
 
 use PocztaPolska\WooCommerce\Security\Crypto;
+use PocztaPolska\WooCommerce\Shipping\Service;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -108,6 +109,17 @@ final class Settings {
 	 */
 	public static function get_for_env( string $key, ?string $environment = null ): string {
 		return self::get( $key . '_' . ( $environment ?? self::environment() ) );
+	}
+
+	/**
+	 * Returns a Pocztex shipment default of the group the service belongs to: "Na dziś" has its
+	 * own template, the courier type services (Kurier, PUNKT, AUTOMAT) share the other one.
+	 *
+	 * @param Service $service Service.
+	 * @param string  $key     Setting key without the prefix, e.g. "fragile".
+	 */
+	public static function pocztex( Service $service, string $key ): string {
+		return self::get( ( null !== $service->area ? SettingsSchema::PREFIX_POCZTEX_TODAY : SettingsSchema::PREFIX_POCZTEX ) . $key );
 	}
 
 	/**

@@ -15,6 +15,7 @@ use PocztaPolska\WooCommerce\Points\OrderPoint;
 use PocztaPolska\WooCommerce\Points\PointResolver;
 use PocztaPolska\WooCommerce\Points\PointValidator;
 use PocztaPolska\WooCommerce\Settings;
+use PocztaPolska\WooCommerce\SettingsSchema;
 use PocztaPolska\WooCommerce\Shipments\DraftFactory;
 use PocztaPolska\WooCommerce\Shipments\EnvelopeStatus;
 use PocztaPolska\WooCommerce\Shipments\Shipment;
@@ -372,13 +373,7 @@ final class OrderShipmentsBox {
 	 * @return array<string, string>
 	 */
 	public static function hour_labels(): array {
-		return array(
-			''           => __( 'Standard', 'poczta-polska-for-woocommerce' ),
-			'DO_GODZ_8'  => __( 'By 8:00', 'poczta-polska-for-woocommerce' ),
-			'DO_GODZ_9'  => __( 'By 9:00', 'poczta-polska-for-woocommerce' ),
-			'DO_GODZ_12' => __( 'By 12:00', 'poczta-polska-for-woocommerce' ),
-			'PO_GODZ_17' => __( 'After 17:00', 'poczta-polska-for-woocommerce' ),
-		);
+		return SettingsSchema::hour_labels();
 	}
 
 	/**
@@ -489,7 +484,11 @@ final class OrderShipmentsBox {
 	 * @return array{service: string, format: string, parcels: int, weight: int, mobile: string, phone: string, pni: int, office_id: int, fragile: bool, insurance: int, value: int, envelope: bool, oversize: bool, confirmation: string, hour: string, distance: int}
 	 */
 	private static function form_values( array $shipments, array $preview ): array {
-		$values = array(
+		// Defaults from the template of the service group (Pocztex Kurier or Pocztex Today).
+		$service = ServiceRegistry::get( $preview['service'] );
+		$default = static fn( string $key ): string => null !== $service ? Settings::pocztex( $service, $key ) : Settings::get( SettingsSchema::PREFIX_POCZTEX . $key );
+		$door    = null !== $service && $service->is_courier_type() && ! $service->needs_pickup_point();
+		$values  = array(
 			'service'      => $preview['service'],
 			'format'       => $preview['format'],
 			'parcels'      => 1,
@@ -498,13 +497,13 @@ final class OrderShipmentsBox {
 			'phone'        => $preview['phone'],
 			'pni'          => $preview['pni'],
 			'office_id'    => (int) Settings::get_for_env( 'posting_office_id' ),
-			'fragile'      => 'yes' === Settings::get( 'pocztex_fragile' ),
-			'insurance'    => (int) Settings::get( 'pocztex_insurance' ),
-			'value'        => 0,
-			'envelope'     => false,
-			'oversize'     => false,
-			'confirmation' => '',
-			'hour'         => '',
+			'fragile'      => 'yes' === $default( 'fragile' ),
+			'insurance'    => (int) $default( 'insurance' ),
+			'value'        => (int) $default( 'value' ),
+			'envelope'     => $door && 'yes' === $default( 'envelope' ) && DraftFactory::fits_envelope( $preview['format'], array( $preview['weight'] ) ),
+			'oversize'     => 'yes' === $default( 'oversize' ),
+			'confirmation' => $default( 'confirmation' ),
+			'hour'         => $door ? $default( 'hour' ) : '',
 			'distance'     => $preview['distance'],
 		);
 

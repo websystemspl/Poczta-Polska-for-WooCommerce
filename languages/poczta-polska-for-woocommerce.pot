@@ -2,7 +2,7 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Poczta Polska for WooCommerce 0.3.1\n"
+"Project-Id-Version: Poczta Polska for WooCommerce 0.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/poczta-polska-for-woocommerce\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1816,4 +1816,44 @@ msgstr ""
 
 #: views/admin/settings-page.php:14
 msgid "Settings sections"
+msgstr ""
+
+#: src/SettingsSchema.php
+msgid "Pocztex Kurier"
+msgstr ""
+
+#: src/SettingsSchema.php
+msgid "Pocztex Today"
+msgstr ""
+
+#: src/SettingsSchema.php
+msgid "XL (up to 60 x 60 x 70 cm)"
+msgstr ""
+
+#: src/SettingsSchema.php
+msgid "2XL"
+msgstr ""
+
+#: src/SettingsSchema.php
+msgid "Declared value (PLN)"
+msgstr ""
+
+#: src/SettingsSchema.php
+msgid "Declared value of every new parcel; 0: none."
+msgstr ""
+
+#: src/SettingsSchema.php
+msgid "Enter a whole amount from 0 to 1000000 PLN."
+msgstr ""
+
+#: src/SettingsSchema.php
+msgid "Sent to the mobile or email from the order."
+msgstr ""
+
+#: src/SettingsSchema.php
+msgid "Delivery to the door only, not to pickup points and parcel lockers."
+msgstr ""
+
+#: src/SettingsSchema.php
+msgid "Delivery to the door only. Used for shipments of one parcel in format S up to 1 kg, other shipments are created without it."
 msgstr ""
