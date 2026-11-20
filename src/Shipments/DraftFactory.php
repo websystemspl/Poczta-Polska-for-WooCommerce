@@ -291,8 +291,8 @@ final class DraftFactory {
 	/**
 	 * Returns the value when it is one of the allowed ones, otherwise "" (the service is not used).
 	 *
-	 * @param string       $value   Value.
-	 * @param list<string> $allowed Allowed values.
+	 * @param string   $value   Value.
+	 * @param string[] $allowed Allowed values.
 	 */
 	private static function allowed( string $value, array $allowed ): string {
 		return in_array( $value, $allowed, true ) ? $value : '';
@@ -302,8 +302,8 @@ final class DraftFactory {
 	 * Whether the Pocztex envelope from the defaults fits the shipment: one parcel in format S up to 1 kg
 	 * (the same rule ShipmentBuilder::problems() checks for an envelope chosen by hand).
 	 *
-	 * @param string    $format  Parcel format.
-	 * @param list<int> $weights Parcel weights in grams.
+	 * @param string $format  Parcel format.
+	 * @param int[]  $weights Parcel weights in grams.
 	 */
 	public static function fits_envelope( string $format, array $weights ): bool {
 		return 'S' === $format && 1 === count( $weights ) && array_sum( $weights ) <= ShipmentBuilder::ENVELOPE_MAX_WEIGHT;

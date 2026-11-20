@@ -95,6 +95,8 @@ final class SettingsTest extends TestCase {
 				'pocztex_today_value'        => '',
 				'pocztex_today_oversize'     => 'yes',
 				'pocztex_today_confirmation' => 'EMAIL',
+				'ecommerce_size'             => 'GABARYT_A',
+				'ecommerce_category'         => 'EKONOMICZNA',
 			)
 		);
 
