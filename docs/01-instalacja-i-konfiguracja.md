@@ -68,18 +68,38 @@ Adres nadawcy na etykietach pochodzi z profilu nadawcy (zakładka „Umowa i nad
 
 ### Zakładka „Parametry przesyłek”
 
-Wartości domyślne dla nowych przesyłek; w każdej przesyłce można je zmienić przed wydrukiem etykiety.
+Szablony nowych przesyłek, osobno dla każdej grupy usług:
+
+- **Pocztex Kurier**: Pocztex Kurier, Pocztex PUNKT i Pocztex AUTOMAT,
+- **Pocztex Na dziś**: Pocztex Na dziś w mieście i w kraju,
+- **Przesyłka eCommerce**.
+
+Każda nowa przesyłka, także z akcji zbiorczej na liście zamówień, startuje z szablonu swojej usługi. W panelu przesyłki można je zmienić przed wydrukiem etykiety.
+
+Pola sekcji „Pocztex Kurier” i „Pocztex Na dziś”:
 
 | Pole | Znaczenie |
 |---|---|
-| Format (Pocztex) | S, M, L, XL, 2XL. XL nie mieści się w automatach, 2XL tylko kurier. |
+| Format | S, M, L, XL, 2XL. Przy Kurierze: XL nie mieści się w automatach, 2XL tylko kurier. |
 | Domyślna waga (g) | Używana, gdy produkty nie mają wagi. Pocztex zawsze wymaga wagi. |
-| Ostrożnie | Usługa „ostrożnie”. Pomijana przy automatach, bo EN jej tam nie przyjmuje. |
 | Zawartość | Wymagana przez Pocztex, np. „Towar”. |
-| Kwota ubezpieczenia (zł) | Lista kwot z cennika Elektronicznego Nadawcy (`getUbezpieczeniaInfo`, np. 1000, 5000, 10 000 zł), domyślnie pierwsza z nich. „Brak” nie wysyła ubezpieczenia; każda paczka Pocztex ma i tak w cenie ochronę do 1000 zł. Kwotę można zmienić dla pojedynczej przesyłki. |
 | Opis | Drukowany na etykiecie (pierwsze 40 znaków). `{order_number}` zostaje zastąpione numerem zamówienia. |
-| Gabaryt (eCommerce) | Gabaryt A albo B. |
-| Kategoria (eCommerce) | Ekonomiczna albo priorytetowa. |
+| Kwota ubezpieczenia (zł) | Lista kwot z cennika Elektronicznego Nadawcy (`getUbezpieczeniaInfo`, np. 1000, 5000, 10 000 zł), domyślnie pierwsza z nich. „Brak” nie wysyła ubezpieczenia; każda paczka Pocztex ma i tak w cenie ochronę do 1000 zł. |
+| Zadeklarowana wartość (zł) | Usługa „przesyłka z określoną wartością”; 0 = bez deklaracji. |
+| Ostrożnie | Usługa „ostrożnie”. Pomijana przy automatach, bo EN jej tam nie przyjmuje. |
+| Przesyłka niestandardowa | Paczka przekracza wymiary standardowe (ponadgabaryt). |
+| Potwierdzenie doręczenia | SMS na komórkę albo e-mail adresata z zamówienia. |
+| Godzina doręczenia | Tylko Pocztex Kurier pod drzwi: standardowo albo do 12:00. Inne godziny Poczta Polska utrzymuje tylko dla starych umów, więc wtyczka ich nie oferuje. |
+| Koperta Pocztex | Tylko Pocztex Kurier pod drzwi. Stosowana przy przesyłce z jedną paczką w formacie S do 1 kg; pozostałe przesyłki powstają bez koperty. |
+
+Sekcja „Przesyłka eCommerce”:
+
+| Pole | Znaczenie |
+|---|---|
+| Gabaryt | Gabaryt A albo B. |
+| Kategoria | Ekonomiczna albo priorytetowa. |
+
+Przy aktualizacji z wersji 0.3.x szablon Pocztex Na dziś dostaje kopię dotychczasowych ustawień Pocztexu.
 
 ### Zakładka „Pobranie”
 

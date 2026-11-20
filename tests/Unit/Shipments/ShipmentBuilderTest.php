@@ -9,6 +9,7 @@ declare( strict_types=1 );
 
 namespace PocztaPolska\WooCommerce\Tests\Unit\Shipments;
 
+use PocztaPolska\WooCommerce\Shipments\DraftFactory;
 use PocztaPolska\WooCommerce\Shipments\ShipmentBuilder;
 use PocztaPolska\WooCommerce\Shipments\ShipmentDraft;
 use PocztaPolska\WooCommerce\Shipping\ServiceRegistry;
@@ -308,6 +309,23 @@ final class ShipmentBuilderTest extends TestCase {
 		$this->assertSame( 'SMS', $data['potwierdzenieDoreczenia']['sposob'] );
 		$this->assertSame( $draft->recipient['mobile'], $data['potwierdzenieDoreczenia']['kontakt'] );
 		$this->assertSame( array(), ShipmentBuilder::problems( $draft ) );
+	}
+
+	public function test_phased_out_delivery_hours_are_not_sent(): void {
+		foreach ( array( 'DO_GODZ_8', 'DO_GODZ_9', 'PO_GODZ_17' ) as $hour ) {
+			$options         = self::draft( ServiceRegistry::POCZTEX_COURIER )->options;
+			$options['hour'] = $hour;
+			$data            = ShipmentBuilder::build( self::draft( ServiceRegistry::POCZTEX_COURIER, array( 'options' => $options ) ) )['data'];
+
+			$this->assertArrayNotHasKey( 'godzinaDoreczenia', $data, $hour . ' is kept by Poczta Polska for old contracts only.' );
+		}
+	}
+
+	public function test_envelope_default_fits_one_small_light_parcel_only(): void {
+		$this->assertTrue( DraftFactory::fits_envelope( 'S', array( 1000 ) ) );
+		$this->assertFalse( DraftFactory::fits_envelope( 'M', array( 400 ) ) );
+		$this->assertFalse( DraftFactory::fits_envelope( 'S', array( 1001 ) ) );
+		$this->assertFalse( DraftFactory::fits_envelope( 'S', array( 300, 300 ) ) );
 	}
 
 	public function test_envelope_needs_one_small_light_parcel(): void {

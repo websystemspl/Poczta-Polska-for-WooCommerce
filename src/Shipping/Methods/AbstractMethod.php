@@ -240,7 +240,7 @@ abstract class AbstractMethod extends \WC_Shipping_Method {
 			return $format;
 		}
 
-		$default = $this->service()->requires_weight ? Settings::get( 'ecommerce_size' ) : Settings::get( 'pocztex_format' );
+		$default = $this->service()->requires_weight ? Settings::get( 'ecommerce_size' ) : Settings::pocztex( $this->service(), 'format' );
 
 		// The global default may not fit this service, e.g. XL for parcel lockers.
 		$formats = $this->service()->formats;

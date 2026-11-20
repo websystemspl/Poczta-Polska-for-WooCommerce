@@ -56,6 +56,21 @@ final class Lifecycle {
 			}
 		}
 
+		// 0.4.0: Pocztex Today has its own shipment defaults; they start as a copy of the Pocztex ones.
+		if ( version_compare( $installed, '0.4.0', '<' ) ) {
+			$settings = get_option( Settings::OPTION, array() );
+
+			if ( is_array( $settings ) ) {
+				foreach ( array( 'format', 'weight', 'fragile', 'content', 'insurance', 'description' ) as $key ) {
+					if ( isset( $settings[ SettingsSchema::PREFIX_POCZTEX . $key ] ) && ! isset( $settings[ SettingsSchema::PREFIX_POCZTEX_TODAY . $key ] ) ) {
+						$settings[ SettingsSchema::PREFIX_POCZTEX_TODAY . $key ] = $settings[ SettingsSchema::PREFIX_POCZTEX . $key ];
+					}
+				}
+
+				update_option( Settings::OPTION, $settings );
+			}
+		}
+
 		update_option( self::VERSION_OPTION, PPWC_VERSION, false );
 	}
 
