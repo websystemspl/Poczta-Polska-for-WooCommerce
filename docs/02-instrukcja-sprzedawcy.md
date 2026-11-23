@@ -107,7 +107,7 @@ Bufor to zbiór przesyłek z jednego dnia, dla jednej karty umowy i jednego urz�
 - nagłówek: numer bufora, data nadania, liczba przesyłek; pod nim urząd nadania i karta umowy,
 - tabela przesyłek: zamówienie, adresat, usługa, numer nadania, stan.
 
-![Ekran Bufory: bufor z poprzedniego dnia, wysłane zbiory i zamówienie kuriera](img/bufory.png)
+![Ekran Bufory: bufor z dwiema przesyłkami, wysłane zbiory i zamówienie kuriera](img/bufory.png)
 
 Działania w buforze:
 
