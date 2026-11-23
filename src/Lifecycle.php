@@ -42,12 +42,21 @@ final class Lifecycle {
 	public static function maybe_upgrade(): void {
 		$installed = (string) get_option( self::VERSION_OPTION, '' );
 
-		if ( '' === $installed || version_compare( $installed, PPWC_VERSION, '>=' ) ) {
+		/*
+		 * The version is saved on activation. It can still be missing: the plugin files were replaced without
+		 * activation, the plugin is network-activated on a multisite (activation runs for one site only) or the
+		 * option was removed. The previous version is unknown then, so only the changes that never overwrite
+		 * a saved value run, and the version is saved for the next update.
+		 */
+		$known = '' !== $installed;
+
+		if ( $known && version_compare( $installed, PPWC_VERSION, '>=' ) ) {
 			return;
 		}
 
 		// 0.3.0: the insurance amount is one of the EN tiers; the first tier is the default asked by Poczta Polska.
-		if ( version_compare( $installed, '0.3.0', '<' ) ) {
+		// Skipped for an unknown version: "0" may be the "None" chosen on purpose in 0.3.0 or later.
+		if ( $known && version_compare( $installed, '0.3.0', '<' ) ) {
 			$settings = get_option( Settings::OPTION, array() );
 
 			if ( is_array( $settings ) && '0' === (string) ( $settings['pocztex_insurance'] ?? '' ) ) {
@@ -57,10 +66,10 @@ final class Lifecycle {
 		}
 
 		// 0.4.0: Pocztex Today has its own shipment defaults; they start as a copy of the Pocztex ones.
-		if ( version_compare( $installed, '0.4.0', '<' ) ) {
+		if ( ! $known || version_compare( $installed, '0.4.0', '<' ) ) {
 			$settings = get_option( Settings::OPTION, array() );
 
-			if ( is_array( $settings ) ) {
+			if ( is_array( $settings ) && array() !== $settings ) {
 				foreach ( array( 'format', 'weight', 'fragile', 'content', 'insurance', 'description' ) as $key ) {
 					if ( isset( $settings[ SettingsSchema::PREFIX_POCZTEX . $key ] ) && ! isset( $settings[ SettingsSchema::PREFIX_POCZTEX_TODAY . $key ] ) ) {
 						$settings[ SettingsSchema::PREFIX_POCZTEX_TODAY . $key ] = $settings[ SettingsSchema::PREFIX_POCZTEX . $key ];

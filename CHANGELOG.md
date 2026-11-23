@@ -5,6 +5,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Fixed
+- Updates: when the saved plugin version was missing (files replaced without activation, network activation on a multisite), the one-time changes of settings never ran. The version is now saved and the changes that do not overwrite saved values run, e.g. the Pocztex Today shipment defaults copied from the Pocztex ones.
+
 ## [0.4.0] - 2026-11-20
 
 ### Added
