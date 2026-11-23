@@ -5,6 +5,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-11-23
+
 ### Fixed
 - Updates: when the saved plugin version was missing (files replaced without activation, network activation on a multisite), the one-time changes of settings never ran. The version is now saved and the changes that do not overwrite saved values run, e.g. the Pocztex Today shipment defaults copied from the Pocztex ones.
 
@@ -147,7 +149,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - WooCommerce logger wrapper (source `poczta-polska`) that masks sensitive data.
 - Activation, deactivation and uninstall routines.
 
-[Unreleased]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.4.1...HEAD
+[0.4.1]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.3.1...v0.4.0
 [0.3.1]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.2.7...v0.3.0
