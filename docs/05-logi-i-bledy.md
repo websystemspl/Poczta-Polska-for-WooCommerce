@@ -39,17 +39,22 @@ Komunikaty z Elektronicznego Nadawcy wtyczka pokazuje po polsku, w brzmieniu z E
 | Komunikat / błąd | Przyczyna | Co zrobić |
 |---|---|---|
 | „Elektroniczny Nadawca odrzucił login lub hasło.” | błędne dane albo wygasłe hasło EN | sprawdź dane w zakładce „Połączenie” i aktywne środowisko; zmień hasło w EN i wpisz nowe |
-| „Wpisz login i hasło do Elektronicznego Nadawcy w ustawieniach wtyczki.” | brak danych dla aktywnego środowiska | uzupełnij zakładkę „Połączenie” |
+| „Wpisz login i hasło do Elektronicznego Nadawcy w ustawieniach wtyczki.” | brak zapisanego loginu albo hasła dla tego środowiska; wtyczka nie łączy się wtedy z EN. Pojawia się też, gdy dane są wpisane w formularzu, ale jeszcze niezapisane | wpisz dane w zakładce „Połączenie”, kliknij **Zapisz zmiany** i dopiero potem **Testuj połączenie** |
 | brak połączenia, przekroczony czas | EN niedostępny albo serwer sklepu nie łączy się z EN | sprawdź połączenie wychodzące HTTPS; przesyłka zostaje w stanie „Niepotwierdzona” - po powrocie EN kliknij **Sprawdź w EN** |
 | błąd 84049 | punkt nie przyjmuje pobrania | wybierz inny punkt albo inną płatność |
 | błąd 30707 | brak telefonu komórkowego przy odbiorze w punkcie | wpisz komórkę w panelu przesyłki |
 | błąd 84024 | Pocztex bez zawartości | uzupełnij „Zawartość” w zakładce „Parametry przesyłek” |
 | błąd 84137, 84135 | format niedozwolony dla usługi (XL w automacie, 2XL poza kurierem) | zmień format w panelu przesyłki albo w ustawieniach metody |
+| błąd 84211, 84215 | Pocztex Na dziś (miasto) bez odległości albo z odległością spoza zakresu 1-40 km | wpisz odległość w panelu przesyłki albo domyślną w ustawieniach metody |
+| błąd 84207 | Pocztex Na dziś (kraj) z podaną odległością | wtyczka jej nie wysyła; jeśli błąd się pojawi, zgłoś go z logiem |
+| błąd 84502 | Pocztex Na dziś z więcej niż jedną paczką | nadaj jedną paczkę; wtyczka sprawdza to przed wysłaniem do EN |
+| błąd 84128 | godzina doręczenia razem z przesyłką niestandardową | wyłącz jedną z tych usług |
+| błąd 84134 | przesyłka niestandardowa razem z kopertą Pocztex | wyłącz jedną z tych usług |
 | błąd 95901 | brak profilu nadawcy w buforze | wybierz profil w zakładce „Umowa i nadanie” |
 | błąd 85303 | bufor z datą z przeszłości | wtyczka nie tworzy takich buforów; jeśli bufor ma starą datę, użyj **Zmień datę na dzisiejszą** |
 | błąd 96001, 20603 | bufor nie istnieje w EN | wtyczka oznacza przesyłki z tego bufora jako odrzucone; sprawdź je w EN i utwórz ponownie |
 | błąd 50701 przy usuwaniu | przesyłki już nie ma w EN | brak działania: wtyczka traktuje przesyłkę jako usuniętą |
-| lista „Popraw przed utworzeniem przesyłki” | dane zamówienia nie spełniają wymagań EN (np. kod pocztowy, długość nazwy lub ulicy, brak komórki przy punkcie, waga poza limitem, brak rachunku do pobrania) | popraw zamówienie albo ustawienia; wtyczka sprawdza to przed wysłaniem do EN |
+| lista „Popraw przed utworzeniem przesyłki” | dane zamówienia nie spełniają wymagań EN (np. kod pocztowy, długość nazwy lub ulicy, brak komórki przy punkcie, waga poza limitem, brak rachunku do pobrania, koperta Pocztex w formacie innym niż S albo powyżej 1 kg, potwierdzenie SMS bez komórki albo e-mail bez adresu) | popraw zamówienie albo ustawienia; wtyczka sprawdza to przed wysłaniem do EN |
 | „Usługi krajowe doręczają tylko na adresy w Polsce.” | adres zagraniczny | usługi zagraniczne nie są w tej wersji obsługiwane |
 
 Pełna lista kodów błędów EN jest w dokumentacji WebAPI Elektronicznego Nadawcy.

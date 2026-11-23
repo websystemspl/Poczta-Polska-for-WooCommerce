@@ -48,7 +48,8 @@ Klient SOAP używa lokalnego WSDL, a adres usługi ustawia z konfiguracji, bo WS
 | Karty, urzędy, profile | `getKarty`, `getUrzedyNadania`, `getProfilList` |
 | Kopia punktów odbioru | `getPlacowkiPocztowe` (16 województw), `getPlacowkaPocztowa` (pojedynczy punkt) |
 | Bufory | `createEnvelopeBufor`, `getEnvelopeBuforList`, `updateEnvelopeBufor`, `clearEnvelope` |
-| Przesyłki | `addShipment` (Pocztex: `pocztex2021KurierType` z `punktOdbioru` dla PUNKT/AUTOMAT i `subPrzesylka` dla wielu paczek; eCommerce: `przesylkaFirmowaPoleconaType`), `getEnvelopeBufor`, `clearEnvelopeByGuids`, `moveShipments` |
+| Przesyłki | `addShipment` (Pocztex: `pocztex2021KurierType` z `punktOdbioru` dla PUNKT/AUTOMAT i `subPrzesylka` dla wielu paczek; Pocztex Na dziś: `pocztex2021NaDzisType` z `obszar` MIASTO albo KRAJ i `odleglosc` dla miasta, zawsze jedna paczka; eCommerce: `przesylkaFirmowaPoleconaType`), `getEnvelopeBufor`, `clearEnvelopeByGuids`, `moveShipments` |
+| Kwoty ubezpieczenia | `getUbezpieczeniaInfo` (progi w groszach, kopia na 12 godzin; gdy EN nie odpowiada, wtyczka używa listy wbudowanej) |
 | Etykiety | `getPrintForParcel` (jeden plik PDF) |
 | Wysłanie bufora | `sendEnvelope`, `getEnvelopeStatus`, `getEnvelopeContentShort` |
 | Kurier | `zamowKuriera` |
@@ -58,6 +59,9 @@ Zasady integracji:
 - Przesyłka dostaje GUID wygenerowany przez wtyczkę i zapisany w bazie **przed** wywołaniem `addShipment`. Po zerwanym połączeniu wtyczka szuka przesyłki w EN po GUID, zamiast tworzyć ją drugi raz.
 - `numerPrzesylkiKlienta` = `PPWC-` + 20 znaków GUID. EN zachowuje go przy zmianie daty bufora, gdy przesyłka z wydrukowaną etykietą dostaje nowy GUID i numer nadania; wtyczka odnajduje ją po tym numerze.
 - Karta umowy jest atrybutem bufora (`idKarta`), dlatego wtyczka trzyma osobny bufor na kartę, urząd nadania, profil i dzień.
+- Kwoty w `addShipment` są w groszach: pobranie (`kwotaPobrania`), ubezpieczenie (`ubezpieczenie.kwota`) i zadeklarowana wartość (`wartosc`). W panelu i ustawieniach sprzedawca podaje złote.
+- Nadanie w automacie to `shipmentChannel` = `APM`. `punktNadania` z PNI automatu wtyczka wysyła tylko, gdy automat jest wpisany w ustawieniach.
+- Usługi dodatkowe Pocztex: `ostroznie`, `ponadgabaryt` (przesyłka niestandardowa), `potwierdzenieDoreczenia` (SMS albo EMAIL z kontaktem adresata). Tylko w `pocztex2021KurierType`: `kopertaPocztex` i `godzinaDoreczenia` (wtyczka oferuje tylko `DO_GODZ_12`).
 - Kwota pobrania w `addShipment` jest w groszach; limit pobrania punktu (`maksymalnaKwotaPobrania`) w złotych.
 - Operacje na buforach i zamówieniach są blokowane przed równoległym wykonaniem (blokady w opcjach `ppwc_lock_*`, 180 s).
 - Wtyczka obsługuje tylko bufory, które sama utworzyła, i porównuje je z listą w EN.
@@ -94,7 +98,7 @@ W danych przesyłki wtyczka nie przechowuje adresu odbiorcy (zostaje w zamówien
 
 - Meta zamówienia `_ppwc_pickup_point`: PNI, nazwa, typ, sieć, adres, limit pobrania wybranego punktu.
 - Sesja WooCommerce `ppwc_pickup_points`: punkty wybrane w trakcie zamówienia (osobno PUNKT i AUTOMAT).
-- Pozycje wysyłki zamówienia mają `method_id` równe identyfikatorowi usługi (`ppwc_pocztex_courier`, `ppwc_pocztex_point`, `ppwc_pocztex_locker`, `ppwc_ecommerce`).
+- Pozycje wysyłki zamówienia mają `method_id` równe identyfikatorowi usługi (`ppwc_pocztex_courier`, `ppwc_pocztex_point`, `ppwc_pocztex_locker`, `ppwc_pocztex_today_city`, `ppwc_pocztex_today_country`, `ppwc_ecommerce`).
 
 ## 3.5. Zadania w tle (Action Scheduler, grupa `ppwc`)
 
