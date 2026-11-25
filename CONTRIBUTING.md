@@ -36,7 +36,7 @@ Testy na koncie testowym EN wykonujemy tylko na karcie testowej. Nie tworzymy bu
 
 - Standardy kodowania WordPress (PHPCS) i bezpieczeństwo: nonce i uprawnienia przy każdej akcji, sanitizacja wejścia, escaping wyjścia, `$wpdb->prepare()`.
 - Zamówienia wyłącznie przez CRUD WooCommerce (HPOS i tryb legacy).
-- Teksty źródłowe po angielsku, domena `poczta-polska-for-woocommerce`, tłumaczenie pl_PL w `languages/` aktualizowane razem ze zmianą.
+- Teksty źródłowe po angielsku, domena `poczta-polska-for-woocommerce`, tłumaczenie pl_PL w `languages/` aktualizowane razem ze zmianą. Do katalogu WordPress.org idzie paczka `composer build:wporg`, bez plików tłumaczeń.
 - HTML w szablonach (`templates/` dla sklepu i maili, `views/admin/` dla panelu), nie w klasach PHP.
 - Bez danych logowania i danych osobowych w kodzie, testach i nagranych odpowiedziach EN.
 

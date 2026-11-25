@@ -2,12 +2,12 @@
 /**
  * Plugin Name:          Poczta Polska for WooCommerce
  * Description:          Pocztex and eCommerce shipping methods with the Poczta Polska pickup point map, cash on delivery and shipment handling in Elektroniczny Nadawca (EN).
- * Version:              0.4.1
+ * Version:              0.4.2
  * Requires at least:    6.8
  * Requires PHP:         8.2
  * Requires Plugins:     woocommerce
- * Author:               Web Systems
- * Author URI:           https://web-systems.pl
+ * Author:               Poczta Polska S.A.
+ * Author URI:           https://www.poczta-polska.pl
  * License:              GPL-2.0-or-later
  * License URI:          https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:          poczta-polska-for-woocommerce
@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
 // Keep this file parseable on old PHP versions: the version guard below must run
 // before any file that uses PHP 8.2 syntax is loaded.
 
-define( 'PPWC_VERSION', '0.4.1' );
+define( 'PPWC_VERSION', '0.4.2' );
 define( 'PPWC_PLUGIN_FILE', __FILE__ );
 define( 'PPWC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PPWC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
