@@ -23,7 +23,7 @@ Przy aktualizacji:
 
 - ustawienia, przesyłki, bufory, kopia punktów i rejestr operacji zostają,
 - jeśli nowa wersja zmienia tabele, wtyczka aktualizuje je przy pierwszym wejściu do panelu (bez ponownego włączania),
-- tłumaczenie pl_PL jest częścią paczki i aktualizuje się razem z wtyczką.
+- wersja z katalogu WordPress.org nie zawiera plików tłumaczeń: WordPress pobiera tłumaczenie pl_PL z translate.wordpress.org i aktualizuje je osobno (Kokpit → Aktualizacje → Tłumaczenia). Paczka z GitHuba ma tłumaczenie w środku.
 
 Zalecenia:
 

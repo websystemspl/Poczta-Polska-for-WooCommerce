@@ -5,6 +5,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-11-25
+
+### Changed
+- Plugin header: the author is Poczta Polska S.A. (Author URI https://www.poczta-polska.pl), as requested by the WordPress.org ownership check; readme.txt credits Web Systems as the developer.
+- Build: `composer build:wporg` makes the WordPress.org package without the bundled translations (`languages/*.po`, `*.mo`, `*.json`); the Polish translation is delivered by translate.wordpress.org. `composer build` still includes it.
+
 ## [0.4.1] - 2026-11-23
 
 ### Fixed
@@ -149,7 +155,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - WooCommerce logger wrapper (source `poczta-polska`) that masks sensitive data.
 - Activation, deactivation and uninstall routines.
 
-[Unreleased]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.4.1...HEAD
+[Unreleased]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.4.2...HEAD
+[0.4.2]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.3.1...v0.4.0
 [0.3.1]: https://github.com/websystemspl/Poczta-Polska-for-WooCommerce/compare/v0.3.0...v0.3.1

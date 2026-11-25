@@ -93,6 +93,14 @@ composer build
 
 Skrypt `.github/scripts/build-zip.sh` sprawdza, czy `Version` w nagłówku zgadza się ze `Stable tag` w `readme.txt`, kopiuje pliki z pominięciem ścieżek z `.distignore` (narzędzia, testy, `vendor`, `node_modules`, pliki konfiguracji, dokumentacja deweloperska) i tworzy `dist/poczta-polska-for-woocommerce-X.Y.Z.zip` z katalogiem `poczta-polska-for-woocommerce/` w środku. Taki plik instaluje się w WordPressie przez **Wtyczki → Dodaj nową → Wyślij wtyczkę na serwer**.
 
+Paczka dla katalogu WordPress.org:
+
+```bash
+composer build:wporg
+```
+
+Tworzy `dist/poczta-polska-for-woocommerce-X.Y.Z-wporg.zip` bez plików tłumaczeń (`languages/*.po`, `*.mo`, `*.json`), bo katalog WordPress.org ich nie przyjmuje i dostarcza tłumaczenia z translate.wordpress.org. Szablon `.pot` zostaje. Tę paczkę wgrywa się przy zgłoszeniu wtyczki i jej zawartość trafia do `trunk/` w SVN. Tłumaczenie z `languages/poczta-polska-for-woocommerce-pl_PL.po` importuje się do projektu wtyczki na translate.wordpress.org (wymaga roli edytora tłumaczeń polskich dla wtyczki, Project Translation Editor).
+
 ## 6.7. Katalog WordPress.org
 
 Wtyczka jest publikowana na koncie Poczty Polskiej w katalogu WordPress.org. Katalog używa repozytorium SVN `https://plugins.svn.wordpress.org/poczta-polska-for-woocommerce/` z katalogami:
@@ -108,7 +116,7 @@ Publikacja wersji (konto z dostępem do SVN wtyczki):
 ```bash
 svn checkout https://plugins.svn.wordpress.org/poczta-polska-for-woocommerce/ svn-ppwc
 cd svn-ppwc
-rm -rf trunk/* && unzip -q ../dist/poczta-polska-for-woocommerce-X.Y.Z.zip -d /tmp/ppwc && cp -R /tmp/ppwc/poczta-polska-for-woocommerce/. trunk/
+rm -rf trunk/* && unzip -q ../dist/poczta-polska-for-woocommerce-X.Y.Z-wporg.zip -d /tmp/ppwc && cp -R /tmp/ppwc/poczta-polska-for-woocommerce/. trunk/
 svn add --force trunk && svn status | grep '^!' | awk '{print $2}' | xargs -r svn delete
 svn cp trunk tags/X.Y.Z
 svn commit -m "Release X.Y.Z"

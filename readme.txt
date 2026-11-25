@@ -4,7 +4,7 @@ Tags: poczta polska, pocztex, shipping, pickup point, cash on delivery
 Requires at least: 6.8
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 0.4.1
+Stable tag: 0.4.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,6 +13,8 @@ Pocztex and eCommerce shipping with the Poczta Polska pickup point map, cash on 
 == Description ==
 
 Poczta Polska for WooCommerce connects your store with Elektroniczny Nadawca (EN), the Poczta Polska shipping system.
+
+The plugin is published by Poczta Polska S.A. and developed for Poczta Polska by Web Systems.
 
 Customers choose Poczta Polska delivery at checkout. Store managers create shipments, print labels and send them to the post office straight from the WordPress admin, without retyping order data into EN.
 
@@ -131,6 +133,10 @@ Poczta Polska privacy policy: https://www.poczta-polska.pl/polityka-prywatnosci/
 The plugin adds a suggested paragraph to **Settings → Privacy → Policy Guide**. It supports the WordPress personal data export and erasure tools: the pickup point and tracking numbers of an order are exported, and the pickup point is erased with the order data. Recipient data stays in the order; the plugin keeps only phone numbers that the store corrected for a shipment, and erases them with the order data.
 
 == Changelog ==
+
+= 0.4.2 =
+* Plugin header: the author is Poczta Polska S.A.
+* The WordPress.org package no longer bundles translation files; translations come from translate.wordpress.org.
 
 = 0.4.1 =
 * Updates: the one-time changes of settings also run when the saved plugin version is missing (e.g. network activation on a multisite).
